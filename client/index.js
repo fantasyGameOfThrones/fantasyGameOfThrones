@@ -10,7 +10,6 @@ import reducer from './reducers/appReducer';
 var store = createStore( reducer );
 
 var rootElement = document.getElementById('app');
-console.log(rootElement);
 
 render (
   <Provider store={store}>

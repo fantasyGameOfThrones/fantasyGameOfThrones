@@ -1,12 +1,16 @@
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import CharacterTable from './components/characterTable.jsx';
+import PlayerTable from './components/playerTable.jsx';
 
 var App = React.createClass({
 
   render() {
-    return <h1>Hello, world!</h1>;
+    return <div>
+      <CharacterTable />
+      <PlayerTable />
+    </div>;
   },
 
 });
