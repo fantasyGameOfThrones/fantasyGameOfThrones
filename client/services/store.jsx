@@ -1,6 +1,13 @@
-import { createStore } from 'redux';
-import reducer from '../reducers/appReducer';
+'use strict';
 
-var store = createStore( reducer );
+import reducer from '../reducers/appReducer';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+
+var store = applyMiddleware( thunk )( createStore )( reducer );
+
+store.subscribe(() => {
+  console.log('current state:', store.getState());
+});
 
 module.exports = store;
