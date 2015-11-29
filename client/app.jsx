@@ -3,19 +3,21 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CharacterTable from './components/characterTable.jsx';
 import PlayerTable from './components/playerTable.jsx';
+import TeamTable from './components/teamTable.jsx';
 
-var App = React.createClass({
+let App = React.createClass({
 
   render() {
     return <div>
       <CharacterTable />
       <PlayerTable />
+      <TeamTable />
     </div>;
   },
 
 });
 
-var select = function( state ){
+let select = function( state ){
   return { token: state.token };
 };
 

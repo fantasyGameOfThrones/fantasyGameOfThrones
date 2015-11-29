@@ -1,10 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import actions from '../services/actionCreators.jsx';
 
-var CharacterTable = React.createClass({
+let CharacterTable = React.createClass({
 
   render() {
-    return <table>
+    return <table
+      className="characterTable"
+    >
+      <caption> Available Characters </caption>
       <thead>
         <tr>
           <td className="heading">First Name</td>
@@ -13,8 +17,8 @@ var CharacterTable = React.createClass({
         </tr>
       </thead>
       <tbody>
-        { this.props.characters.map(function(char) {
-          return <tr key={char.id}>
+        { this.props.characters.map(( char ) => {
+          return <tr key={char.id} onClick={() => { this.draftCharacter( char ) }}>
             <td className="data firstName">{char.firstName}</td>
             <td className="data lastName">{char.lastName}</td>
             <td className="data house">{char.house}</td>
@@ -24,9 +28,14 @@ var CharacterTable = React.createClass({
     </table>
   },
 
+  draftCharacter( character ) {
+    console.log('getting called with: ', character);
+    this.props.dispatch( actions.draftCharacter( character ) );
+  },
+
 });
 
-var select = function( state ){
+let select = ( state ) => {
   return {
     selectedPlayer: state.ui.selectedPlayer,
     characters: state.data.characterData,

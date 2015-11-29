@@ -1,17 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-var PlayerTable = React.createClass({
+let PlayerTable = React.createClass({
 
   render() {
-    return <table>
+    return <table className="playerTable">
+      <caption> Players </caption>
       <thead>
         <tr>
           <td className="heading">Name</td>
         </tr>
       </thead>
       <tbody>
-        { this.props.players.map(function(player) {
+        { this.props.players.map(( player ) => {
           return <tr key={player.id}>
             <td className="data name">{player.name}</td>
           </tr>
@@ -22,7 +23,7 @@ var PlayerTable = React.createClass({
 
 });
 
-var select = function( state ){
+let select = ( state ) => {
   return {
     selectedPlayer: state.ui.selectedPlayer,
     players: state.data.playerData,

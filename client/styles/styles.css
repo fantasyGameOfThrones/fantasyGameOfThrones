@@ -5,16 +5,25 @@
 
 body {
   background-image: url('../assets/mochaGrunge.png');
-  font-family: 'Noticia Text', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
+table {
+  border: black 2px solid;
+}
+caption {
+  font-weight: 700;
+  font-size: 24px;
+}
+table caption {
+  font-family: 'Noticia Text', sans-serif;
+}
 .heading {
   font-weight: 700;
 }
 .data {
 
 }
-
-table {
-  border: black 2px solid;
+.characterTable .playerTable .teamTable {
+  float: left;
 }

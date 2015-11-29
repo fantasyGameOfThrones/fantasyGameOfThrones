@@ -1,10 +1,10 @@
 'use strict';
 
-import reducer from '../reducers/appReducer';
 import { createStore, applyMiddleware } from 'redux';
+import reducer from '../reducers/appReducer';
 import thunk from 'redux-thunk';
 
-var store = applyMiddleware( thunk )( createStore )( reducer );
+let store = applyMiddleware( thunk )( createStore )( reducer );
 
 store.subscribe(() => {
   console.log('current state:', store.getState());
