@@ -7,13 +7,13 @@ var PlayerTable = React.createClass({
     return <table>
       <thead>
         <tr>
-          <td>Name</td>
+          <td className="heading">Name</td>
         </tr>
       </thead>
       <tbody>
         { this.props.players.map(function(player) {
           return <tr key={player.id}>
-            <td>{player.name}</td>
+            <td className="data name">{player.name}</td>
           </tr>
         }) }
       </tbody>

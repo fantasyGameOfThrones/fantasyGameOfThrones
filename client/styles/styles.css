@@ -1,0 +1,20 @@
+/*@font-face {
+  font-family: 'gameOfThrones',
+  src: url('../assets/gameofthrones.ttf');
+}*/
+
+body {
+  background-image: url('../assets/mochaGrunge.png');
+  font-family: 'Noticia Text', sans-serif;
+}
+
+.heading {
+  font-weight: 700;
+}
+.data {
+
+}
+
+table {
+  border: black 2px solid;
+}

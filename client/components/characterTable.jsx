@@ -7,17 +7,17 @@ var CharacterTable = React.createClass({
     return <table>
       <thead>
         <tr>
-          <td>First Name</td>
-          <td>Last Name</td>
-          <td>House</td>
+          <td className="heading">First Name</td>
+          <td className="heading">Last Name</td>
+          <td className="heading">House</td>
         </tr>
       </thead>
       <tbody>
         { this.props.characters.map(function(char) {
           return <tr key={char.id}>
-            <td>{char.firstName}</td>
-            <td>{char.lastName}</td>
-            <td>{char.house}</td>
+            <td className="data firstName">{char.firstName}</td>
+            <td className="data lastName">{char.lastName}</td>
+            <td className="data house">{char.house}</td>
           </tr>
         }) }
       </tbody>
