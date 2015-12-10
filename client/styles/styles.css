@@ -2,6 +2,36 @@
   font-family: 'gameOfThrones',
   src: url('../assets/gameofthrones.ttf');
 }*/
+#composedApp {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+#header, #footer{
+  display: flex;
+  justify-content: center;
+  background:palegreen;
+}
+#body {
+  display: flex;
+  flex: 1;
+}
+#center {
+  display: flex;
+  overflow: scroll;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background: lightpink;
+  flex: 1;
+}
+#left, #right {
+   background: lightskyblue;
+   flex: 0 0 12em;
+}
+#left {
+  order: -1;
+}
 
 body {
   background-image: url('../assets/mochaGrunge.png');
@@ -27,3 +57,5 @@ table caption {
 .characterTable .playerTable .teamTable {
   float: left;
 }
+
+
