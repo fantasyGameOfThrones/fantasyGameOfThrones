@@ -4,13 +4,12 @@
   "description": "Fantasy sports for Game of Thrones",
   "main": "./client/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"gulp dev"
   },
   "author": "Naomi Jacobs",
   "license": "ISC",
   "dependencies": {
-    "babel": "^6.1.18",
-    "babel-core": "^6.2.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
@@ -18,10 +17,15 @@
     "redux-thunk": "^1.0.0"
   },
   "devDependencies": {
+    "babel-core": "^6.2.1",
     "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.1.18",
     "babel-preset-react": "^6.1.18",
+    "babel-preset-stage-0": "^6.0.15",
+    "gulp": "^3.9.0",
+    "react-hot-loader": "^1.3.0",
     "redux-devtools": "^2.1.5",
-    "webpack": "^1.12.8"
+    "webpack": "^1.12.8",
+    "webpack-dev-server": "^1.12.1"
   }
 }
