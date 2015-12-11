@@ -30,3 +30,15 @@ Dev server should now serve files from http://localhost:8000/client. React compo
 * [react-redux](https://github.com/rackt/react-redux)
 * [redux](https://github.com/rackt/redux)
 * [redux-thunk](https://github.com/gaearon/redux-thunk)
+
+## Dev Dependencies
+* [babel-core](https://github.com/babel/babel/tree/master/packages/babel-core)
+* [babel-loader](https://github.com/babel/babel-loader)
+* [babel-preset-es2015](https://github.com/babel/babel/tree/master/packages/babel-preset-es2015)
+* [babel-preset-react](https://github.com/babel/babel/tree/master/packages/babel-preset-react)
+* [babel-preset-stage-0](https://github.com/babel/babel/tree/master/packages/babel-preset-stage-0)
+* [gulp](https://github.com/gulpjs/gulp)
+* [react-hot-loader](https://github.com/gaearon/react-hot-loader)
+* [redux-devtools](https://github.com/gaearon/redux-devtools)
+* [webpack](https://github.com/webpack/webpack)
+* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
