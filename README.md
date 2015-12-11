@@ -3,8 +3,9 @@
 ----
 ## Introduction
 see [Game of Thrones Wikipedia](https://en.wikipedia.org/wiki/Game_of_Thrones)
+and [The Inspiration](http://www.theverge.com/2015/4/10/8382395/the-game-of-game-of-thrones-who-will-win-season-five)
 
-This provides a platform for a game of thrones fantasy league.
+This provides a platform for a Game of Thrones fantasy league.
 
 ## Tech Stack
 
