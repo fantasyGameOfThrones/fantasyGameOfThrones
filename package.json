@@ -5,7 +5,7 @@
   "main": "./client/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"gulp dev"
+    "start": "gulp dev"
   },
   "author": "Naomi Jacobs",
   "license": "ISC",
@@ -26,6 +26,7 @@
     "react-hot-loader": "^1.3.0",
     "redux-devtools": "^2.1.5",
     "webpack": "^1.12.8",
+    "webpack-bundle-tracker": "0.0.8",
     "webpack-dev-server": "^1.12.1"
   }
 }
