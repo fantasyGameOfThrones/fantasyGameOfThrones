@@ -7,12 +7,12 @@
 
 var gulp = require('gulp');
 var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
+var webpackDevServer = require('webpack-dev-server');
 var webpackConfig = require('./webpack.config');
 var serverConfig = require('./webpack.dev.server.config');
 
 gulp.task('dev', function() {
-  var server = new WebpackDevServer(webpack(webpackConfig), serverConfig);
+  var server = new webpackDevServer(webpack(webpackConfig), serverConfig);
   server.listen(8000, 'localhost', function(err) {
     console.log(err || 'server listening on localhost:8000');
   });
