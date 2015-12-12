@@ -8,6 +8,8 @@ let userData = ( state = user, action ) => {
   }
 };
 
+// const notDrafter = (char) => char.drafted === null;
+
 let notDrafted = (char) => {
   return char.drafted === null;
 };
