@@ -9,4 +9,4 @@ let Footer = React.createClass({
 
 });
 
-module.exports = connect( select )( Footer );
+module.exports = Footer;

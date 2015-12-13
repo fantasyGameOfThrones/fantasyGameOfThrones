@@ -5,11 +5,12 @@
   "main": "./client/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"gulp dev"
+    "start": "gulp dev"
   },
   "author": "Naomi Jacobs",
   "license": "ISC",
   "dependencies": {
+    "gulp": "^3.9.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
