@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import CharacterTable from './components/characterTable.jsx';
 import PlayerTable from './components/playerTable.jsx';
 import TeamTable from './components/teamTable.jsx';
+import Footer from './components/footer.jsx';
 
 let App = React.createClass({
 
@@ -20,7 +21,7 @@ let App = React.createClass({
           </div>
           <div id="right"><h1>Right Panel</h1></div>
         </div>
-        <div id="footer"><h1>Footer</h1></div>
+        <Footer />
       </div>
     );
   },

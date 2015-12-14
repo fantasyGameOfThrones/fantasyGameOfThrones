@@ -3,7 +3,7 @@ module.exports = {
   output: {
     path: './dist',
     filename: 'bundle.js',
-    publicPath: './client'
+    publicPath: 'dist'
   },
   module: {
     loaders: [
