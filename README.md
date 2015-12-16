@@ -14,14 +14,10 @@ Python? + React/Redux + Redis?
 ----
 ## Getting started (dev)
 * `npm install`
-* `gulp dev`
+* `npm start`
 
 Dev server should now serve files from http://localhost:8000/client. React components should be auto-updated, without need of browser refresh. 
 
-----
-## Getting started (prod)
-* `npm install`
-* `gulp build`
 
 ----
 ## Dependencies
