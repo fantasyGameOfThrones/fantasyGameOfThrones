@@ -1,32 +1,29 @@
 
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CharacterTable from './components/characterTable.jsx';
-import PlayerTable from './components/playerTable.jsx';
-import TeamTable from './components/teamTable.jsx';
 import Footer from './components/footer.jsx';
+import Header from './components/header.jsx';
+import Content from './components/content.jsx';
+import LeftNav from './components/leftNav.jsx';
+import RightNav from './components/rightNav.jsx';
 
-let App = React.createClass({
+export default class App extends Component {
 
   render() {
     return (
       <div id="composedApp">
-        <div id="header"><h1>Fantasy Game of Thrones</h1></div>
+        <Header />
         <div id="body">
-          <div id="left"><h1>Left Panel</h1></div>
-          <div id="center">
-            <CharacterTable />
-            <PlayerTable />
-            <TeamTable />
-          </div>
-          <div id="right"><h1>Right Panel</h1></div>
+          <LeftNav />
+          <Content />
+          <RightNav />
         </div>
         <Footer />
       </div>
     );
-  },
+  }
 
-});
+};
 
 let select = function( state ){
   return { token: state.token };
