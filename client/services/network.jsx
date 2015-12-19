@@ -26,6 +26,10 @@ let makeParams = ( method, body ) => {
 
 };
 
+/*
+  below is a working example of a request to the server
+  current plan is to deprecate api/characters
+*/
 const getCharacters = () => {
   const params = makeParams('GET');
   return fetch( url + '/characters', params)

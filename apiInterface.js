@@ -1,3 +1,17 @@
+/* DB MODELS BLURB
+
+- each episode, each character 
+    must produce 1 score based off 
+    of an accumulation of events
+
+- league owns many users
+- users own many characters 
+    joined with an 'episodes-owned' 
+    table, which describes
+    what characters a player owns,
+    for which week
+*/
+
 /* API INTERFACE */
 
 models = {

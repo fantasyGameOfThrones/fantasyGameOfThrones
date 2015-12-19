@@ -9,6 +9,10 @@ exports.setSelectedPlayer = ( player ) => {
   }
 };
 
+/*DEMO
+  below is a working example of a request to the server
+  current plan is to deprecate api/characters
+*/
 exports.getCharacters = () => {
   return (dispatch) => {
     network.getCharacters()
@@ -20,7 +24,6 @@ exports.getCharacters = () => {
       .catch((err) => dispatch(getCharactersStatus(false, err)))
   }
 };
-
 function getCharactersStatus(responseOk, payload) {
   let success = responseOk ? 
     'GET_CHARACTERS_SUCCESS' : 'GET_CHARACTERS_FAILURE';
@@ -30,6 +33,7 @@ function getCharactersStatus(responseOk, payload) {
     payload
   };
 };
+//END DEMO
 
 
 exports.draftCharacter = ( character ) => {
