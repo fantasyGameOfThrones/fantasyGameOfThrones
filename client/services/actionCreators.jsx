@@ -9,6 +9,29 @@ exports.setSelectedPlayer = ( player ) => {
   }
 };
 
+exports.getCharacters = () => {
+  return (dispatch) => {
+    network.getCharacters()
+      .then((response) => {
+        if(!response.ok){throw response.statusText}
+        return response.text()
+          .then((body) => dispatch(getCharactersStatus(true, JSON.parse(body))))
+      })
+      .catch((err) => dispatch(getCharactersStatus(false, err)))
+  }
+};
+
+function getCharactersStatus(responseOk, payload) {
+  let success = responseOk ? 
+    'GET_CHARACTERS_SUCCESS' : 'GET_CHARACTERS_FAILURE';
+  console.log('#',{type:success,payload});
+  return {
+    type: success,
+    payload
+  };
+};
+
+
 exports.draftCharacter = ( character ) => {
   //mocked function for now:
   console.log('state: ', store.getState());
