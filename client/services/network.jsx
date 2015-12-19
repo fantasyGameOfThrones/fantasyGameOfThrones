@@ -1,7 +1,8 @@
 'use strict';
 
 import store from './store.jsx';
-let url = 'http://localhost:8080/';
+
+let url = 'http://localhost:8000/api';
 
 let makeParams = ( method, body ) => {
 
@@ -23,6 +24,16 @@ let makeParams = ( method, body ) => {
 
   return params;
 
+};
+
+/*
+  below is a working example of a request to the server
+  current plan is to deprecate api/characters
+*/
+const getCharacters = () => {
+  const params = makeParams('GET');
+  return fetch( url + '/characters', params)
+    .catch(( error ) => console.log(error));
 };
 
 // let signup = ( username, password ) => {
@@ -48,7 +59,7 @@ let draftCharacter = ( character ) => {
   let params = makeParams( 'POST', { character } );
   let teamId = store.getState().team.id;
 
-  return fetch( url + 'teams/' + teamId, params )
+  return fetch( url + '/teams' + teamId, params )
     .catch(( error ) => {
       console.error( error );
     });
@@ -58,4 +69,5 @@ module.exports = {
   // signup,
   // login,
   draftCharacter,
+  getCharacters
 };
