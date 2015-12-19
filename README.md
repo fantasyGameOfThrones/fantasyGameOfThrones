@@ -9,19 +9,15 @@ This provides a platform for a Game of Thrones fantasy league.
 
 ## Tech Stack
 
-Python? + React/Redux + Redis?
+Node + React/Redux + Redis?
 
 ----
 ## Getting started (dev)
 * `npm install`
-* `gulp dev`
+* `npm start`
 
-Dev server should now serve files from http://localhost:8000/client. React components should be auto-updated, without need of browser refresh. 
+Dev server should now serve files from http://localhost:4000. React components should be auto-updated, without need of browser refresh. 
 
-----
-## Getting started (prod)
-* `npm install`
-* `gulp build`
 
 ----
 ## Dependencies

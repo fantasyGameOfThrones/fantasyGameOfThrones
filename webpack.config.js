@@ -1,19 +1,18 @@
 module.exports = {
-  entry: './client/index.js',
+  entry: [
+    'babel-polyfill',
+    './client/index.js'
+  ],  
   output: {
     path: './dist',
-    filename: 'bundle.js',
-    publicPath: 'dist'
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
       {
         test: /\.jsx?$/,
-        exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['react', 'es2015'],
-        },
+        loaders: ['react-hot','babel'],
+        exclude: [/node_modules/]
       },
     ]
   }
