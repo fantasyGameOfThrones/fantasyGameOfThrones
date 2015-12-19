@@ -1,7 +1,4 @@
 node_modules/
-dist/
+dist/bundle.js
 .DS_Store
-auth.py
-*.pyc
-ve/
 npm-debug.log
