@@ -19,16 +19,17 @@ app.use(function(req, res, next) {
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../dist'));
 
-app.route('/api/characters')
-  .get(function(req, res){
-    res.send(data);
-  })
-  .post(function(req, res){
-    res.status(500).send('something broke!');
+app.route('/api/users/:id')
+  .delete(function(req, res){
+    console.log('delete',req.params);
+    res.json({success:true, userId:req.params.id});
   })
   .put(function(req, res){
-    res.send();
-  });
+    console.log('put',req.body);
+    // respond with updated user object here
+    // from db? better options? 
+    res.json({mock:'DB NOT SETUP YET',userId: req.params.id});
+  })
 
 
 // require('./config/middleware')(app, express); 

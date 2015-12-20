@@ -1,4 +1,4 @@
-
+import * as action from './services/actionConstants.jsx';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Footer from './components/footer.jsx';
