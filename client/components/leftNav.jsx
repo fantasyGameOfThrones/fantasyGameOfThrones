@@ -25,7 +25,6 @@ class LeftNav extends Component {
     );
   }
   navigate(tab){
-    console.log(`#func to nav to ${tab}`);
     this.props.dispatch(actions.navigateTo(tab));
   }
   

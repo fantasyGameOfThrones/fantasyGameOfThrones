@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import actions from '../services/actionCreators.jsx';
 
 class Header extends Component {
@@ -8,20 +8,20 @@ class Header extends Component {
     return (
       <div id="header">
         <h1>Fantasy Game of Thrones</h1>
-        <input type="button" onClick={this.getCharacters.bind(this)} value="characters"/>
+        <input type="button" onClick={this.testNetwork.bind(this)} value="network test"/>
       </div>
     );
   }
-  getCharacters() {
-    this.props.dispatch(actions.getCharacters());
+
+  testNetwork() {
+    this.props.dispatch(actions.updateUser(1,{email:'rjwholey@gmail.com',username:'ser_ryan'}));
   }
 
 };
 
-let select = (state) => {
+const select = (state) => {
   return {
-    characters: state.data.characterData,
-  }
-}
+  };
+};
 
 export default connect(select)(Header);

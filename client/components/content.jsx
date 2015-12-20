@@ -5,7 +5,6 @@ import Home from './home.jsx';
 import Trade from './trade.jsx';
 import Draft from './draft.jsx';
 
-
 class Content extends Component {
 
   //will render differently depending on state.ui.content
@@ -29,16 +28,15 @@ class Content extends Component {
     )
   }
 
-
 };
 
-let select = ( state ) => {
+const select = (state) => {
   return {
     contentDisplay: state.ui.contentDisplay,
   };
 };
 
-export default connect ( select )( Content );
+export default connect(select)(Content);
 
 
 
