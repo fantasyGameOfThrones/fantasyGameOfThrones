@@ -9,6 +9,13 @@ exports.setSelectedPlayer = ( player ) => {
   }
 };
 
+exports.navigateTo = (tab)  => {
+  return {
+    type: 'CHANGE_MAIN_COMPONENT',
+    payload: {tab}
+  }
+};
+
 /*DEMO
   below is a working example of a request to the server
   current plan is to deprecate api/characters

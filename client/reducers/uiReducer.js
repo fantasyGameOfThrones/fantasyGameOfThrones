@@ -9,6 +9,16 @@ var selectedPlayer = function( state = '', action ){
   }
 }
 
+const contentDisplay = function(state = 'HOME', action){
+  switch( action.type){
+    case 'CHANGE_MAIN_COMPONENT':
+      return action.payload.tab;
+    default:
+      return state;
+  }
+}
+
 module.exports = combineReducers({
   selectedPlayer,
+  contentDisplay,
 });
