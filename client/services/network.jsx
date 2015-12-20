@@ -4,6 +4,8 @@ import store from './store.jsx';
 
 let url = 'http://localhost:8000/api';
 
+let userUrl = 'users/';
+
 let makeParams = ( method, body ) => {
 
   let params = {
@@ -36,38 +38,29 @@ const getCharacters = () => {
     .catch(( error ) => console.log(error));
 };
 
-// let signup = ( username, password ) => {
-//   let params = makeParams( 'POST', { username, password } );
 
-//   // TODO: just return response
-//   return fetch( url + 'auth/signup', params )
-//     .catch(( error ) => {
-//       console.error( error );
-//     });
-// };
+const signup = ( username, password ) => {
+  let params = makeParams( 'POST', { username, password } );
 
-// let login = ( username, password ) => {
-//   let params = makeParams( 'POST', { username, password } );
-
-//   return fetch( url + 'auth/login', params )
-//     .catch(( error ) => {
-//       console.error( error );
-//     });
-// };
-
-let draftCharacter = ( character ) => {
-  let params = makeParams( 'POST', { character } );
-  let teamId = store.getState().team.id;
-
-  return fetch( url + '/teams' + teamId, params )
+  // TODO: just return response
+  return fetch( url + 'auth/signup', params )
     .catch(( error ) => {
       console.error( error );
     });
 };
 
-module.exports = {
-  // signup,
-  // login,
-  draftCharacter,
-  getCharacters
+const login = ( username, password ) => {
+  let params = makeParams( 'POST', { username, password } );
+
+  return fetch( url + 'auth/login', params )
+    .catch(( error ) => {
+      console.error( error );
+    });
+};
+
+
+export default {
+  signup,
+  login,
+  getCharacters,
 };

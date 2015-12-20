@@ -10,7 +10,7 @@ class Content extends Component {
 
   //will render differently depending on state.ui.content
   renderMain(){
-    switch(store.getState().ui.contentDisplay){
+    switch(this.props.contentDisplay) {
       case 'HOME':
         return <Home/>
       case 'TRADE':
@@ -34,9 +34,7 @@ class Content extends Component {
 
 let select = ( state ) => {
   return {
-    selectedPlayer: state.ui.selectedPlayer,
     contentDisplay: state.ui.contentDisplay,
-    characters: state.data.characterData,
   };
 };
 

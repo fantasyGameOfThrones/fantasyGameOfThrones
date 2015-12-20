@@ -20,7 +20,6 @@ class Header extends Component {
 
 let select = (state) => {
   return {
-    selectedPlayer: state.ui.selectedPlayer,
     characters: state.data.characterData,
   }
 }
