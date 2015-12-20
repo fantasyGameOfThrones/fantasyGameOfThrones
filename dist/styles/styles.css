@@ -5,6 +5,9 @@
 
 /* HTML5 display-role reset for older browsers */
 
+.clickable {
+  cursor: pointer;
+}
 
 #app {
   width: 100%;
