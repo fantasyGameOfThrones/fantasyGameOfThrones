@@ -27,7 +27,6 @@ class Content extends Component {
         {this.renderMain()}
       </div> 
     )
-
   }
 
 

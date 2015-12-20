@@ -9,15 +9,16 @@ This provides a platform for a Game of Thrones fantasy league.
 
 ## Tech Stack
 
-Node + React/Redux + Redis?
+Node + React/Redux + MySQL?
 
 ----
 ## Getting started (dev)
 * `npm install`
 * `npm start`
+* `nodemon server.js`
 
 Dev server should now serve files from http://localhost:4000. React components should be auto-updated, without need of browser refresh. 
-
+Regular server will serve files from http://localhost:8000! We are using it currently as an endpoint which our dev server pings to grab data.
 
 ----
 ## Dependencies
