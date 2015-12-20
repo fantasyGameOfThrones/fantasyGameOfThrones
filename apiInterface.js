@@ -14,37 +14,6 @@
 
 /* API INTERFACE */
 
-models = {
-  user: {
-    id: integer,
-    username: string,
-    password: string,
-    email: string,
-    leagueId: teamFK,
-  },
-  league: {
-    id: integer,
-    name: string,
-    creator: userFK,
-    members: [ userFK ],
-    
-  },
-  character: {
-    id: integer,
-    name: string,
-    house: string,
-  },
-  event: {
-    id: integer,
-    type: string,
-    description: string,
-    points: integer,
-    season: integer,
-    episode: integer,
-    character: characterFK,
-  }
-}
-
 //Routes:
 
 // AUTH
@@ -72,15 +41,44 @@ models = {
       password: string,
     },
     resBody: { // this will get the meat of our data
-      user: User, //doesn't include password
       token: token,
-      league: League, //null if user isn't part of a league yet
-      characters: [ //null if user hasn't drafted yet
+      user: {
+        id: integer,
+        username: sring,
+        email: string,
+        leagueId: integer,
+        episodes: {
+          // this object will map character foreign keys to an array of integers
+          // each integer is the id of an episode where our user had that
+          // character drafted
+          characterForeignKeyId: [ 1, 2, 3, 17, 18, 19],
+        }
+      }
+      league: {
+        id: integer,
+        name: string,
+        creatorId: integer // represents the user who make the league
+        members: [ users ]
+      }
+      characters: [
         {
-          character: Character,
-          events: [Event] //array of that character's events
+          character: {
+            name: string,
+            house: string,
+            image: string,
+          }
+          events: [ eventFKs ] // array of character's event fks
         }
       ],
+      events: [
+        {
+          id: integer,
+          type: string,
+          description: string,
+          episodeId: integer // fk of episode
+          points: integer
+        }
+      ]
     }
   },
 }
@@ -92,12 +90,12 @@ models = {
     verb: 'PUT',
     url: 'api/users/:userId',
     reqBody: {
-      password: string, //optional, only if changing password
-      // email: string, //for when we support email
-      //character drafting info? or will this go in the join table?
+      password: string, //optional
+      email: string, // optional
+      league: integer, // optional
     },
     resBody: {
-      user: User, //optional
+      user: User
     }
   },
 
@@ -168,6 +166,25 @@ models = {
       character: Character
     }
   },
+}
+
+// USERSTOCHARACTERS
+
+{
+  'draft or add a character': {
+    verb: 'POST',
+    url: '/api/usersToCharacters',
+    reqBody: {
+      userId: integer,
+      characterId: integer
+    },
+    resBody: {
+      // should have everything the user property in a resBody from POST to
+      // login has
+      user: User,
+      league: League,
+    }
+  }
 }
 
 // EVENTS

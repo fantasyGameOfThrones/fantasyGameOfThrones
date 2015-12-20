@@ -1,0 +1,22 @@
+'use strict';
+
+// auth
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+
+// user
+export const UPDATE_USER = 'UPDATE_USER';
+
+// characters
+export const GET_CHARACTERS_SUCCESS = 'GET_CHARACTERS_SUCCESS';
+export const GET_CHARACTERS_FAILURE = 'GET_CHARACTERS_FAILURE';
+
+// UI
+export const CHANGE_MAIN_COMPONENT = 'CHANGE_MAIN_COMPONENT';
+
+
+// drafting
+export const DRAFT_CHARACTER_SUCCESS = 'DRAFT_CHARACTER_SUCCESS';
+export const DRAFT_CHARACTER_FAILURE = 'DRAFT_CHARACTER_FAILURE';
