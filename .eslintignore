@@ -1,0 +1,7 @@
+/node-modules/
+dist/bundle.js
+webpack.config.js
+package.json
+apiInterface.js
+README.md
+_CONTRIBUTING.md

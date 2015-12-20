@@ -1,4 +1,3 @@
-// import { characters, players, user } from '../testData.jsx';
 import { combineReducers } from 'redux';
 
 let userReducer = ( state = {}, action ) => {
@@ -38,16 +37,9 @@ let eventsReducer = (state = [], action) => {
   }
 };
 
-// let userData = ( state = user, action ) => {
-//   switch( action.type ){
-//     default:
-//       return state;
-//   }
-// };
-
 export default combineReducers({
   user: userReducer,
   characters: charactersReducer,
   league: leagueReducer,
-  events: eventsReducer
+  events: eventsReducer,
 });

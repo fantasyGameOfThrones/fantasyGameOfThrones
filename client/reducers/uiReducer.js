@@ -7,8 +7,8 @@ const contentDisplay = function(state = 'HOME', action){
     default:
       return state;
   }
-}
+};
 
-module.exports = combineReducers({
+export default combineReducers({
   contentDisplay,
 });
