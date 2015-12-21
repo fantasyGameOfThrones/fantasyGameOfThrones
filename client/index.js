@@ -13,4 +13,4 @@ render (
     <App />
   </Provider>,
   rootElement
-)
+);

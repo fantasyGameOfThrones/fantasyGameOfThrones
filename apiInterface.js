@@ -1,5 +1,6 @@
 /* DB MODELS BLURB
 
+<<<<<<< Updated upstream
 - each episode, each character 
     must produce 1 score based off 
     of an accumulation of events

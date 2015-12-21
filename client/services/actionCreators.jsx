@@ -1,8 +1,6 @@
 'use strict';
 import network from './network.jsx';
 import * as action from './actionConstants.jsx';
-//make this work
-// import { ...constants } from './actionConstants.jsx';
 
 exports.navigateTo = (tab)  => {
   return {
@@ -73,7 +71,7 @@ exports.signUp = (username, password) => {
   }
 };
 
-function signUpStatus(body) {
+function signUpSuccess(body) {
   return {
     type: action.SIGNUP_SUCCESS,
     payload: {
@@ -90,4 +88,40 @@ function signUpFailure(message) {
       error: message
     }
   };
+};
+
+exports.draftCharacter = ( character ) => {
+  //mocked function for now:
+  // console.log('state: ', store.getState());
+  // character.drafted = store.getState().data.userData.name;
+  // return draftCharacterSuccess( character );
+
+  // Real function for when we have a server:
+  return ( dispatch ) => {
+    return network.draftCharacter( character )
+    .then(( response ) => {
+      if (!response.ok) { throw new Error('Draft char, res not ok: ', response); }
+      return response.json()
+    })
+    .then(( body ) => {
+        return dispatch( draftCharacterSuccess( body.character ));
+    })
+    .catch(( error ) => {
+      return dispatch( draftCharacterFailure(error.message));
+    });
+  }
+};
+
+function draftCharacterSuccess( character ){
+  return {
+    type: DRAFT_CHARACTER_SUCCESS,
+    payload: { character },
+  }
+};
+
+function draftCharacterFailure( error ){
+  return {
+    type: DRAFT_CHARACTER_FAILURE,
+    payload: { error },
+  }
 };

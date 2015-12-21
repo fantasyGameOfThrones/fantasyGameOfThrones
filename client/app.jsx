@@ -7,7 +7,7 @@ import Content from './components/content.jsx';
 import LeftNav from './components/leftNav.jsx';
 import RightNav from './components/rightNav.jsx';
 
-export default class App extends Component {
+class App extends Component {
 
   render() {
     return (
@@ -23,10 +23,10 @@ export default class App extends Component {
     );
   }
 
-};
+}
 
 let select = function( state ){
   return { token: state.token };
 };
 
-module.exports = connect( select )( App );
+export default connect( select )( App );

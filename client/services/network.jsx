@@ -5,6 +5,7 @@ import store from './store.jsx';
 //json server has no /api, node server to hae /api route 
 let url = 'http://localhost:3000';
 
+
 let makeParams = (method, body) => {
 
   let params = {
@@ -32,7 +33,6 @@ const getCharacters = () => {
   return fetch( url + '/characters', params)
     .catch(( error ) => console.log(error));
 };
-
 
 const userRequests = (method, userID, rawParams={}) => {
   const params = makeParams(method, rawParams);
@@ -63,5 +63,5 @@ export default {
   signup,
   login,
   getCharacters,
-  userRequests
+  userRequests,
 };

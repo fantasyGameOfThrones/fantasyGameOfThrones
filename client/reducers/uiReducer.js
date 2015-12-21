@@ -1,14 +1,14 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 
 const contentDisplay = function(state = 'HOME', action){
-  switch( action.type){
+  switch(action.type){
     case 'CHANGE_MAIN_COMPONENT':
       return action.payload.tab;
     default:
       return state;
   }
-}
+};
 
-module.exports = combineReducers({
+export default combineReducers({
   contentDisplay,
 });
