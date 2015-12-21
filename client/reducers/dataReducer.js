@@ -33,13 +33,10 @@ let userReducer = (state = {}, action) => {
     case actions.LOGIN_SUCCESS:
       return action.payload.user;
     case actions.UPDATE_USER_SUCCESS:
-      console.log(action);
       return state;
     case actions.UPDATE_USER_FAILURE:
-      console.log(action);
       return state;
     case actions.DELETE_USER:
-      console.log(action);
       return state;
     default:
       return state;
