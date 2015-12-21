@@ -24,7 +24,7 @@ class LeftNav extends Component {
       </div>
     );
   }
-  navigate(tab){
+  navigate(tab) {
     this.props.dispatch(actions.navigateTo(tab));
   }
   
