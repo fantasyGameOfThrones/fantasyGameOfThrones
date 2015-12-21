@@ -127,12 +127,14 @@ const events = fs.readFileSync('./testData/eventData.txt', 'utf8', function(err,
 });
 
 const testData = {
-  login: {
-    token: 'abc123',
-    user: users[1],
-    league: leagues,
-    characters: characters,
-    events: events,
+  auth: {
+    login: {
+      token: 'abc123',
+      user: users[1],
+      league: leagues,
+      characters: characters,
+      events: events,
+    }
   },
   users: users,
   leagues: leagues,
