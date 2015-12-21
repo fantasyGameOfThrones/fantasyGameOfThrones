@@ -1,8 +1,9 @@
 'use strict';
 
 import store from './store.jsx';
-
-let url = 'http://localhost:8000/api';
+//json dev server @3000, web-server@4000, node@8000
+//json server has no /api, node server to hae /api route 
+let url = 'http://localhost:3000';
 
 let makeParams = (method, body) => {
 
@@ -57,7 +58,6 @@ const login = ( username, password ) => {
       console.error( error );
     });
 };
-
 
 export default {
   signup,
