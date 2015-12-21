@@ -11,6 +11,35 @@ exports.navigateTo = (tab)  => {
   }
 };
 
+exports.updateUser = (userID, updateData) => {
+  return (dispatch) => {
+    network.userRequests('PUT', userID, updateData)
+      .then((response) => {
+        if(!response.ok){ throw new Error('Update user failed: ',response)}
+        response.json()
+          .then((json) => {
+            dispatch({type: action.UPDATE_USER_SUCCESS,payload:json});
+          })
+      })
+      .catch((error) => dispatch({type: action.UPDATE_USER_FAILURE,payload: error}));
+  }
+};
+
+exports.deleteUser = (userID) => {
+  return (dispatch) => {
+    network.userRequests('DELETE', userID)
+      .then((response) => {
+        if(!response.ok){throw response.statusText}
+        response.json()
+          .then((json)=>{
+            dispatch({type: action.DELETE_USER,payload:json})
+          })
+      })
+      .catch((err) => console.log(err))
+  }
+};
+
+
 /*DEMO
   below is a working example of a request to the server
   current plan is to deprecate api/characters
@@ -20,21 +49,11 @@ exports.getCharacters = () => {
     network.getCharacters()
       .then((response) => {
         if(!response.ok){throw response.statusText}
-        return response.text()
-          .then((body) => dispatch(getCharactersStatus(true, JSON.parse(body))))
+        return response.json()
+          .then((body) => dispatch({type: action.GET_CHARACTERS_SUCCESS,payload:body}))
       })
-      .catch((err) => dispatch(getCharactersStatus(false, err)))
+      .catch((err) => dispatch({type: action.GET_CHARACTERS_FAILURE, payload:err}))
   }
-};
-
-function getCharactersStatus(responseOk, payload) {
-  let success = responseOk ? 
-    action.GET_CHARACTERS_SUCCESS : action.GET_CHARACTERS_FAILURE;
-  console.log('#',{type:success,payload});
-  return {
-    type: success,
-    payload
-  };
 };
 //END DEMO
 
