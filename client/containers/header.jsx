@@ -9,12 +9,13 @@ class Header extends Component {
       <div id="header">
         <h1>Fantasy Game of Thrones</h1>
         <input type="button" onClick={this.testNetwork.bind(this)} value="network test"/>
+        <input type="button" onClick={this.testLogin.bind(this)} value="login test"/>
       </div>
     );
   }
 
   testNetwork() {
-    this.props.dispatch(actions.updateUser(1,{
+    this.props.dispatch(actions.updateUser(1, {
       email:'rjwholey@gmail.com',
       username:'ser_ryan',
       leagueId: 1,
@@ -27,6 +28,10 @@ class Header extends Component {
         58: [1,2,3,4,5,6,7,8,9,10],
       }
     }));
+  }
+
+  testLogin() {
+    this.props.dispatch(actions.login('myUsername', 'myPassword'));
   }
 
 };

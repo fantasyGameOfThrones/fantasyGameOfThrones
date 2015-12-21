@@ -21,7 +21,7 @@
 {
   'signup': {
     verb: 'POST',
-    url: 'api/auth/signup',
+    url: 'api/signup',
     reqBody: {
       username: string,
       password: string,
@@ -36,7 +36,7 @@
 
   'login': {
     verb: 'POST',
-    url: 'api/auth/login',
+    url: 'api/login',
     reqBody: {
       username: string,
       password: string,
