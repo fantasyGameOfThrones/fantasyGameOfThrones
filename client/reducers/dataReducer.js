@@ -50,7 +50,7 @@ let tokenReducer = (state = null, action) => {
     default:
       return state;
   }
-}
+};
 
 export default combineReducers({
   token: tokenReducer,
