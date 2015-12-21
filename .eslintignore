@@ -1,7 +1,8 @@
 /node-modules/
-/config/
+config/
 server.js
 testData.js
+testData/
 dist/bundle.js
 webpack.config.js
 package.json
