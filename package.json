@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint **",
     "start": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
-    "json" : "cp ./dbTemplate.json ./db.json && json-server ./db.json"
+    "json" : "node testData.js && cp ./dbTemplate.json ./db.json && json-server ./db.json"
   },
   "author": "Naomi Jacobs",
   "license": "ISC",

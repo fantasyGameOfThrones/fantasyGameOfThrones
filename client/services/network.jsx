@@ -30,32 +30,43 @@ let makeParams = (method, body) => {
 */
 const getCharacters = () => {
   const params = makeParams('GET');
-  return fetch( url + '/characters', params)
-    .catch(( error ) => console.log(error));
+  return fetch(url + '/characters', params)
+    .catch((error) => console.log(error));
 };
 
-const userRequests = (method, userID, rawParams={}) => {
+const userRequests = (method, userID, rawParams = {}) => {
   const params = makeParams(method, rawParams);
   return fetch(`${url}/users/${userID}`, params)
     .catch((error) => console.log(error))
 };
 
-const signup = ( username, password ) => {
-  let params = makeParams( 'POST', { username, password } );
+const leagueRequests = (method, leagueID, rawParams = {}) => {
+  const params = makeParams(method, rawParams);
+  const urlString = leagueID ? `${url}/leagues/${leagueID}` : `${url}/leagues`;
+  return fetch(urlString, params)
+    .catch((error) => console.log(error))
+};
+
+const signup = (username, password) => {
+  let params = makeParams('POST', {username, password});
 
   // TODO: just return response
-  return fetch( url + 'auth/signup', params )
-    .catch(( error ) => {
-      console.error( error );
+  return fetch(`${url}/signup`, params)
+    .catch((error) => {
+      console.error(error);
     });
 };
 
-const login = ( username, password ) => {
-  let params = makeParams( 'POST', { username, password } );
+const login = (username, password) => {
+  // code for real db
+  // let params = makeParams('POST', {username, password});
 
-  return fetch( url + 'auth/login', params )
-    .catch(( error ) => {
-      console.error( error );
+  // code for json-server
+  let params = makeParams('GET');
+
+  return fetch(`${url}/login`, params)
+    .catch((error) => {
+      console.error(error);
     });
 };
 
@@ -64,4 +75,5 @@ export default {
   login,
   getCharacters,
   userRequests,
+  leagueRequests,
 };

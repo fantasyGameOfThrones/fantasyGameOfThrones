@@ -127,14 +127,12 @@ const events = fs.readFileSync('./testData/eventData.txt', 'utf8', function(err,
 });
 
 const testData = {
-  auth: {
-    login: {
-      token: 'abc123',
-      user: users[1],
-      league: leagues,
-      characters: characters,
-      events: events,
-    }
+  login: {
+    token: 'abc123',
+    user: users[1],
+    league: leagues[0],
+    characters: characters,
+    events: events,
   },
   users: users,
   leagues: leagues,
@@ -142,4 +140,4 @@ const testData = {
   events: events
 };
 
-fs.writeFile('./dbTemplate.json', JSON.stringify(testData), function(err) {if (err) console.log(err);});
+fs.writeFileSync('./dbTemplate.json', JSON.stringify(testData));

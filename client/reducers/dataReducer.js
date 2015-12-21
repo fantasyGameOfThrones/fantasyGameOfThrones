@@ -1,7 +1,10 @@
 import {combineReducers} from 'redux';
+import * as actions from '../services/actionConstants.jsx';
 
 let leagueReducer = (state = {}, action) => {
   switch(action.type) {
+    case actions.LOGIN_SUCCESS:
+      return action.payload.league;
     default:
       return state;
   }
@@ -9,6 +12,8 @@ let leagueReducer = (state = {}, action) => {
 
 let charactersReducer = (state = [], action) => {
   switch(action.type){
+    case actions.LOGIN_SUCCESS:
+      return action.payload.characters;
     default:
       return state;
   }
@@ -16,6 +21,8 @@ let charactersReducer = (state = [], action) => {
 
 let eventsReducer = (state = [], action) => {
   switch(action.type) {
+    case actions.LOGIN_SUCCESS:
+      return action.payload.events;
     default:
       return state;
   }
@@ -23,13 +30,15 @@ let eventsReducer = (state = [], action) => {
 
 let userReducer = (state = {}, action) => {
   switch(action.type){
-    case 'UPDATE_USER_SUCCESS':
+    case actions.LOGIN_SUCCESS:
+      return action.payload.user;
+    case actions.UPDATE_USER_SUCCESS:
       console.log(action);
       return state;
-    case 'UPDATE_USER_FAILURE':
+    case actions.UPDATE_USER_FAILURE:
       console.log(action);
       return state;
-    case 'DELETE_USER':
+    case actions.DELETE_USER:
       console.log(action);
       return state;
     default:
@@ -37,7 +46,17 @@ let userReducer = (state = {}, action) => {
   }
 };
 
+let tokenReducer = (state = null, action) => {
+  switch(action.type){
+    case actions.LOGIN_SUCCESS:
+      return action.payload.token;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
+  token: tokenReducer,
   user: userReducer,
   characters: charactersReducer,
   league: leagueReducer,
