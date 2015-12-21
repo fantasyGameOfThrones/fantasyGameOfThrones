@@ -1,21 +1,5 @@
 import { combineReducers } from 'redux';
 
-let userReducer = ( state = {}, action ) => {
-  switch( action.type ){
-    case 'UPDATE_USER_SUCCESS':
-      console.log(action);
-      return state;
-    case 'UPDATE_USER_FAILURE':
-      console.log(action);
-      return state;
-    case 'DELETE_USER':
-      console.log(action);
-      return state;
-    default:
-      return state;
-  }
-};
-
 let leagueReducer = (state = {}, action) => {
   switch(action.type) {
     default:
@@ -32,6 +16,22 @@ let charactersReducer = (state = [], action) => {
 
 let eventsReducer = (state = [], action) => {
   switch(action.type) {
+    default:
+      return state;
+  }
+};
+
+let userReducer = ( state = {}, action ) => {
+  switch( action.type ){
+    case 'UPDATE_USER_SUCCESS':
+      console.log(action);
+      return state;
+    case 'UPDATE_USER_FAILURE':
+      console.log(action);
+      return state;
+    case 'DELETE_USER':
+      console.log(action);
+      return state;
     default:
       return state;
   }
