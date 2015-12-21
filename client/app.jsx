@@ -6,6 +6,7 @@ import Header from './components/header.jsx';
 import Content from './components/content.jsx';
 import LeftNav from './components/leftNav.jsx';
 import RightNav from './components/rightNav.jsx';
+import DevTools from './components/DevTools.jsx';
 
 class App extends Component {
 
@@ -19,6 +20,7 @@ class App extends Component {
           <RightNav />
         </div>
         <Footer />
+        <DevTools/>
       </div>
     );
   }
