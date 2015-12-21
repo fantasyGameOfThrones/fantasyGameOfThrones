@@ -35,7 +35,6 @@ const getCharacters = () => {
 
 const userRequests = (method, userID, rawParams={}) => {
   const params = makeParams(method, rawParams);
-  var a = `${url}/users/${userID}`
   return fetch(`${url}/users/${userID}`, params)
     .catch((error) => console.log(error))
 };
