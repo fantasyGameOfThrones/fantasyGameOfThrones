@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 
 let leagueReducer = (state = {}, action) => {
   switch(action.type) {
@@ -21,8 +21,8 @@ let eventsReducer = (state = [], action) => {
   }
 };
 
-let userReducer = ( state = {}, action ) => {
-  switch( action.type ){
+let userReducer = (state = {}, action) => {
+  switch(action.type){
     case 'UPDATE_USER_SUCCESS':
       console.log(action);
       return state;

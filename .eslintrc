@@ -6,6 +6,9 @@
     "comma-dangle": [2, "always-multiline"],
     "no-unused-vars": [1, {"vars": "all", "args": "after-used"}],
     "array-bracket-spacing": [2, "never"],
+    "space-in-parens": [2, "never"],
+    "no-console": [1],
+    "no-trailing-spaces": [2, { "skipBlankLines": true }]
   },
   "parser": "babel-eslint",
   "env": {

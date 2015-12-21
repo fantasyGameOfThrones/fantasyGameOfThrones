@@ -15,8 +15,6 @@
 
 /* API INTERFACE */
 
-=======
->>>>>>> Stashed changes
 //Routes:
 
 // AUTH
@@ -44,7 +42,6 @@
       password: string,
     },
     resBody: { // this will get the meat of our data
-<<<<<<< Updated upstream
       token: token,
       user: {
         id: integer,
@@ -83,20 +80,6 @@
           points: integer
         }
       ]
-=======
-      user: {
-        
-      }
-      token: token,
-      league: League, //null if user isn't part of a league yet
-      characters: [
-        {
-          character: Character,
-          events: [ eventFKs ] //array of character's event fks
-        }
-      ],
-      events: [ Event ]
->>>>>>> Stashed changes
     }
   },
 }

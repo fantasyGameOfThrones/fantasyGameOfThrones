@@ -1,7 +1,13 @@
 /node-modules/
+/config/
+server.js
+testData.js
 dist/bundle.js
 webpack.config.js
 package.json
+db.json
+dbTemplate.json
 apiInterface.js
 README.md
 _CONTRIBUTING.md
+characterData.txt
