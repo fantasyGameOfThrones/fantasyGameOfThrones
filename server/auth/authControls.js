@@ -1,6 +1,5 @@
 var jwt = require('jwt-simple');
 var db = require('../db/authDB.js');
-var Promise = require('bluebird');
 var bcrypt = require('bcrypt-nodejs');
 
 module.exports = {

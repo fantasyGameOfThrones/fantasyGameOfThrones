@@ -5,7 +5,6 @@ module.exports = {
   // When you create a new league, you are adding a moderator at same time
   // League Name and Username must be sent over
   addLeague: function (req, res, next) {
-
     var league = req.body;
 
     db.addLeague(league)
@@ -17,6 +16,7 @@ module.exports = {
             name: league.name
           }
         });
+        // send json back? res.json({completed : true})
       })
       .catch(function (err) {
         console.error("error in league storage: ", err);
