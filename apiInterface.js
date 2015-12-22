@@ -115,7 +115,7 @@
 {
   'create a league': {
     verb: 'POST',
-    url: 'api/leagues',
+    url: 'api/leagues/new',
     reqBody: {
       name: string,
       creator: userId,
