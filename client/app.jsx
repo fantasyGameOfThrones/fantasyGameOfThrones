@@ -1,11 +1,11 @@
 import * as action from './services/actionConstants.jsx';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Footer from './components/footer.jsx';
-import Header from './components/header.jsx';
-import Content from './components/content.jsx';
-import LeftNav from './components/leftNav.jsx';
-import RightNav from './components/rightNav.jsx';
+import Footer from './containers/footer.jsx';
+import Header from './containers/header.jsx';
+import Content from './containers/content.jsx';
+import LeftNav from './containers/leftNav.jsx';
+import RightNav from './containers/rightNav.jsx';
 
 class App extends Component {
 

@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import store from '../services/store.jsx';
-import Home from './home.jsx';
-import Trade from './trade.jsx';
-import Draft from './draft.jsx';
+import Home from '../components/home.jsx';
+import Trade from '../components/trade.jsx';
+import Draft from '../components/draft.jsx';
 
 class Content extends Component {
 
   //will render differently depending on state.ui.content
-  renderMain(){
+  renderMain() {
     switch(this.props.contentDisplay) {
       case 'HOME':
         return <Home/>
