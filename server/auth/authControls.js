@@ -1,5 +1,5 @@
 var jwt = require('jwt-simple');
-var db = require('../dbHelpers.js');
+var db = require('../db/authDB.js');
 var Promise = require('bluebird');
 var bcrypt = require('bcrypt-nodejs');
 
@@ -23,11 +23,14 @@ module.exports = {
             db.addNewUser(user)
               .then(function (storedUser) {
 
-                console.log('User Stored: ', user); 
+                console.log('User Stored: ', storedUser); 
 
                 var token = jwt.encode(user.username, 'secret'); // PLACE SECRET IN AUTH FILE
 
                 res.json({
+                  user : {
+                    username: user.username
+                  },
                   token: token
                 });
               });
@@ -63,6 +66,9 @@ module.exports = {
               var token = jwt.encode(user.username, 'secret'); // PLACE SECRET IN AUTH FILE
 
               res.json({
+                user : {
+                  username: user.username
+                },
                 token: token
               });
             } else {
