@@ -7,16 +7,24 @@ CREATE DATABASE got;
 
 USE got;
 
+CREATE TABLE leagues(
+  league_id int NOT NULL AUTO_INCREMENT,
+  name varchar(45) NOT NULL,
+  user_id int,
+  PRIMARY KEY (league_id)
+);
+
 CREATE TABLE users(
   user_id int NOT NULL AUTO_INCREMENT,
   username varchar(30) NOT NULL,
-  password varchar(30) NOT NULL,
-  email varchar(45) NOT NULL,
-  isModerator varchar(5) NOT NULL,
+  password varchar(255) NOT NULL,
+  email varchar(45),
+  isModerator varchar(5),
   league_id int,
   PRIMARY KEY (user_id),
   FOREIGN KEY (league_id) REFERENCES leagues(league_id)
 );
+
 
 CREATE TABLE characters(
   char_id int NOT NULL AUTO_INCREMENT,
@@ -26,13 +34,6 @@ CREATE TABLE characters(
   PRIMARY KEY (char_id)
 );
 
-CREATE TABLE leagues(
-  league_id int NOT NULL AUTO_INCREMENT,
-  name varchar(45) NOT NULL,
-  user_id int,
-  FOREIGN KEY (user_id) REFERENCES users(user_id),
-  PRIMARY KEY (league_id)
-);
 
 CREATE TABLE events(
   event_id int NOT NULL AUTO_INCREMENT,
@@ -45,3 +46,13 @@ CREATE TABLE events(
   FOREIGN KEY (char_id) REFERENCES characters(char_id),
   PRIMARY KEY (event_id)
 );
+
+ALTER TABLE leagues
+ADD FOREIGN KEY (user_id) 
+REFERENCES users(user_id);
+
+
+SELECT users.username, leagues.name FROM users
+INNER JOIN leagues
+ON users.league_id=leagues.league_id
+WHERE leagues.league_id=1; 

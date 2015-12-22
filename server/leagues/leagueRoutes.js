@@ -1,0 +1,5 @@
+var leagueControls = require('./leagueControls');
+
+module.exports = function (app) {
+  app.post('/new', leagueControls.addLeague);
+};
