@@ -2,6 +2,19 @@ var jwt = require('jwt-simple');
 var bcrypt = require('bcrypt-nodejs');
 var db = require('../db/userDB.js');
 
+var updateHelper = function (userObj, res) {
+  db.updateUser(userObj, userObj.username)
+    .then(function (results) {
+      console.log('in user update :', results);
+      res.json({
+        completed: true
+      });
+    })
+    .catch(function (err) {
+      console.error("error with updating user: ", err);
+    });
+};
+
 module.exports = {
   updateUser: function (req, res, next) {
     var user = req.body;
@@ -9,19 +22,11 @@ module.exports = {
     if (user.password) {
       bcrypt.hash(user.password, null, null, function (err, hash) {
         user.password = hash;
+        updateHelper(user, res);
       });
+    } else {
+      updateHelper(user, res);
     }
-
-    db.updateUser(user)
-      .then(function (results) {
-        console.log('in user update :', results);
-        res.json({
-          completed: true
-        });
-      })
-      .catch(function (err) {
-        console.error("error with updating user: ", err);
-      });
   },
 
   deleteUser: function (req, res, next) {
