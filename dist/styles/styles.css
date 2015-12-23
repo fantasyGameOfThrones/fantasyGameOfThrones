@@ -74,5 +74,10 @@ table caption {
 .characterTable .playerTable .teamTable {
   float: left;
 }
-
-
+.sideBarText {
+  font-size: 12px;
+}
+.thumb {
+  width: 75px;
+  height: auto;
+}

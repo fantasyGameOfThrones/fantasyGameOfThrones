@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 import * as actions from '../services/actionConstants.jsx';
 
-const league = (state = {}, action) => {
+const league = (state = {members:[]}, action) => {
   switch(action.type) {
     case actions.LOGIN_SUCCESS:
       return action.payload.league;
@@ -59,7 +59,6 @@ const auth = (state = {token:'devModeStartLoggedIn'}, action) => {
 };
 
 export default combineReducers({
-  token,
   user,
   characters,
   league,

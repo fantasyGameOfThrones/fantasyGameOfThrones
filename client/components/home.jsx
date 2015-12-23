@@ -17,7 +17,11 @@ class Home extends Component {
   renderChars() {
     return this.props.characters.map((char, index) => {
       return (
-        <li key={index}>{char.name}</li>
+        <li key={index}>
+          <div>{char.name}</div>
+          <div>{char.house}</div>
+          <img className="thumb" src={char.imageUrl}></img>
+        </li>
       );
     });
   }
@@ -27,7 +31,7 @@ const select = (state) => {
   let chars = [];
   if (state.data.characters) {
     chars = state.data.characters.filter((char) => {
-      return state.data.user.episodes[char.id];
+      return state.data.user.characters[char.id];
     });
   }
 

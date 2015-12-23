@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import LeagueRanking from '../components/leagueRanking.jsx';
 import actions from '../services/actionCreators.jsx';
 
 class LeftNav extends Component {
@@ -18,6 +19,7 @@ class LeftNav extends Component {
     const tabs = ['HOME', 'DRAFT', 'TRADE', 'LOGOUT']
     return (
       <div id="left">
+        <LeagueRanking />
         <ul>
           {this.renderTabs(tabs)}
         </ul>

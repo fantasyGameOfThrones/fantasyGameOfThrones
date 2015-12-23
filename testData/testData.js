@@ -8,7 +8,7 @@ const users = [
     username: 'kylecho',
     email: 'kylecho.work@gmail.com',
     leagueId: 1,
-    episodes: {
+    characters: {
       1: [1,2,3,4,5,6,7,8,9,10],
       2: [1,2,3,4,5,6,7,8,9,10],
       3: [1,2,3,4,5,6,7,8,9,10],
@@ -22,7 +22,7 @@ const users = [
     username: 'naomijacobs',
     email: 'naomiajacobs@gmail.com',
     leagueId: 1,
-    episodes: {
+    characters: {
       7: [1,2,3,4,5,6,7,8,9,10],
       8: [1,2,3,4,5,6,7,8,9,10],
       9: [1,2,3,4,5,6,7,8,9,10],
@@ -36,7 +36,7 @@ const users = [
     username: 'wholigan',
     email: 'wholey@gmail.com',
     leagueId: 1,
-    episodes: {
+    characters: {
       13: [1,2,3,4,5,6,7,8,9,10],
       14: [1,2,3,4,5,6,7,8,9,10],
       15: [1,2,3,4,5,6,7,8,9,10],
@@ -57,7 +57,7 @@ const leagues = [{
       username: 'uncleLehman',
       email: 'uncleLehman@gmail.com',
       leagueId: 1,
-      episodes: {
+      characters: {
         4: [7,8,9,10],
         6: [1,2,3,4,5,6],
         7: [1,2,3,4,5,6,7,8,9,10],
@@ -71,7 +71,7 @@ const leagues = [{
       username: 'brian',
       email: 'kgraham@gmail.com',
       leagueId: 1,
-      episodes: {
+      characters: {
         11: [1,2,3,4,5,6,7,8,9,10],
         12: [1,2,3,4,5,6,7,8,9,10],
         13: [1,2,3,4,5,6,7,8,9,10],
@@ -84,7 +84,7 @@ const leagues = [{
       username: 'wholigan',
       email: 'wholey@gmail.com',
       leagueId: 1,
-      episodes: {
+      characters: {
         16: [1,2,3,4,5,6,7,8,9,10],
         17: [1,2,3,4,5,6,7,8,9,10],
         18: [1,2,3,4,5,6,7,8,9,10],
@@ -95,14 +95,14 @@ const leagues = [{
   ]
 }];
 
-const characters = fs.readFileSync('./testData/characterData.txt', 'utf8', function(err, data) {
+const characters = fs.readFileSync(__dirname + '/characterData.txt', 'utf8', function(err, data) {
   return data;
 })
 .split('\n')
 .map(function(char) {
   var parts = char.split(',');
   return {
-    id: parts[0],
+    id: +parts[0].trim(),
     name: parts[1].trim(),
     nickname: parts[2] ? parts[2].trim() : null,
     house: parts[3] ? parts[3].trim() : null,
@@ -110,19 +110,19 @@ const characters = fs.readFileSync('./testData/characterData.txt', 'utf8', funct
   };
 });
 
-const events = fs.readFileSync('./testData/eventData.txt', 'utf8', function(err, data) {
+const events = fs.readFileSync(__dirname + '/eventData.txt', 'utf8', function(err, data) {
   return data;
 })
 .split('\n')
-.map(function(char) {
-  var parts = char.split(',');
+.map(function(event) {
+  var parts = event.split(',');
   return {
-    id: parts[0],
-    type: parts[1],
-    description: parts[2],
-    episodeId: parts[3],
-    characterId: parts[4],
-    points: parts[5]
+    id: +parts[0].trim(),
+    type: parts[1].trim(),
+    description: parts[2].trim(),
+    episodeId: +parts[3].trim(),
+    characterId: +parts[4].trim(),
+    points: +parts[5].trim(),
   };
 });
 
@@ -140,4 +140,4 @@ const testData = {
   events: events
 };
 
-fs.writeFileSync('./dbTemplate.json', JSON.stringify(testData));
+fs.writeFileSync(__dirname + '/dbTemplate.json', JSON.stringify(testData));

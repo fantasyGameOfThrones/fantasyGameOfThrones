@@ -122,7 +122,7 @@ exports.logIn = (username, password) => {
       return dispatch(logInSuccess(body));
     })
     .catch((error) => {
-      return dispatch(logInError(error.message));
+      return dispatch(loginFailure(error.message));
     });
   }
 };
