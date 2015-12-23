@@ -2,6 +2,7 @@
  *    mysql -u root < server/db/schema.sql
  *  to create the database and the tables.
  ******************************************/
+DROP DATABASE IF EXISTS got;
 
 CREATE DATABASE got;
 
@@ -9,14 +10,14 @@ USE got;
 
 CREATE TABLE leagues(
   league_id int NOT NULL AUTO_INCREMENT,
-  name varchar(45) NOT NULL,
-  user_id int,
+  name varchar(45) NOT NULL UNIQUE,
+  user_id int NOT NULL, -- is this where we initialize a moderator?
   PRIMARY KEY (league_id)
 );
 
 CREATE TABLE users(
   user_id int NOT NULL AUTO_INCREMENT,
-  username varchar(30) NOT NULL,
+  username varchar(30) NOT NULL UNIQUE,
   password varchar(255) NOT NULL,
   email varchar(45),
   isModerator varchar(5),
@@ -50,9 +51,3 @@ CREATE TABLE events(
 ALTER TABLE leagues
 ADD FOREIGN KEY (user_id) 
 REFERENCES users(user_id);
-
-
-SELECT users.username, leagues.name FROM users
-INNER JOIN leagues
-ON users.league_id=leagues.league_id
-WHERE leagues.league_id=1; 
