@@ -1,6 +1,8 @@
 'use strict';
+var _ = require('underscore');
 
 var fs = require('fs');
+
 
 const users = [
   {
@@ -95,11 +97,11 @@ const leagues = [{
   ]
 }];
 
-const characters = fs.readFileSync(__dirname + '/characterData.txt', 'utf8', function(err, data) {
+const characters = fs.readFileSync(__dirname + '/characterData.txt', 'utf8', (err, data) => {
   return data;
 })
 .split('\n')
-.map(function(char) {
+.map((char) => {
   var parts = char.split(',');
   return {
     id: +parts[0].trim(),
@@ -110,11 +112,11 @@ const characters = fs.readFileSync(__dirname + '/characterData.txt', 'utf8', fun
   };
 });
 
-const events = fs.readFileSync(__dirname + '/eventData.txt', 'utf8', function(err, data) {
+const events = fs.readFileSync(__dirname + '/eventData.txt', 'utf8', (err, data) => {
   return data;
 })
 .split('\n')
-.map(function(event) {
+.map((event) => {
   var parts = event.split(',');
   return {
     id: +parts[0].trim(),
@@ -126,10 +128,31 @@ const events = fs.readFileSync(__dirname + '/eventData.txt', 'utf8', function(er
   };
 });
 
+function findPoints(charId, epId) {
+ return _.reduce(events, (accum, event, idx) => {
+    if (+event.episodeId === +charId && +event.episodeId === +epId) {
+      return accum + event.points;
+    }
+    return accum;
+  }, 0);
+}
+
+function makeRoster(characters) {
+  const roster = {};
+  _.each(characters, (char, key) => {
+    roster[key] = {};
+    _.each(char, (ep) => {
+      roster[key][ep] = findPoints(key, ep);
+    });
+  });
+  return roster;
+}
+
 const testData = {
   login: {
     token: 'abc123',
-    user: users[1],
+    user: users[0],
+    roster: makeRoster(users[0].characters),
     league: leagues[0],
     characters: characters,
     events: events,
