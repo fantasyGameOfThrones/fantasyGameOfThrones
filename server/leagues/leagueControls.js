@@ -37,5 +37,17 @@ module.exports = {
       .catch(function (err) {
         console.error("error in league update: ", err);
       });
+  },
+
+  getLeagueInfo: function (req, res, next) {
+    var leagueName = req.params;
+    db.getLeagueInfo(leagueName)
+      .then(function (leagueInfo) {
+        console.log("League Info: ", leagueInfo);
+        res.json({
+          //an array of users in league
+          league: leagueInfo
+        });
+      });
   }
 };
