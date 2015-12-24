@@ -108,7 +108,7 @@ function signUpFailure(message) {
 
 exports.logOut = () => {
   //add network logout logic here and in network.jsx
-  return (dispatch)=> dispatch({type:action.LOGOUT});
+  return (dispatch)=> dispatch({type:actions.LOGOUT});
 };
 
 exports.logIn = (username, password) => {

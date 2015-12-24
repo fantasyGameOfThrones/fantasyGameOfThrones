@@ -31,7 +31,7 @@ class Header extends Component {
   }
 
   testLogin() {
-    this.props.dispatch(actions.login('myUsername', 'myPassword'));
+    this.props.dispatch(actions.logIn('myUsername', 'myPassword'));
   }
 
 };
