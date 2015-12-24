@@ -30,32 +30,43 @@ let makeParams = (method, body) => {
 */
 const getCharacters = () => {
   const params = makeParams('GET');
-  return fetch( url + '/characters', params)
-    .catch(( error ) => console.log(error));
+  return fetch(url + '/characters', params)
+    .catch((error) => console.log(error));
 };
 
-const userRequests = (method, userID, rawParams={}) => {
+const userRequests = (method, userID, rawParams = {}) => {
   const params = makeParams(method, rawParams);
   return fetch(`${url}/users/${userID}`, params)
     .catch((error) => console.log(error))
 };
 
-const signUp = ( username, password ) => {
-  let params = makeParams( 'POST', { username, password } );
-  return fetch( url + 'auth/signup', params )
-    .catch(( error ) => {
-      console.error( error );
+const leagueRequests = (method, leagueID, rawParams = {}) => {
+  const params = makeParams(method, rawParams);
+  const urlString = leagueID ? `${url}/leagues/${leagueID}` : `${url}/leagues`;
+  return fetch(urlString, params)
+    .catch((error) => console.log(error))
+};
+
+const signUp = (username, password) => {
+  let params = makeParams('POST', {username, password});
+
+  // TODO: just return response
+  return fetch(`${url}/signup`, params)
+    .catch((error) => {
+      console.error(error);
     });
 };
 
-const logIn = ( username, password ) => {
-  // will change to post for real server,
-  // POST changes json server, also cannot GET with params
-  let params = makeParams( 'GET', { username, password } );
+const logIn = (username, password) => {
+  // code for real db
+  // let params = makeParams('POST', {username, password});
 
-  return fetch( url + '/login'/*, params */)
-    .catch(( error ) => {
-      console.error( error );
+  // code for json-server
+  let params = makeParams('GET');
+
+  return fetch(`${url}/login`, params)
+    .catch((error) => {
+      console.error(error);
     });
 };
 
@@ -64,4 +75,5 @@ export default {
   logIn,
   getCharacters,
   userRequests,
+  leagueRequests,
 };

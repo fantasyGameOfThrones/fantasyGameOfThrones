@@ -1,10 +1,10 @@
 'use strict';
 import network from './network.jsx';
-import * as action from './actionConstants.jsx';
+import * as actions from './actionConstants.jsx';
 
 exports.navigateTo = (tab)  => {
   return {
-    type: action.CHANGE_MAIN_COMPONENT,
+    type: actions.CHANGE_MAIN_COMPONENT,
     payload: {tab}
   }
 };
@@ -16,10 +16,10 @@ exports.updateUser = (userID, updateData) => {
         if(!response.ok){ throw new Error('Update user failed: ',response)}
         response.json()
           .then((json) => {
-            dispatch({type: action.UPDATE_USER_SUCCESS,payload:json});
+            dispatch({type: actions.UPDATE_USER_SUCCESS,payload:json});
           })
       })
-      .catch((error) => dispatch({type: action.UPDATE_USER_FAILURE,payload: error}));
+      .catch((error) => dispatch({type: actions.UPDATE_USER_FAILURE,payload: error}));
   }
 };
 
@@ -30,7 +30,7 @@ exports.deleteUser = (userID) => {
         if(!response.ok){throw response.statusText}
         response.json()
           .then((json)=>{
-            dispatch({type: action.DELETE_USER,payload:json})
+            dispatch({type: actions.DELETE_USER,payload:json})
           })
       })
       .catch((err) => console.log(err))
@@ -48,9 +48,9 @@ exports.getCharacters = () => {
       .then((response) => {
         if(!response.ok){throw response.statusText}
         return response.json()
-          .then((body) => dispatch({type: action.GET_CHARACTERS_SUCCESS,payload:body}))
+          .then((body) => dispatch({type: actions.GET_CHARACTERS_SUCCESS,payload:body}))
       })
-      .catch((err) => dispatch({type: action.GET_CHARACTERS_FAILURE, payload:err}))
+      .catch((err) => dispatch({type: actions.GET_CHARACTERS_FAILURE, payload:err}))
   }
 };
 //END DEMO
@@ -59,7 +59,7 @@ exports.signUp = (username, password) => {
   return (dispatch) => {
     return network.signUp(username, password)
     .then((response) => {
-      if (!response.ok) { throw new Error('Signup failure: ', response) }
+      if (!response.ok) {throw new Error('Signup failure: ', response)}
       return response.json();
     })
     .then((body) => {
@@ -73,7 +73,7 @@ exports.signUp = (username, password) => {
 
 function signUpSuccess(body) {
   return {
-    type: action.SIGNUP_SUCCESS,
+    type: actions.SIGNUP_SUCCESS,
     payload: {
       user: body.user,
       token: body.token
@@ -83,66 +83,69 @@ function signUpSuccess(body) {
 
 function signUpFailure(message) {
   return {
-    type: action.SIGNUP_FAILURE,
+    type: actions.SIGNUP_FAILURE,
     payload: {
       error: message
     }
   };
 };
 
-exports.logIn = (username, password) => {
-  return (dispatch) => {
-    return network.logIn(username, password)
-      .then((response) => {
-        if(!response.ok){throw response}
-        return response.json()
-          .then((json) => {
-            return dispatch({type:action.LOGIN_SUCCESS, payload:{user:json.user,token:json.token}});
-          })
-      })
-      .catch((err)=>{
-        return dispatch({type:action.LOGIN_FAILURE, payload:err});
-      })
-  }
-};
+// exports.logIn = (username, password) => {
+//   return (dispatch) => {
+//     return network.logIn(username, password)
+//       .then((response) => {
+//         if(!response.ok){throw response}
+//         return response.json()
+//           .then((json) => {
+//             return dispatch({type:action.LOGIN_SUCCESS, payload:{user:json.user,token:json.token}});
+//           })
+//       })
+//       .catch((err)=>{
+//         return dispatch({type:action.LOGIN_FAILURE, payload:err});
+//       })
+//   }
+// };
 
 exports.logOut = () => {
   //add network logout logic here and in network.jsx
-  return (dispatch)=> dispatch({type:action.LOGOUT});
+  return (dispatch)=> dispatch({type:actions.LOGOUT});
 };
 
-exports.draftCharacter = ( character ) => {
-  //mocked function for now:
-  // console.log('state: ', store.getState());
-  // character.drafted = store.getState().data.userData.name;
-  // return draftCharacterSuccess( character );
-
-  // Real function for when we have a server:
-  return ( dispatch ) => {
-    return network.draftCharacter( character )
-    .then(( response ) => {
-      if (!response.ok) { throw new Error('Draft char, res not ok: ', response); }
-      return response.json()
+exports.logIn = (username, password) => {
+  return (dispatch) => {
+    return network.logIn(username, password)
+    .then((response) => {
+      if (!response.ok) {throw new Error('Login failure: ', response)}
+      return response.json();
     })
-    .then(( body ) => {
-        return dispatch( draftCharacterSuccess( body.character ));
+    .then((body) => {
+      return dispatch(logInSuccess(body));
     })
-    .catch(( error ) => {
-      return dispatch( draftCharacterFailure(error.message));
+    .catch((error) => {
+      return dispatch(loginFailure(error.message));
     });
   }
 };
 
-function draftCharacterSuccess( character ){
+function logInSuccess(body) {
   return {
-    type: DRAFT_CHARACTER_SUCCESS,
-    payload: { character },
-  }
-};
+    type: actions.LOGIN_SUCCESS,
+    payload: {
+      token: body.token,
+      user: body.user,
+      league: body.league,
+      characters: body.characters,
+      events: body.events,
+    }
+  };
+}
 
-function draftCharacterFailure( error ){
+function logInFailure(message) {
   return {
-    type: DRAFT_CHARACTER_FAILURE,
-    payload: { error },
-  }
-};
+    type: actions.LOGIN_FAILURE,
+    payload: {
+      error: message
+    }
+  };
+}
+

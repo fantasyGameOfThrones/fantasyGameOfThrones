@@ -24,9 +24,9 @@ module.exports = function (app, express) {
 
   //NEED TO: add requires for userRoutes etc, inject the routers into each
   // Need files for userRoutes, league, character, events
-  require('../server/users/userRoutes.js')(userRouter);
-  require('../server/leagues/leagueRoutes.js')(leagueRouter);
+  require('../users/userRoutes.js')(userRouter);
+  require('../leagues/leagueRoutes.js')(leagueRouter);
   // require('../server/characters/characterRoutes.js')(characterRouter);
   // require('../server/events/eventRoutes.js')(eventRouter);
-  require('../server/auth/authRoutes.js')(authRouter);
+  require('../auth/authRoutes.js')(authRouter);
 };

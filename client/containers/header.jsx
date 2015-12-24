@@ -14,7 +14,7 @@ class Header extends Component {
   }
 
   testNetwork() {
-    this.props.dispatch(actions.updateUser(1,{
+    this.props.dispatch(actions.updateUser(1, {
       email:'rjwholey@gmail.com',
       username:'ser_ryan',
       leagueId: 1,

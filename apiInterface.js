@@ -21,7 +21,8 @@
 {
   'signup': {
     verb: 'POST',
-    url: 'api/auth/signup',
+    // this used to be 'api/auth/signup' but it doesn't work with the temp server
+    url: 'api/signup',
     reqBody: {
       username: string,
       password: string,
@@ -36,7 +37,8 @@
 
   'login': {
     verb: 'POST',
-    url: 'api/auth/login',
+    // this used to be 'api/auth/login' but it doesn't work with the temp server
+    url: 'api/login',
     reqBody: {
       username: string,
       password: string,

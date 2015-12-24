@@ -1,43 +1,49 @@
 import {combineReducers} from 'redux';
+import * as actions from '../services/actionConstants.jsx';
 
-const leagueReducer = (state = {}, action) => {
+const league = (state = {members:[]}, action) => {
   switch(action.type) {
+    case actions.LOGIN_SUCCESS:
+      return action.payload.league;
     default:
       return state;
   }
 };
 
-const charactersReducer = (state = [], action) => {
+const characters = (state = [], action) => {
   switch(action.type){
+    case actions.LOGIN_SUCCESS:
+      return action.payload.characters;
     default:
       return state;
   }
 };
 
-const eventsReducer = (state = [], action) => {
+const events = (state = [], action) => {
   switch(action.type) {
+    case actions.LOGIN_SUCCESS:
+      return action.payload.events;
     default:
       return state;
   }
 };
 
-const userReducer = (state = {}, action) => {
+const user = (state = {}, action) => {
   switch(action.type){
-    case 'UPDATE_USER_SUCCESS':
-      console.log(action);
+    case actions.LOGIN_SUCCESS:
+      return action.payload.user;
+    case actions.UPDATE_USER_SUCCESS:
       return state;
-    case 'UPDATE_USER_FAILURE':
-      console.log(action);
+    case actions.UPDATE_USER_FAILURE:
       return state;
-    case 'DELETE_USER':
-      console.log(action);
+    case actions.DELETE_USER:
       return state;
     default:
       return state;
   }
 };
 
-const authReducer = (state = {token:'devModeStartLoggedIn'}, action) => {
+const auth = (state = {token: '', self: {}}, action) => {
   switch(action.type){
     case 'LOGIN_SUCCESS':
       return Object.assign({}, state, {token:action.payload.token, self:action.payload.user});
@@ -53,9 +59,9 @@ const authReducer = (state = {token:'devModeStartLoggedIn'}, action) => {
 };
 
 export default combineReducers({
-  user: userReducer,
-  characters: charactersReducer,
-  league: leagueReducer,
-  events: eventsReducer,
-  auth: authReducer
+  user,
+  characters,
+  league,
+  events,
+  auth,
 });

@@ -7,14 +7,65 @@ class Home extends Component {
     return (
       <div>
         <h1>Home</h1>
+        <ul>
+          {this.renderMainTable()}
+        </ul>
       </div>
     );
+  }
+
+  renderMainTable() {
+    const context = this;
+    return (
+      <table className="mainTable" >    
+        <caption> My Roster </caption>   
+        <thead>   
+          <tr>    
+            <td className="heading">Character</td>   
+            {this.props.episodes.map((ep) => {
+              return (
+                <td key={ep} className="heading">Episode {ep}</td>
+              )
+            })}
+          </tr>   
+        </thead>    
+        <tbody>   
+          {this.props.characters.map((char) => {   
+            return (
+              <tr key={char.id}>    
+                <td className="data">
+                  <div>{char.name}</div>
+                  <div>{char.house}</div>
+                  <img className="thumb" src={char.imageUrl}></img>
+                </td>
+                {this.props.episodes.map((ep) => {
+                  console.log(context.props.roster);
+                  return <td className="data" key={ep}>
+                    {context.props.roster[char.id][ep]}
+                  </td>
+                })}
+              </tr>
+            ) 
+          })}   
+        </tbody>    
+      </table>
+    )
   }
 }
 
 const select = (state) => {
-  return {
+  let chars = [];
+  if (state.data.characters) {
+    chars = state.data.characters.filter((char) => {
+      return state.data.user.characters[char.id];
+    });
+  }
+  const roster = state.data.user.roster || {};
 
+  return {
+    characters: chars,
+    episodes: [1,2,3,4,5,6,7,8,9,10],
+    roster,
   };
 };
 

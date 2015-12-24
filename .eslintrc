@@ -8,7 +8,9 @@
     "array-bracket-spacing": [2, "never"],
     "space-in-parens": [2, "never"],
     "no-console": [1],
-    "no-trailing-spaces": [2, { "skipBlankLines": true }]
+    "no-trailing-spaces": [2, { "skipBlankLines": true }],
+    "space-before-function-paren": [2, "never"],
+    "arrow-parens": [2, "always"],
   },
   "parser": "babel-eslint",
   "env": {

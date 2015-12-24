@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint **",
     "start": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
-    "json": "cp ./dbTemplate.json ./db.json && json-server ./db.json"
+    "json": "node testData/testData.js && cp testData/dbTemplate.json testData/db.json && json-server testData/db.json"
   },
   "author": "Naomi Jacobs",
   "license": "ISC",
@@ -29,7 +29,8 @@
     "react-dom": "^0.14.3",
     "react-redux": "^4.0.0",
     "redux": "^3.0.4",
-    "redux-thunk": "^1.0.2"
+    "redux-thunk": "^1.0.2",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "babel-core": "^6.3.17",
