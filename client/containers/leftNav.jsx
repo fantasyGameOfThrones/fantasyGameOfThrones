@@ -19,7 +19,6 @@ class LeftNav extends Component {
     const tabs = ['HOME', 'DRAFT', 'TRADE', 'LOGOUT']
     return (
       <div id="left">
-        <LeagueRanking />
         <ul>
           {this.renderTabs(tabs)}
         </ul>
