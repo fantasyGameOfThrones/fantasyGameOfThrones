@@ -43,7 +43,7 @@ const user = (state = {}, action) => {
   }
 };
 
-const auth = (state = {token:'devModeStartLoggedIn'}, action) => {
+const auth = (state = {token: '', self: {}}, action) => {
   switch(action.type){
     case 'LOGIN_SUCCESS':
       return Object.assign({}, state, {token:action.payload.token, self:action.payload.user});
