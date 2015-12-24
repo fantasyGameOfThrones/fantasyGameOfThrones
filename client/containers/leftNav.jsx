@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import LeagueRanking from '../components/leagueRanking.jsx';
 import actions from '../services/actionCreators.jsx';
 
 class LeftNav extends Component {
