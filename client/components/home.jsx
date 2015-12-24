@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import actions from '../services/actionCreators.jsx';
 
 class Home extends Component {
@@ -12,10 +12,10 @@ class Home extends Component {
   }
 }
 
-const select = ( state ) => {
+const select = (state) => {
   return {
 
   };
 };
 
-export default connect( select )( Home );
+export default connect(select)(Home);

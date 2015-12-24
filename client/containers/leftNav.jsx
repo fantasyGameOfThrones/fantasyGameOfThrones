@@ -15,7 +15,7 @@ class LeftNav extends Component {
     });
   }
   render() {
-    const tabs = ['HOME','DRAFT','TRADE']
+    const tabs = ['HOME', 'DRAFT', 'TRADE', 'LOGOUT']
     return (
       <div id="left">
         <ul>
@@ -25,6 +25,9 @@ class LeftNav extends Component {
     );
   }
   navigate(tab) {
+    if(tab==='LOGOUT'){
+      return this.props.dispatch(actions.logOut());
+    }
     this.props.dispatch(actions.navigateTo(tab));
   }
   
