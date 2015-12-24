@@ -1,27 +1,27 @@
 import {combineReducers} from 'redux';
 
-let leagueReducer = (state = {}, action) => {
+const leagueReducer = (state = {}, action) => {
   switch(action.type) {
     default:
       return state;
   }
 };
 
-let charactersReducer = (state = [], action) => {
+const charactersReducer = (state = [], action) => {
   switch(action.type){
     default:
       return state;
   }
 };
 
-let eventsReducer = (state = [], action) => {
+const eventsReducer = (state = [], action) => {
   switch(action.type) {
     default:
       return state;
   }
 };
 
-let userReducer = (state = {}, action) => {
+const userReducer = (state = {}, action) => {
   switch(action.type){
     case 'UPDATE_USER_SUCCESS':
       console.log(action);
@@ -37,9 +37,25 @@ let userReducer = (state = {}, action) => {
   }
 };
 
+const authReducer = (state = {token:'devModeStartLoggedIn'}, action) => {
+  switch(action.type){
+    case 'LOGIN_SUCCESS':
+      return Object.assign({}, state, {token:action.payload.token, self:action.payload.user});
+    case 'LOGIN_FAILURE':
+      // login attempt/failure logic here, do something if many failed attempts
+      return state;
+    case 'LOGOUT':
+      // also destroy cookie?
+      return Object.assign({},state,{token:'',self:{}})
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   user: userReducer,
   characters: charactersReducer,
   league: leagueReducer,
   events: eventsReducer,
+  auth: authReducer
 });

@@ -90,6 +90,27 @@ function signUpFailure(message) {
   };
 };
 
+exports.logIn = (username, password) => {
+  return (dispatch) => {
+    return network.logIn(username, password)
+      .then((response) => {
+        if(!response.ok){throw response}
+        return response.json()
+          .then((json) => {
+            return dispatch({type:action.LOGIN_SUCCESS, payload:{user:json.user,token:json.token}});
+          })
+      })
+      .catch((err)=>{
+        return dispatch({type:action.LOGIN_FAILURE, payload:err});
+      })
+  }
+};
+
+exports.logOut = () => {
+  //add network logout logic here and in network.jsx
+  return (dispatch)=> dispatch({type:action.LOGOUT});
+};
+
 exports.draftCharacter = ( character ) => {
   //mocked function for now:
   // console.log('state: ', store.getState());

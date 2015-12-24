@@ -40,28 +40,28 @@ const userRequests = (method, userID, rawParams={}) => {
     .catch((error) => console.log(error))
 };
 
-const signup = ( username, password ) => {
+const signUp = ( username, password ) => {
   let params = makeParams( 'POST', { username, password } );
-
-  // TODO: just return response
   return fetch( url + 'auth/signup', params )
     .catch(( error ) => {
       console.error( error );
     });
 };
 
-const login = ( username, password ) => {
-  let params = makeParams( 'POST', { username, password } );
+const logIn = ( username, password ) => {
+  // will change to post for real server,
+  // POST changes json server, also cannot GET with params
+  let params = makeParams( 'GET', { username, password } );
 
-  return fetch( url + 'auth/login', params )
+  return fetch( url + '/login'/*, params */)
     .catch(( error ) => {
       console.error( error );
     });
 };
 
 export default {
-  signup,
-  login,
+  signUp,
+  logIn,
   getCharacters,
   userRequests,
 };

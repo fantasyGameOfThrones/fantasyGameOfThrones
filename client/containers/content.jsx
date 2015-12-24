@@ -4,6 +4,7 @@ import store from '../services/store.jsx';
 import Home from '../components/home.jsx';
 import Trade from '../components/trade.jsx';
 import Draft from '../components/draft.jsx';
+import Login from '../components/login.jsx';
 
 class Content extends Component {
 
@@ -25,7 +26,7 @@ class Content extends Component {
       <div id='center'>
         {this.renderMain()}
       </div> 
-    )
+    );
   }
 
 };
