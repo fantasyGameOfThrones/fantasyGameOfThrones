@@ -14,7 +14,7 @@ class LeagueRanking extends Component {
                 key={index}
                 className='sideBarText'
               >
-                {user.username}, points: {user.points}
+                {user.username}, points: {user.roster.points}
               </li>
             );
           })}
@@ -26,26 +26,10 @@ class LeagueRanking extends Component {
 };
 
 const select = (state) => {
-  let users = state.data.league.members;
-
-  users = users.map((user) => {
-    //super inefficient way to calculate points
-    //TODO: should happen server-side
-    let points = 0;
-    for (var char in user.characters) {
-      user.characters[char].forEach((episode) => {
-        state.data.events.forEach((event) => {
-          if (event.episodeId === episode && +event.characterId === +char) {
-            points += event.points;
-          }
-        });
-      });
-    return {...user, points};
-    };
-  }).sort((a,b) => {return a.points < b.points});
-
   return {
-    users,
+    users: state.data.league.members.sort((a,b) => {
+      return a.roster.points < b.roster.points;
+    }),
   };
 };
 
