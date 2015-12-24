@@ -15,6 +15,7 @@ class Home extends Component {
   }
 
   renderMainTable() {
+    const context = this;
     return (
       <table className="mainTable" >    
         <caption> My Roster </caption>   
@@ -38,8 +39,9 @@ class Home extends Component {
                   <img className="thumb" src={char.imageUrl}></img>
                 </td>
                 {this.props.episodes.map((ep) => {
+                  console.log(context.props.roster);
                   return <td className="data" key={ep}>
-                    hi{}
+                    {context.props.roster[char.id][ep]}
                   </td>
                 })}
               </tr>
@@ -58,11 +60,12 @@ const select = (state) => {
       return state.data.user.characters[char.id];
     });
   }
+  const roster = state.data.user.roster || {};
 
   return {
     characters: chars,
     episodes: [1,2,3,4,5,6,7,8,9,10],
-    roster: state.data.user.roster,
+    roster,
   };
 };
 
