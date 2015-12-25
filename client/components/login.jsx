@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import action from '../services/actionCreators.jsx';
+import actions from '../services/actionCreators.jsx';
 
 class Login extends Component{
   loginClick() {
     let ubox = document.getElementById('usernameInput');
     let pbox = document.getElementById('passwordInput');
-    this.props.dispatch(action.logIn(ubox.value, pbox.value));
+    this.props.dispatch(actions.logIn(ubox.value, pbox.value));
     ubox.value = pbox.value = '';
   }
   render() {

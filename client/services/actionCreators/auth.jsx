@@ -1,5 +1,5 @@
 import network from '../network.jsx';
-import * as actions from '../actionConstants.jsx'
+import * as constants from '../actionConstants.jsx';
 
 export const signUp = (username, password) => {
   return (dispatch) => {
@@ -19,7 +19,7 @@ export const signUp = (username, password) => {
 
 const signUpSuccess = (body) => {
   return {
-    type: actions.SIGNUP_SUCCESS,
+    type: constants.SIGNUP_SUCCESS,
     payload: {
       user: body.user,
       token: body.token
@@ -29,7 +29,7 @@ const signUpSuccess = (body) => {
 
 const signUpFailure = (message) => {
   return {
-    type: actions.SIGNUP_FAILURE,
+    type: constants.SIGNUP_FAILURE,
     payload: {
       error: message
     }
@@ -54,7 +54,7 @@ export const logIn = (username, password) => {
 
 const logInSuccess = (body) => {
   return {
-    type: actions.LOGIN_SUCCESS,
+    type: constants.LOGIN_SUCCESS,
     payload: {
       token: body.token,
       user: body.user,
@@ -67,7 +67,7 @@ const logInSuccess = (body) => {
 
 const logInFailure = (message) => {
   return {
-    type: actions.LOGIN_FAILURE,
+    type: constants.LOGIN_FAILURE,
     payload: {
       error: message
     }
@@ -76,7 +76,7 @@ const logInFailure = (message) => {
 
 export const logOut = () => {
   //add network logout logic here and in network.jsx
-  return (dispatch)=> dispatch({type:actions.LOGOUT});
+  return (dispatch)=> dispatch({type:constants.LOGOUT});
 };
 
 

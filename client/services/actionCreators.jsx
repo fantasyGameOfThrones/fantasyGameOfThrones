@@ -1,6 +1,5 @@
 'use strict';
 import network from './network.jsx';
-import * as actions from './actionConstants.jsx';
 
 import * as auth from './actionCreators/auth.jsx';
 import * as league from './actionCreators/league.jsx';
