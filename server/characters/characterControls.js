@@ -2,15 +2,15 @@
 var db = require('../db/characterDB.js');
 
 module.exports = {
-  addCharacter: function () {
+  create: function () {
 
   },
 
-  updateCharacter: function () {
+  update: function () {
     
   },
 
-  getCharacterInfo: function () {
+  retrieve: function () {
     
   }
 };

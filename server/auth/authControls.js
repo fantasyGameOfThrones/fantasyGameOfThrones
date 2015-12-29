@@ -7,7 +7,7 @@ module.exports = {
   // If not, store in DB
   // Returns: A json object with a jwt token 
   // Returns { token : false } if user exists already
-  signUp: function (req, res, next) {
+  signup: function (req, res, next) {
 
     var user = req.body;
 
@@ -85,7 +85,7 @@ module.exports = {
   },
 
   // Test function as of now to test User query
-  getUser: function (req, res, next) {
+  placeholder: function (req, res, next) {
     db.findUser({ username: req.body.username })
       .then(function (results) {
         console.log('results: ', results);

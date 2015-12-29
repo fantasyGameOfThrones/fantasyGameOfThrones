@@ -16,7 +16,11 @@ var updateHelper = function (userObj, res) {
 };
 
 module.exports = {
-  updateUser: function (req, res, next) {
+  retrieve: function (req, res, next) {
+    
+  },
+  
+  update: function (req, res, next) {
     var user = req.body;
 
     if (user.password) {
@@ -29,7 +33,7 @@ module.exports = {
     }
   },
 
-  deleteUser: function (req, res, next) {
+  delete: function (req, res, next) {
     var user = req.body;
     db.deleteUser(user)
       .then(function (results) {
