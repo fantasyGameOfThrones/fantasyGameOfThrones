@@ -4,7 +4,7 @@ var db = require('../db/leagueDB.js');
 module.exports = {
   // When you create a new league, you are adding a moderator at same time
   // League Name and Username must be sent over
-  addLeague: function (req, res, next) {
+  create: function (req, res, next) {
     var league = req.body;
 
     db.addLeague(league)
@@ -23,7 +23,7 @@ module.exports = {
       });
   },
 
-  updateLeague: function (req, res, next) {
+  update: function (req, res, next) {
 
     var league = req.body;
 
@@ -39,7 +39,7 @@ module.exports = {
       });
   },
 
-  getLeagueInfo: function (req, res, next) {
+  retrieve: function (req, res, next) {
     var leagueName = req.params;
     db.getLeagueInfo(leagueName)
       .then(function (leagueInfo) {

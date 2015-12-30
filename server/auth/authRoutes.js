@@ -1,7 +1,8 @@
 var authControls = require('./authControls.js');
 
-module.exports = function (app) {
-  app.post('/login', authControls.login);
-  app.post('/signup', authControls.signUp);
-  app.get('/getUser', authControls.getUser);
+module.exports = function (router) {
+  router.post('/login', authControls.login);
+  router.post('/signup', authControls.signup);
+  // Placeholder route for testing
+  router.get('/placeholder', authControls.placeholder);
 };
