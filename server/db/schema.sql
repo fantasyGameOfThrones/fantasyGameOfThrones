@@ -30,6 +30,7 @@ CREATE TABLE users(
 CREATE TABLE characters(
   char_id int NOT NULL AUTO_INCREMENT,
   name varchar(60) NOT NULL,
+  nickname varchar(60),
   house varchar(30) NOT NULL,
   image varchar(255) NOT NULL,
   PRIMARY KEY (char_id)
@@ -41,7 +42,6 @@ CREATE TABLE events(
   type varchar(255) NOT NULL,
   description varchar(255),
   points int NOT NULL,
-  season int NOT NULL,
   episode int NOT NULL,
   char_id int,
   FOREIGN KEY (char_id) REFERENCES characters(char_id),

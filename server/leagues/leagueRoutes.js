@@ -1,7 +1,7 @@
-var leagueControls = require('./leagueControls');
+var controller = require('./leagueController');
 
 module.exports = function (router) {
-  router.post('/', leagueControls.create);
-  router.get('/:leagueid', leagueControls.retrieve);
-  router.put('/:leagueid', leagueControls.update);
+  router.post('/', controller.create);
+  router.get('/:leagueid', controller.retrieve);
+  router.put('/:leagueid', controller.update);
 };
