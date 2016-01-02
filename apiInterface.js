@@ -57,6 +57,7 @@
         id: integer,
         name: string,
         creatorId: integer // represents the user who make the league
+<<<<<<< affc03b9d4f33be0057c5656b1e0760287dc2340
         members: [
           {
             username: string,

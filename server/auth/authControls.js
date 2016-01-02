@@ -66,8 +66,37 @@ module.exports = {
 
               res.json({
                 user : {
-                  username: user.username
+                  username: user.username,
+                  id: user.user_id,
+                  // email: user.email,
+                  leagueId: user.league_id,
+                  episodes: {
+
+                  }
                 },
+                league: {
+                  id:
+                  name:
+                  creatorId:
+                  members: [users]
+                },
+                characters: [
+                  {
+                    character: {
+                      name:
+                      house:
+                      image:
+                    },
+                    events: [ eventFKs ]
+                  }
+                ],
+                events: [
+                  id: ,
+                  type: , 
+                  description: ,
+                  episodeId: ,//fk of episode
+                  points:
+                ],
                 token: token
               });
             } else {

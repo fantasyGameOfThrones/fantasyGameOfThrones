@@ -51,3 +51,12 @@ CREATE TABLE events(
 ALTER TABLE leagues
 ADD FOREIGN KEY (user_id) 
 REFERENCES users(user_id);
+
+CREATE TABLE test_table AS
+SELECT
+
+JoinTableId
+leagueFK
+userFK
+characterFK
+episodeFK
