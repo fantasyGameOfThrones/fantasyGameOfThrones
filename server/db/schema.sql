@@ -50,10 +50,14 @@ CREATE TABLE events(
 
 CREATE TABLE roster_data(
   roster_id int NOT NULL AUTO_INCREMENT,
+  league_id int NOT NULL,
+  user_id int NOT NULL,
+  char_id int NOT NULL,
+  episode int NOT NULL,
   FOREIGN KEY (league_id) REFERENCES leagues(league_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id),
   FOREIGN KEY (char_id) REFERENCES characters(char_id),
-  episode int NOT NULL
+  PRIMARY KEY (roster_id)
 );
 
 ALTER TABLE leagues
