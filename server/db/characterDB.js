@@ -13,6 +13,10 @@ exports.updateCharacter = function (data, charId) {
   return connection.queryAsync(sql);
 };
 
+exports.deleteCharacter = function (data) {
+
+};
+
 exports.getCharacterInfo = function (data) {
   
 };

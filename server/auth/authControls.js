@@ -1,5 +1,7 @@
 var jwt = require('jwt-simple');
 var db = require('../db/authDB.js');
+var leagueDB = require('../db/leagueDB');
+var helperDB = require('../db/helpersDB.js')
 var bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
@@ -11,7 +13,7 @@ module.exports = {
 
     var user = req.body;
 
-    db.findUser({ username: user.username })
+    db.loginUser({ username: user.username })
       .then(function (results) {
         if (results.length === 0) {
           // store user in DB after hashing password
@@ -52,53 +54,68 @@ module.exports = {
 
     var user = req.body;
 
-    db.findUser({ username: user.username })
+    db.loginUser({ username: user.username })
       .then(function (results) {
         if (results.length === 0) {
           // username is incorrect/not found
           res.sendStatus(404);
         } else {
           // decrypt password
-          bcrypt.compare(user.password, results[0].password, function (err, res) {
-            if (res) {
+          bcrypt.compare(user.password, results[0].password, function (err, result) {
+            if (result) {
               // passwords match
               var token = jwt.encode(user.username, 'secret'); // PLACE SECRET IN AUTH FILE
+              // query league table with league_id
+              // query roster_data with user_id
+                // then populate roster array with charIds and points in a tuple
+              leagueDB.getLeagueInfo({ name: 'johnsnow' })
+                .then(function (leagueArr) {
+                  helperDB.getCharIdAndPoints({ userId: results[0].user_id })
+                    .then(function (roster) {
+                      res.json({
+                        user : {
+                          username: user.username,
+                          id: user.user_id,
+                          // email: user.email,
+                          leagueId: user.league_id,
+                          roster: roster
+                        },
+                        league: {
+                          // id:
+                          // name:
+                          // creatorId:
+                          members: leagueArr
 
-              res.json({
-                user : {
-                  username: user.username,
-                  id: user.user_id,
-                  // email: user.email,
-                  leagueId: user.league_id,
-                  episodes: {
-
-                  }
-                },
-                league: {
-                  id:
-                  name:
-                  creatorId:
-                  members: [users]
-                },
-                characters: [
-                  {
-                    character: {
-                      name:
-                      house:
-                      image:
-                    },
-                    events: [ eventFKs ]
-                  }
-                ],
-                events: [
-                  id: ,
-                  type: , 
-                  description: ,
-                  episodeId: ,//fk of episode
-                  points:
-                ],
-                token: token
-              });
+                          // members: [
+                          //   {
+                          //     username:
+                          //     id:
+                          //     //email:
+                          //     leagueId:
+                          //     roster: roster
+                          //   }
+                          // ]
+                        },
+                        characters: [
+                          // {
+                          //   name:
+                          //   house:
+                          //   image: 
+                          // }
+                        ],
+                        events: [
+                          // {
+                          //   id: ,
+                          //   type: , 
+                          //   description: ,
+                          //   episodeId: ,//fk of episode
+                          //   points:
+                          // }
+                        ],
+                        token: token
+                      });
+                    });
+                });
             } else {
               // passwords do not match
               res.json({

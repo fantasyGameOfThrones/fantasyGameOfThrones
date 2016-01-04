@@ -32,7 +32,7 @@ exports.removeLeague = function (data) {
 
 exports.getLeagueInfo = function (data) {
   // Create Join Table
-  var sql = mysql.format('SELECT users.username, leagues.name FROM users \
+  var sql = mysql.format('SELECT users.username, leagues.league_id FROM users \
                       INNER JOIN leagues ON users.league_id = leagues.league_id \
                       WHERE leagues.name = ?', [data.name]);
   return connection.queryAsync(sql);

@@ -23,9 +23,15 @@ exports.dropCharacter = function (data) {
 
 // data object contains user_id and league_id
 exports.getRosterData = function (data) {
-  var sql = mysql.format('SELECT * FROM roster_data WHERE user_id = ? AND league_id = ?', [data.user_id, data.league_id])
+  var sql = mysql.format('SELECT * FROM roster_data WHERE user_id = ? AND league_id = ?', [data.user_id, data.league_id]);
   return connection.queryAsync(sql);
 };
 
+exports.getCharIdAndPoints = function (data) {
+  var sql = mysql.format('SELECT points, events.char_id FROM events ' +
+                          'INNER JOIN roster_data ' +
+                          'ON events.char_id = roster_data.char_id WHERE user_id = ?', [data.userId]);
+  return connection.queryAsync(sql);
+};
 
 // OTHER QUERIES USED BY MULTIPLE CONTROLLERS
