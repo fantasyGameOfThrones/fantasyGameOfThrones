@@ -47,11 +47,11 @@
         username: sring,
         email: string,
         leagueId: integer,
-        roster:[
-          [[charId, pointsForCharFromEp], [charId, pointsForCharFromEp]], //index = episodeId
-          [[charId, pointsForCharFromEp], [charId, pointsForCharFromEp]],
-          [[charId, pointsForCharFromEp], [charId, pointsForCharFromEp]],
-        ],
+        roster:{
+          integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
+          integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
+          integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
+        },
       },
       league: { //TODO: make this an array of leagues to support multiple leagues
         id: integer,

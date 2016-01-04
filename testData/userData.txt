@@ -1,0 +1,6 @@
+user_id,username,password,email
+1,naomiajacobs, mypassword, naomiajacobs@gmail.com
+2, ryanwholey, mypassword, ryanwholey@gmail.com
+3, briangraham, mypassword, briankgraham@gmail.com
+4, danthareja, mypassword, danthareja@gmail.com
+5, zachlester, mypassword, zachlester@gmail.com

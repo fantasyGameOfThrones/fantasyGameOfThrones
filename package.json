@@ -5,8 +5,10 @@
   "main": "./client/index.js",
   "scripts": {
     "test": "eslint **",
-    "start": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
-    "json": "node --harmony testData/testData.js && cp testData/dbTemplate.json testData/db.json && json-server testData/db.json"
+    "start": "nodemon server/server.js",
+    "dev-start": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
+    "json": "node --harmony testData/testData.js && cp testData/dbTemplate.json testData/db.json && json-server testData/db.json",
+    "db": "mysql -u root < server/db/schema.sql"
   },
   "author": "Naomi Jacobs",
   "license": "ISC",

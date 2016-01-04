@@ -12,7 +12,7 @@ module.exports = {
   signup: function (req, res, next) {
 
     var user = req.body;
-
+    console.log('user: ', user);
     db.loginUser({ username: user.username })
       .then(function (results) {
         if (results.length === 0) {
@@ -57,9 +57,10 @@ module.exports = {
 
     db.loginUser({ username: user.username })
       .then(function (results) {
+        console.log('result from looking up user: ', results);
         if (results.length === 0) {
           // username is incorrect/not found
-          res.sendStatus(404);
+          res.status(200).json('User not found');
         } else {
           // decrypt password
           bcrypt.compare(user.password, results[0].password, function (err, result) {
@@ -124,6 +125,7 @@ module.exports = {
       })
       .catch(function (err) {
         console.error(err);
+        res.status(500).json('Server error');
       });
   }
 };
