@@ -5,6 +5,8 @@ const league = (state = {members:[]}, action) => {
   switch(action.type) {
     case actions.LOGIN_SUCCESS:
       return action.payload.league;
+    case actions.CREATE_LEAGUE_SUCCESS:
+      return action.payload.league;
     default:
       return state;
   }

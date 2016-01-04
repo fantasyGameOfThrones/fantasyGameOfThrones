@@ -58,7 +58,7 @@ const signUp = (username, password) => {
 };
 
 const logIn = (username, password) => {
-  // code for real db
+  // TODO: change to code for real db
   // let params = makeParams('POST', {username, password});
 
   // code for json-server
@@ -76,4 +76,5 @@ export default {
   getCharacters,
   userRequests,
   leagueRequests,
+  createLeague,
 };

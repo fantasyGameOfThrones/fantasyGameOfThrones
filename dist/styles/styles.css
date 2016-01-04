@@ -23,8 +23,13 @@
 }
 #header, #footer{
   display: flex;
-  justify-content: center;
   background-color: rgba(127,255,212,0.5);
+}
+#header {
+  justify-content: space-around;
+}
+#footer {
+  justify-content: center;
 }
 #body {
   display: flex;

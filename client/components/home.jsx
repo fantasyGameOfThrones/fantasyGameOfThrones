@@ -39,7 +39,6 @@ class Home extends Component {
                   <img className="thumb" src={char.imageUrl}></img>
                 </td>
                 {this.props.episodes.map((ep) => {
-                  console.log(context.props.roster);
                   return <td className="data" key={ep}>
                     {context.props.roster[char.id][ep]}
                   </td>
