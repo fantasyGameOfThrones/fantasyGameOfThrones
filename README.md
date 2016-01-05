@@ -9,7 +9,7 @@ This provides a platform for a Game of Thrones fantasy league.
 
 ## Tech Stack
 
-Node + React/Redux + MySQL?
+Node/Express + React/Redux + MySQL
 
 ----
 ## Getting started (dev)
