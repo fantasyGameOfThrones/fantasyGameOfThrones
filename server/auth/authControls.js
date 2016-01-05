@@ -165,7 +165,7 @@ var addRosterToObjectArray = function (roster, league) {
 
       if (user.username === item.username) {
         obj.roster[item.episode] = obj.roster[item.episode] || [];
-        obj.roster[item.episode].push([item.char_id, item.points, item.username]);
+        obj.roster[item.episode].push([item.char_id, item.points]);
       }
 
     });
