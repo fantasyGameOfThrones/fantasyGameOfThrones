@@ -70,31 +70,23 @@ module.exports = {
                 // then populate roster array with charIds and points in a tuple
               leagueDB.getLeagueInfo({ name: 'johnsnow' })
                 .then(function (leagueArr) {
-                  helperDB.getCharIdAndPoints({ userId: results[0].user_id })
+                  // get users roster
+                  helperDB.getCharIdAndPoints({ leagueId: results[0].league_id })
                     .then(function (roster) {
+
+                      var formattedRoster = addRosterToObjectArray(roster, leagueArr);
+
                       res.json({
-                        user : {
-                          username: user.username,
-                          id: user.user_id,
-                          // email: user.email,
-                          leagueId: user.league_id,
-                          roster: roster
-                        },
+                        user : formattedRoster.filter(function (item) {
+                          return item.username === user.username;
+                        })[0],
                         league: {
                           // id:
                           // name:
                           // creatorId:
-                          members: leagueArr
-
-                          // members: [
-                          //   {
-                          //     username:
-                          //     id:
-                          //     //email:
-                          //     leagueId:
-                          //     roster: roster
-                          //   }
-                          // ]
+                          members: formattedRoster.filter(function (item) {
+                            return user.username !== item.username;
+                          })
                         },
                         characters: [
                           // {
@@ -140,4 +132,47 @@ module.exports = {
         console.error(err);
       });
   }
+};
+//This function takes the requested roster table + league info
+// and pushes new objects with a roster parameter to a result array
+// the new parameter is an array of each persons roster (charid + points)
+var addRosterToObjectArray = function (roster, league) {
+  var results = [];
+  var curUser;
+  var obj;
+
+  league.forEach(function (user) {
+
+    if (curUser !== user.user_id) {
+
+      curUser = user.user_id;
+      obj = {};
+
+    }
+
+    for (var key in user) {
+
+      if (key === 'user_id') {
+        obj.id = user[key];
+      } else {
+        obj[key] = user[key];
+      }
+    }
+
+    obj.roster = {};
+
+    roster.forEach(function (item) {
+
+      if (user.username === item.username) {
+        obj.roster[item.episode] = obj.roster[item.episode] || [];
+        obj.roster[item.episode].push([item.char_id, item.points, item.username]);
+      }
+
+    });
+
+    results.push(obj);
+
+  });
+
+  return results;
 };
