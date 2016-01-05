@@ -1,7 +1,7 @@
 var jwt = require('jwt-simple');
 var db = require('../db/authDB.js');
 var leagueDB = require('../db/leagueDB');
-var helperDB = require('../db/helpersDB.js')
+var helperDB = require('../db/helpersDB.js');
 var bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
@@ -68,7 +68,7 @@ module.exports = {
               // query league table with league_id
               // query roster_data with user_id
                 // then populate roster array with charIds and points in a tuple
-              leagueDB.getLeagueInfo({ name: 'johnsnow' })
+              leagueDB.getLeagueInfo({ league_id: results[0].league_id }) // CHANGE THIS to USERS LEAGUE_ID
                 .then(function (leagueArr) {
                   // get users roster
                   helperDB.getCharIdAndPoints({ leagueId: results[0].league_id })

@@ -34,6 +34,6 @@ exports.getLeagueInfo = function (data) {
   // Create Join Table
   var sql = mysql.format('SELECT users.user_id, users.username, leagues.league_id FROM users \
                       INNER JOIN leagues ON users.league_id = leagues.league_id \
-                      WHERE leagues.name = ?', [data.name]);
+                      WHERE leagues.league_id = ?', [data.league_id]);
   return connection.queryAsync(sql);
 };
