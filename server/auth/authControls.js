@@ -111,7 +111,6 @@ module.exports = {
                             token: token
                           });
                         });
-                      
                     });
                 });
             } else {
@@ -126,30 +125,20 @@ module.exports = {
       .catch(function (err) {
         console.error(err);
       });
-  },
-
-  // Test function as of now to test User query
-  placeholder: function (req, res, next) {
-    db.findUser({ username: req.body.username })
-      .then(function (results) {
-        console.log('results: ', results);
-      })
-      .catch(function (err) {
-        console.error(err);
-      });
   }
 };
 
 /* HELPER FUNCTIONS FOR AUTH CONTROLLER
 */
-//This function takes the requested roster table + league info
+//This function takes the requested roster table (league's entire roster) + league info
 // and pushes new objects with a roster parameter to a result array
 // the new parameter is an array of each persons roster (charid + points)
 var addRosterToObjectArray = function (roster, league) {
   var results = [];
   var curUser;
   var obj;
-
+  console.log("THELEAGUE: ", league);
+  console.log("THE ROSTERS: ", roster);
   league.forEach(function (user) {
 
     if (curUser !== user.user_id) {
@@ -169,7 +158,9 @@ var addRosterToObjectArray = function (roster, league) {
     }
 
     obj.roster = {};
-
+    // Build Roster Object: Keys are episodes
+    // Each key is an array of tuples
+    // Tuples are [char_id, charPointsFromEpisode]
     roster.forEach(function (item) {
       // as long as usernames match, add to character roster
       if (user.username === item.username) {
