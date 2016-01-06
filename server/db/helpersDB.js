@@ -29,13 +29,24 @@ exports.getRosterData = function (data) {
 
 // Grabs current users points and char_id
 exports.getCharIdAndPoints = function (data) {
-  var sql = mysql.format('SELECT DISTINCT events.points, events.char_id, events.episode, users.username \
-                          FROM events \
-                          INNER JOIN roster_data \
-                          ON events.episode = roster_data.episode \
-                          INNER JOIN users ON roster_data.user_id = users.user_id \
-                          WHERE roster_data.league_id = 1 \
-                          ORDER BY users.username, roster_data.episode', [data.leagueId]);
+  var sql = mysql.format('SELECT DISTINCT events.points, events.char_id, events.episode, users.username ' +
+                          'FROM events ' +
+                          'INNER JOIN roster_data ' +
+                          'ON events.episode = roster_data.episode ' +
+                          'INNER JOIN users ON roster_data.user_id = users.user_id ' +
+                          'WHERE roster_data.league_id = 1 ' +
+                          'ORDER BY users.username, roster_data.episode', [data.leagueId]);
+  return connection.queryAsync(sql);
+};
+
+// Grabs current users Character info and event info
+exports.getCharactersAndEvents = function (data) {
+  var sql = mysql.format('SELECT DISTINCT characters.name, characters.house, characters.image, ' +
+                         'events.event_id, events.type, events.description, events.episode, events.points ' +
+                         'FROM events INNER JOIN roster_data ' +
+                         'ON roster_data.char_id = events.char_id ' +
+                         'INNER JOIN characters ON characters.char_id = events.char_id ' +
+                         'WHERE roster_data.user_id = ?', [data.user_id]);
   return connection.queryAsync(sql);
 };
 

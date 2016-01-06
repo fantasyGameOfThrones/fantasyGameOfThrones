@@ -76,36 +76,53 @@ module.exports = {
 
                       var formattedRoster = addRosterToObjectArray(roster, leagueArr);
 
-                      res.json({
-                        user : formattedRoster.filter(function (item) {
-                          return item.username === user.username;
-                        })[0],
-                        league: {
-                          // id:
-                          // name:
-                          // creatorId:
-                          members: formattedRoster.filter(function (item) {
-                            return user.username !== item.username;
-                          })
-                        },
-                        characters: [
-                          // {
-                          //   name:
-                          //   house:
-                          //   image: 
-                          // }
-                        ],
-                        events: [
-                          // {
-                          //   id: ,
-                          //   type: , 
-                          //   description: ,
-                          //   episodeId: ,//fk of episode
-                          //   points:
-                          // }
-                        ],
-                        token: token
-                      });
+                      helperDB.getCharactersAndEvents({ user_id: results[0].user_id })
+                        .then(function (charAndEventInfo) {
+                          
+                          res.json({
+                            user : formattedRoster.filter(function (item) {
+                              return item.username === user.username;
+                            })[0],
+                            league: {
+                              // id:
+                              // name:
+                              // creatorId:
+                              members: formattedRoster.filter(function (item) {
+                                return user.username !== item.username;
+                              })
+                            },
+                            characters: charAndEventInfo.map(function (obj) {
+                              return {
+                                name: obj.name,
+                                house: obj.house,
+                                image: obj.image
+                              };
+                            }),
+                              // {
+                              //   name:
+                              //   house:
+                              //   image: 
+                              // }
+                            events: charAndEventInfo.map(function (obj) {
+                              return {
+                                id: obj.event_id,
+                                type: obj.type,
+                                description: obj.description,
+                                episodeId: obj.episode,
+                                points: obj.points
+                              };
+                            }),
+                              // {
+                              //   id: ,
+                              //   type: , 
+                              //   description: ,
+                              //   episodeId: ,//fk of episode
+                              //   points:
+                              // }
+                            token: token
+                          });
+                        });
+                      
                     });
                 });
             } else {
