@@ -30,7 +30,8 @@ module.exports = {
 
                 res.json({
                   user : {
-                    username: user.username
+                    username: user.username,
+                    userId: user.user_id
                   },
                   token: token
                 });
@@ -91,18 +92,13 @@ module.exports = {
                                 return user.username !== item.username;
                               })
                             },
-                            characters: charAndEventInfo.map(function (obj) {
+                            characters: removeDups(charAndEventInfo.map(function (obj) {
                               return {
                                 name: obj.name,
                                 house: obj.house,
                                 image: obj.image
                               };
-                            }),
-                              // {
-                              //   name:
-                              //   house:
-                              //   image: 
-                              // }
+                            })),
                             events: charAndEventInfo.map(function (obj) {
                               return {
                                 id: obj.event_id,
@@ -112,13 +108,6 @@ module.exports = {
                                 points: obj.points
                               };
                             }),
-                              // {
-                              //   id: ,
-                              //   type: , 
-                              //   description: ,
-                              //   episodeId: ,//fk of episode
-                              //   points:
-                              // }
                             token: token
                           });
                         });
@@ -150,6 +139,9 @@ module.exports = {
       });
   }
 };
+
+/* HELPER FUNCTIONS FOR AUTH CONTROLLER
+*/
 //This function takes the requested roster table + league info
 // and pushes new objects with a roster parameter to a result array
 // the new parameter is an array of each persons roster (charid + points)
@@ -179,7 +171,7 @@ var addRosterToObjectArray = function (roster, league) {
     obj.roster = {};
 
     roster.forEach(function (item) {
-
+      // as long as usernames match, add to character roster
       if (user.username === item.username) {
         obj.roster[item.episode] = obj.roster[item.episode] || [];
         obj.roster[item.episode].push([item.char_id, item.points]);
@@ -192,4 +184,18 @@ var addRosterToObjectArray = function (roster, league) {
   });
 
   return results;
+};
+
+// Helper Function to remove duplicates from character array
+var removeDups = function (arr) {
+  var hash = {};
+  var result = [];
+  arr.forEach(function (item) {
+    if (!hash[item.name]) {
+      hash[item.name] = true;
+      result.push(item);
+    } 
+  });
+  
+  return result;
 };
