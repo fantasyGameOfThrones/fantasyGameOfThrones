@@ -58,10 +58,20 @@ const auth = (state = {token: '', self: {}}, action) => {
   }
 };
 
+const draft = (state = {}, action) => {
+  switch(action.type) {
+    case actions.SET_DRAFT_STATE:
+      return action.payload;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   user,
   characters,
   league,
   events,
   auth,
+  draft
 });

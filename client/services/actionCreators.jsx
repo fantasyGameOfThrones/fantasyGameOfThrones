@@ -9,6 +9,10 @@ exports.navigateTo = (tab)  => {
   }
 };
 
+exports.setDraftState = (state) => (dispatch) => {
+  dispatch({type: actions.SET_DRAFT_STATE, payload: state});
+};
+
 exports.updateUser = (userID, updateData) => {
   return (dispatch) => {
     network.userRequests('PUT', userID, updateData)

@@ -8,7 +8,7 @@ import RightNav from './containers/rightNav.jsx';
 import Login from './components/login.jsx';
 
 class App extends Component {
-  composedApp() {
+  render() {
     return (
       <div id="composedApp">
         <Header />
@@ -22,9 +22,9 @@ class App extends Component {
     );
   }
 
-  render() {
-    return this.props.token ? this.composedApp() : <Login/>;
-  }
+  // render() {
+  //   return this.props.token ? this.composedApp() : <Login/>;
+  // }
 
 }
 
