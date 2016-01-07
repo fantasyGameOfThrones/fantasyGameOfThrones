@@ -34,7 +34,7 @@ exports.getCharIdAndPoints = function (data) {
                           'INNER JOIN roster_data ' +
                           'ON events.episode = roster_data.episode ' +
                           'INNER JOIN users ON roster_data.user_id = users.user_id ' +
-                          'WHERE roster_data.league_id = 1 ' +
+                          'WHERE roster_data.league_id = ? ' +
                           'ORDER BY users.username, roster_data.episode', [data.leagueId]);
   return connection.queryAsync(sql);
 };

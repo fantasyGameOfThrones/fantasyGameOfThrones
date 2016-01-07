@@ -139,6 +139,7 @@ var addRosterToObjectArray = function (roster, league) {
   var obj;
   console.log("THELEAGUE: ", league);
   console.log("THE ROSTERS: ", roster);
+  // iterate through league table, create new objects with rosters for each user
   league.forEach(function (user) {
 
     if (curUser !== user.user_id) {
