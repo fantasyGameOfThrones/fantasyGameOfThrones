@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var connection = require('./db');
 
 exports.findLeague = function (data) {
-  var sql = mysql.format('SELECT * from leagues WHERE name = ?', [data.name]);
+  var sql = mysql.format('SELECT * from leagues WHERE league_id = ?', [data.leagueId]);
   return connection.queryAsync(sql);
 };
 
@@ -13,8 +13,15 @@ exports.addLeague = function (data) {
 
 exports.updateLeague = function (data) {
   // update name, data object's 'newName' param holds the updated name
-  var sql = mysql.format('UPDATE leagues SET ? WHERE name = ?', 
+  var sql;
+  if (data.newName) {
+    sql = mysql.format('UPDATE leagues SET ? WHERE name = ?', 
                     [{ name : data.newName }, data.name]);
+  } else if (data.newUserId) {
+    sql = mysql.format('UPDATE leagues SET ? WHERE user_id = ?',
+                    [{ user_id: data.newUserId }, data.userId]);
+  }
+  
   return connection.queryAsync(sql);
 };
 
@@ -25,8 +32,8 @@ exports.removeLeague = function (data) {
 
 exports.getLeagueInfo = function (data) {
   // Create Join Table
-  var sql = mysql.format('SELECT users.username, leagues.name FROM users \
+  var sql = mysql.format('SELECT users.user_id, users.username, leagues.league_id FROM users \
                       INNER JOIN leagues ON users.league_id = leagues.league_id \
-                      WHERE leagues.name = ?', [data.name]);
+                      WHERE leagues.league_id = ?', [data.league_id]);
   return connection.queryAsync(sql);
 };

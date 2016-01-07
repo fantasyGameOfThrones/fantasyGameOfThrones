@@ -56,7 +56,7 @@
       league: { //TODO: make this an array of leagues to support multiple leagues
         id: integer,
         name: string,
-        creatorId: integer // represents the user who make the league
+        creatorId: integer, // represents the user who make the league
         members: [
           {
             username: string,
@@ -71,7 +71,7 @@
         {
           name: string,
           house: string,
-          image: string,
+          image: string
         }
       ],
       events: [

@@ -11,7 +11,7 @@ USE got;
 CREATE TABLE leagues(
   league_id int NOT NULL AUTO_INCREMENT,
   name varchar(45) NOT NULL UNIQUE,
-  user_id int NOT NULL, -- is this where we initialize a moderator?
+  user_id int NOT NULL,
   PRIMARY KEY (league_id)
 );
 
@@ -48,6 +48,19 @@ CREATE TABLE events(
   PRIMARY KEY (event_id)
 );
 
+CREATE TABLE roster_data(
+  roster_id int NOT NULL AUTO_INCREMENT,
+  league_id int NOT NULL,
+  user_id int NOT NULL,
+  char_id int NOT NULL,
+  episode int NOT NULL,
+  FOREIGN KEY (league_id) REFERENCES leagues(league_id),
+  FOREIGN KEY (user_id) REFERENCES users(user_id),
+  FOREIGN KEY (char_id) REFERENCES characters(char_id),
+  PRIMARY KEY (roster_id)
+);
+
 ALTER TABLE leagues
 ADD FOREIGN KEY (user_id) 
 REFERENCES users(user_id);
+  

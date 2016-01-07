@@ -1,5 +1,7 @@
 var jwt = require('jwt-simple');
 var db = require('../db/authDB.js');
+var leagueDB = require('../db/leagueDB');
+var helperDB = require('../db/helpersDB.js');
 var bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
@@ -11,7 +13,7 @@ module.exports = {
 
     var user = req.body;
 
-    db.findUser({ username: user.username })
+    db.loginUser({ username: user.username })
       .then(function (results) {
         if (results.length === 0) {
           // store user in DB after hashing password
@@ -28,7 +30,8 @@ module.exports = {
 
                 res.json({
                   user : {
-                    username: user.username
+                    username: user.username,
+                    userId: user.user_id
                   },
                   token: token
                 });
@@ -52,24 +55,64 @@ module.exports = {
 
     var user = req.body;
 
-    db.findUser({ username: user.username })
+    db.loginUser({ username: user.username })
       .then(function (results) {
         if (results.length === 0) {
           // username is incorrect/not found
           res.sendStatus(404);
         } else {
           // decrypt password
-          bcrypt.compare(user.password, results[0].password, function (err, res) {
-            if (res) {
+          bcrypt.compare(user.password, results[0].password, function (err, result) {
+            if (result) {
               // passwords match
               var token = jwt.encode(user.username, 'secret'); // PLACE SECRET IN AUTH FILE
+              // query league table with league_id
+              // query roster_data with user_id
+                // then populate roster array with charIds and points in a tuple
+              leagueDB.getLeagueInfo({ league_id: results[0].league_id }) // CHANGE THIS to USERS LEAGUE_ID
+                .then(function (leagueArr) {
+                  // get users roster
+                  helperDB.getCharIdAndPoints({ leagueId: results[0].league_id })
+                    .then(function (roster) {
 
-              res.json({
-                user : {
-                  username: user.username
-                },
-                token: token
-              });
+                      var formattedRoster = addRosterToObjectArray(roster, leagueArr);
+
+                      helperDB.getCharactersAndEvents({ user_id: results[0].user_id })
+                        .then(function (charAndEventInfo) {
+                          
+                          res.json({
+                            user : formattedRoster.filter(function (item) {
+                              return item.username === user.username;
+                            })[0],
+                            league: {
+                              // id:
+                              // name:
+                              // creatorId:
+                              members: formattedRoster.filter(function (item) {
+                                return user.username !== item.username;
+                              })
+                            },
+                            characters: removeDups(charAndEventInfo.map(function (obj) {
+                              return {
+                                name: obj.name,
+                                house: obj.house,
+                                image: obj.image
+                              };
+                            })),
+                            events: charAndEventInfo.map(function (obj) {
+                              return {
+                                id: obj.event_id,
+                                type: obj.type,
+                                description: obj.description,
+                                episodeId: obj.episode,
+                                points: obj.points
+                              };
+                            }),
+                            token: token
+                          });
+                        });
+                    });
+                });
             } else {
               // passwords do not match
               res.json({
@@ -82,16 +125,69 @@ module.exports = {
       .catch(function (err) {
         console.error(err);
       });
-  },
-
-  // Test function as of now to test User query
-  placeholder: function (req, res, next) {
-    db.findUser({ username: req.body.username })
-      .then(function (results) {
-        console.log('results: ', results);
-      })
-      .catch(function (err) {
-        console.error(err);
-      });
   }
+};
+
+/* HELPER FUNCTIONS FOR AUTH CONTROLLER
+*/
+//This function takes the requested roster table (league's entire roster) + league info
+// and pushes new objects with a roster parameter to a result array
+// the new parameter is an array of each persons roster (charid + points)
+var addRosterToObjectArray = function (roster, league) {
+  var results = [];
+  var curUser;
+  var obj;
+  console.log("THELEAGUE: ", league);
+  console.log("THE ROSTERS: ", roster);
+  // iterate through league table, create new objects with rosters for each user
+  league.forEach(function (user) {
+
+    if (curUser !== user.user_id) {
+
+      curUser = user.user_id;
+      obj = {};
+
+    }
+
+    for (var key in user) {
+
+      if (key === 'user_id') {
+        obj.id = user[key];
+      } else {
+        obj[key] = user[key];
+      }
+    }
+
+    obj.roster = {};
+    // Build Roster Object: Keys are episodes
+    // Each key is an array of tuples
+    // Tuples are [char_id, charPointsFromEpisode]
+    roster.forEach(function (item) {
+      // as long as usernames match, add to character roster
+      if (user.username === item.username) {
+        obj.roster[item.episode] = obj.roster[item.episode] || [];
+        obj.roster[item.episode].push([item.char_id, item.points]);
+      }
+
+    });
+
+    results.push(obj);
+
+  });
+
+  return results;
+};
+
+// Helper Function to remove duplicates from character array
+var removeDups = function (arr) {
+  var hash = {};
+  var result = [];
+  arr.forEach(function (item) {
+    if (!hash[item.name]) {
+      hash[item.name] = true;
+      result.push(item);
+    } 
+  });
+  
+  return result;
 };
