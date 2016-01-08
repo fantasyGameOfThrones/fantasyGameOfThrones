@@ -4,17 +4,33 @@ import actions from '../services/actionCreators.jsx';
 
 class Login extends Component{
   loginClick() {
-    let ubox = document.getElementById('usernameInput');
-    let pbox = document.getElementById('passwordInput');
+    let ubox = document.getElementById('usernameLogin');
+    let pbox = document.getElementById('passwordLogin');
     this.props.dispatch(actions.logIn(ubox.value, pbox.value));
     ubox.value = pbox.value = '';
   }
+
+  signupClick() {
+    let ubox = document.getElementById('usernameSignup');
+    let pbox = document.getElementById('passwordSignup');
+    this.props.dispatch(actions.signUp(ubox.value, pbox.value));
+    ubox.value = pbox.value = '';
+  }
+
+
   render() {
     return (
       <div>
-        <input type="textarea" id="usernameInput" paceholder="email"/>
-        <input type="password" id="passwordInput"paceholder="password"/>
-        <div className='clickable' onClick={this.loginClick.bind(this)}>Login</div>
+        <div>
+          <input type="textarea" id="usernameLogin" placeholder="email"/>
+          <input type="password" id="passwordLogin"placeholder="password"/>
+          <button className='clickable' onClick={this.loginClick.bind(this)}>Login</button>
+        </div>
+        <div>
+          <input type="textarea" id="usernameSignup" placeholder="email"/>
+          <input type="password" id="passwordSignup"placeholder="password"/>
+          <button className='clickable' onClick={this.signupClick.bind(this)}>Signup</button>
+        </div>
       </div>
     );
   }

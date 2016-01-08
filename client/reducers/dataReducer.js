@@ -48,13 +48,13 @@ const user = (state = {}, action) => {
 const auth = (state = {token: '', self: {}}, action) => {
   switch(action.type){
     case 'LOGIN_SUCCESS':
-      return Object.assign({}, state, {token:action.payload.token, self:action.payload.user});
+      return Object.assign({}, state, {token: action.payload.token, self: action.payload.user});
     case 'LOGIN_FAILURE':
       // login attempt/failure logic here, do something if many failed attempts
       return state;
     case 'LOGOUT':
       // also destroy cookie?
-      return Object.assign({},state,{token:'',self:{}})
+      return Object.assign({},state,{token: '', self:{}})
     default:
       return state;
   }

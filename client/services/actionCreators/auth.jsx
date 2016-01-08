@@ -36,22 +36,6 @@ const signUpFailure = (message) => {
   };
 };
 
-export const logIn = (username, password) => {
-  return (dispatch) => {
-    return network.logIn(username, password)
-    .then((response) => {
-      if (!response.ok) {throw new Error('Login failure: ', response)}
-      return response.json();
-    })
-    .then((body) => {
-      return dispatch(logInSuccess(body));
-    })
-    .catch((error) => {
-      return dispatch(loginFailure(error.message));
-    });
-  }
-};
-
 const logInSuccess = (body) => {
   return {
     type: constants.LOGIN_SUCCESS,
@@ -72,6 +56,23 @@ const logInFailure = (message) => {
       error: message
     }
   };
+};
+
+export const logIn = (username, password) => {
+  return (dispatch) => {
+    return network.logIn(username, password)
+    .then((response) => {
+      if (!response.ok) {throw new Error('Login failure: ', response)}
+      return response.json();
+    })
+    .then((body) => {
+      return dispatch(logInSuccess(body));
+    })
+    .catch((error) => {
+      console.log('error: ', error);
+      return dispatch(logInFailure(error.message));
+    });
+  }
 };
 
 export const logOut = () => {

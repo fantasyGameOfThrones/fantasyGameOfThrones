@@ -3,7 +3,7 @@
 import store from './store.jsx';
 //json dev server @3000, web-server@4000, node@8000
 //json server has no /api, node server to hae /api route 
-let url = 'http://localhost:3000';
+let url = 'http://localhost:8000/api';
 
 
 let makeParams = (method, body) => {
@@ -49,24 +49,18 @@ const leagueRequests = (method, leagueID, rawParams = {}) => {
 
 const signUp = (username, password) => {
   let params = makeParams('POST', {username, password});
-
   // TODO: just return response
-  return fetch(`${url}/signup`, params)
+  return fetch(`${url}/auth/signup`, params)
     .catch((error) => {
       console.error(error);
     });
 };
 
 const logIn = (username, password) => {
-  // TODO: change to code for real db
-  // let params = makeParams('POST', {username, password});
-
-  // code for json-server
-  let params = makeParams('GET');
-
-  return fetch(`${url}/login`, params)
+  let params = makeParams('POST', {username, password});
+  return fetch(`${url}/auth/login`, params)
     .catch((error) => {
-      console.error(error);
+      console.error('error fetching: ', error);
     });
 };
 
@@ -76,5 +70,4 @@ export default {
   getCharacters,
   userRequests,
   leagueRequests,
-  createLeague,
 };

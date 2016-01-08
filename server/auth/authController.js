@@ -12,7 +12,7 @@ module.exports = {
   signup: function (req, res, next) {
 
     var user = req.body;
-    console.log('user: ', user);
+
     db.loginUser({ username: user.username })
       .then(function (results) {
         if (results.length === 0) {
@@ -23,8 +23,6 @@ module.exports = {
 
             db.addNewUser(user)
               .then(function (storedUser) {
-
-                console.log('User Stored: ', storedUser); 
 
                 var token = jwt.encode(user.username, 'secret'); // PLACE SECRET IN AUTH FILE
 
@@ -57,7 +55,6 @@ module.exports = {
 
     db.loginUser({ username: user.username })
       .then(function (results) {
-        console.log('result from looking up user: ', results);
         if (results.length === 0) {
           // username is incorrect/not found
           res.status(200).json('User not found');
@@ -139,8 +136,6 @@ var addRosterToObjectArray = function (roster, league) {
   var results = [];
   var curUser;
   var obj;
-  console.log("THELEAGUE: ", league);
-  console.log("THE ROSTERS: ", roster);
   // iterate through league table, create new objects with rosters for each user
   league.forEach(function (user) {
 

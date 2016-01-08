@@ -3,12 +3,13 @@ import {connect} from 'react-redux';
 import actions from '../services/actionCreators.jsx';
 
 class Home extends Component {
+  // replace ul with this.renderMainTable() once it's worked out
   render(){
     return (
       <div>
         <h1>Home</h1>
         <ul>
-          {this.renderMainTable()}
+          HOME
         </ul>
       </div>
     );
@@ -53,18 +54,18 @@ class Home extends Component {
 }
 
 const select = (state) => {
-  let chars = [];
-  if (state.data.characters) {
-    chars = state.data.characters.filter((char) => {
-      return state.data.user.characters[char.id];
-    });
-  }
-  const roster = state.data.user.roster || {};
+  // let chars = [];
+  // if (state.data.characters) {
+  //   chars = state.data.characters.filter((char) => {
+  //     return state.data.user.characters[char.id];
+  //   });
+  // }
+  // const roster = state.data.user.roster || {};
 
   return {
-    characters: chars,
-    episodes: [1,2,3,4,5,6,7,8,9,10],
-    roster,
+    // characters: chars,
+    // episodes: [1,2,3,4,5,6,7,8,9,10],
+    // roster,
   };
 };
 

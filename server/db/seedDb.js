@@ -36,12 +36,12 @@ module.exports = function() {
   };
 
   var loadUsers = function() {
-    insertUser('naomiajacobs', 'hello', 'naomiajacobs@gmail.com', 1);
-    insertUser('ryanwholey', 'hello', 'ryan.wholey@hackreactor.com', 1);
-    insertUser('briangraham', 'hello', 'brian.graham@hackreactor.com', 1);
-    insertUser('danthareja', 'hello', 'dan.thareja@hackreactor.com', 1);
-    insertUser('zachlester', 'hello', 'zach.lester@hackreactor.com', 2);
-    insertUser('bethjohnson', 'hello', 'beth.johnson@hackreactor.com', 2);
+    insertUser('naomi', 'hello', 'naomiajacobs@gmail.com', 1);
+    insertUser('ryan', 'hello', 'ryan.wholey@hackreactor.com', 1);
+    insertUser('brian', 'hello', 'brian.graham@hackreactor.com', 1);
+    insertUser('dan', 'hello', 'dan.thareja@hackreactor.com', 1);
+    insertUser('zach', 'hello', 'zach.lester@hackreactor.com', 2);
+    insertUser('beth', 'hello', 'beth.johnson@hackreactor.com', 2);
   };
 
   loadUsers();
