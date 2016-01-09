@@ -1,7 +1,8 @@
-var eventControls = require('./eventControls');
+var router = require('express').Router();
+var controller = require('./eventController');
 
-module.exports = function (router) {
-  router.post('/', eventControls.create);
-  router.get('/:eventid', eventControls.retrieve);
-  router.put('/:eventid', eventControls.update);
-};
+router.post('/', controller.create);
+router.get('/:eventid', controller.retrieve);
+router.put('/:eventid', controller.update);
+
+module.exports = router;

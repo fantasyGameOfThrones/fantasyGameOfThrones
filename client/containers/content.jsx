@@ -5,6 +5,7 @@ import Home from '../components/home.jsx';
 import Trade from '../components/trade.jsx';
 import Draft from '../components/draft.jsx';
 import Login from '../components/login.jsx';
+import NewLeague from '../components/newLeague.jsx';
 
 class Content extends Component {
 
@@ -17,6 +18,8 @@ class Content extends Component {
         return <Trade/>
       case 'DRAFT':
         return <Draft/>
+      case 'NEW_LEAGUE':
+        return <NewLeague />;
       default:
         return <Home/>
     }

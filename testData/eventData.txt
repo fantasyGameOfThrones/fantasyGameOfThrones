@@ -1,3 +1,4 @@
-1,attendance,Arya,1,28,1
-2,deceive someone you're sleeping with,Cersei sleeps with every man in castle and lies to Jaime,2,11,35
-3,surprise magic use,Qyburn works on The Mountain,3,71,50
+"event_id","type","description","char_id","points","episode"
+1,"attendance","Arya",28,1,1
+2,"attendance","Sansa",30,1,1
+3,"attendance","Lancel",57,1,1

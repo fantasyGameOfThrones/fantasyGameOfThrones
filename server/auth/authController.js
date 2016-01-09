@@ -24,8 +24,6 @@ module.exports = {
             db.addNewUser(user)
               .then(function (storedUser) {
 
-                console.log('User Stored: ', storedUser); 
-
                 var token = jwt.encode(user.username, 'secret'); // PLACE SECRET IN AUTH FILE
 
                 res.json({
@@ -59,7 +57,7 @@ module.exports = {
       .then(function (results) {
         if (results.length === 0) {
           // username is incorrect/not found
-          res.sendStatus(404);
+          res.status(200).json('User not found');
         } else {
           // decrypt password
           bcrypt.compare(user.password, results[0].password, function (err, result) {
@@ -124,6 +122,7 @@ module.exports = {
       })
       .catch(function (err) {
         console.error(err);
+        res.status(500).json('Server error');
       });
   }
 };
@@ -137,8 +136,6 @@ var addRosterToObjectArray = function (roster, league) {
   var results = [];
   var curUser;
   var obj;
-  console.log("THELEAGUE: ", league);
-  console.log("THE ROSTERS: ", roster);
   // iterate through league table, create new objects with rosters for each user
   league.forEach(function (user) {
 
