@@ -16,19 +16,22 @@ CREATE TABLE users(
   username varchar(30) NOT NULL UNIQUE,
   password varchar(255) NOT NULL,
   email varchar(45),
-  PRIMARY KEY (user_id)
-);
-
-CREATE TABLE leagues_to_users(
-  id int NOT NULL AUTO_INCREMENT,
-  league_id int NOT NULL,
-  user_id int NOT NULL,
-  PRIMARY KEY (id),
+  league_id int,
+  PRIMARY KEY (user_id),
   FOREIGN KEY (league_id) REFERENCES leagues(league_id)
-    ON DELETE CASCADE ON UPDATE CASCADE,
-  FOREIGN KEY (user_id) REFERENCES users(user_id)
     ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+-- CREATE TABLE leagues_to_users(
+--   id int NOT NULL AUTO_INCREMENT,
+--   league_id int NOT NULL,
+--   user_id int NOT NULL,
+--   PRIMARY KEY (id),
+--   FOREIGN KEY (league_id) REFERENCES leagues(league_id)
+--     ON DELETE CASCADE ON UPDATE CASCADE,
+--   FOREIGN KEY (user_id) REFERENCES users(user_id)
+--     ON DELETE CASCADE ON UPDATE CASCADE
+-- );
 
 CREATE TABLE characters(
   char_id int NOT NULL AUTO_INCREMENT,
@@ -67,6 +70,5 @@ CREATE TABLE roster_data(
   PRIMARY KEY (roster_id)
 );
 
-ALTER TABLE leagues
-ADD FOREIGN KEY (moderator_id)
-REFERENCES users(user_id);
+ALTER TABLE leagues 
+ADD FOREIGN KEY (moderator_id) REFERENCES users(user_id);

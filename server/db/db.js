@@ -1,8 +1,8 @@
 var Promise = require('bluebird');
 var mysql = Promise.promisifyAll(require('mysql'));
-var seedDB = require('./seedDB.js');
+// var dbInit = require('./dbInit.js');
 
-seedDB();
+// dbInit();
 
 var connection = mysql.createConnection({
   host: 'localhost',

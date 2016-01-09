@@ -5,9 +5,9 @@
   "main": "./client/index.js",
   "scripts": {
     "test": "eslint **",
-    "start": "nodemon server/server.js",
+    "start": "npm run-script db; nodemon server/server.js",
     "dev-start": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
-    "db": "mysql -u root < server/db/schema.sql"
+    "db": "node server/db/dbInit.js"
   },
   "author": "Naomi Jacobs",
   "license": "ISC",
