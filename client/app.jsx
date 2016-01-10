@@ -6,6 +6,7 @@ import Content from './containers/content.jsx';
 import LeftNav from './containers/leftNav.jsx';
 import RightNav from './containers/rightNav.jsx';
 import Login from './components/login.jsx';
+import Signup from './components/signup.jsx';
 
 class App extends Component {
   composedApp() {
@@ -23,14 +24,22 @@ class App extends Component {
   }
 
   render() {
-    return this.props.token ? this.composedApp() : <Login/>;
+    if (this.props.token) {
+      return this.composedApp();
+    }
+    if (this.props.authDisplay === 'LOGIN') {
+      return <Login/>;
+    } else {
+      return <Signup/>;
+    }
   }
 
 }
 
 let select = (state) => {
   return { 
-    token: state.data.auth.token
+    token: state.data.auth.token,
+    authDisplay: state.ui.authDisplay
   };
 };
 
