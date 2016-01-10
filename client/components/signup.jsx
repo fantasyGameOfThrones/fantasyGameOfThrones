@@ -19,8 +19,8 @@ class Signup extends Component{
     return (
       <div>
         <div>
-          <input type="textarea" id="usernameSignup" placeholder="email"/>
-          <input type="password" id="passwordSignup"placeholder="password"/>
+          <input type="textarea" id="usernameSignup" placeholder="username"/>
+          <input type="password" id="passwordSignup" placeholder="password"/>
           <button className='clickable' onClick={this.signupClick.bind(this)}>Signup</button>
         </div>
         <button className='clickable' onClick={this.loginClick.bind(this)}>Go To Log In</button>
