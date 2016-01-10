@@ -15,7 +15,7 @@ class LeftNav extends Component {
     });
   }
   render() {
-    const tabs = ['HOME', 'DRAFT', 'TRADE', 'LOGOUT']
+    const tabs = ['HOME', 'DRAFT', 'TRADE', 'RANKINGS', 'ROSTERS', 'LOGOUT']
     return (
       <div id="left">
         <ul>
