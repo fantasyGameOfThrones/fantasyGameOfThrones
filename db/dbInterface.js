@@ -69,7 +69,7 @@ var init = function() {
 module.exports = {
   db,
   init,
-  Character: db.models.user,
+  Character: db.models.character,
   Event: db.models.event,
   League: db.models.league,
   RosterData: db.models.rosterData,
