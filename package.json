@@ -5,9 +5,9 @@
   "main": "./client/index.js",
   "scripts": {
     "test": "eslint **",
-    "start": "npm run-script db; NODE_ENV='development' nodemon server/server.js",
+    "start": "NODE_ENV='development' nodemon server/server.js",
     "dev-start": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
-    "db": "node server/db/db.js"
+    "db": "node db/old/dbInit.js"
   },
   "author": "Naomi Jacobs",
   "license": "ISC",

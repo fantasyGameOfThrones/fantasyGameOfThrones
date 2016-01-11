@@ -1,5 +1,5 @@
 // Any function we use with League Routing goes here
-var db = require('../db/leagueDB.js');
+// var db = require('../db/leagueDB.js');
 
 module.exports = {
   // When you create a new league, you are adding a moderator at same time

@@ -10,15 +10,11 @@ var createAssociations = function(db) {
   Character.hasMany(Event);
 
   // Associate one user as moderator to one league
-  League.belongsTo(User, {as: 'moderator'});
+  League.belongsTo(User, {as: 'moderator', constraints: false});
 
   // Associate many users to one league
   User.belongsTo(League);
   League.hasMany(User);
-
-  // Associate many users to many characters
-  User.belongsToMany(Character, {through: RosterData});
-  Character.belongsToMany(User, {through: RosterData});
 
 };
 

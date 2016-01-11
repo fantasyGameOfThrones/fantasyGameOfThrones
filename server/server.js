@@ -1,7 +1,7 @@
 var express = require('express');
+var db = require('../db/dbInterface');
 
 var app = express();
-
 
 //for dev testing
 app.use(function(req, res, next) {
@@ -11,8 +11,10 @@ app.use(function(req, res, next) {
   next();
 });
 
-require('./config/middleware')(app); 
+require('./config/middleware')(app);
 
-app.listen(process.env.PORT || 8000, function () {
-  console.log('listening on ', process.env.PORT || 8000);
+db.init().then(function() {
+  app.listen(process.env.PORT || 8000, function () {
+    console.log('listening on ', process.env.PORT || 8000);
+  });  
 });

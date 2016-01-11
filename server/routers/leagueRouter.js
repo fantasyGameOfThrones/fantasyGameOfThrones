@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var controller = require('./leagueController');
+var controller = require('../controllers/leagueController');
 
 router.post('/', controller.create);
 router.get('/:leagueid', controller.retrieve);

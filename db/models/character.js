@@ -16,7 +16,7 @@ var config = {
     house: {
       type: sequelize.STRING,
     },
-    image: {
+    imageUrl: {
       allowNull: false,
       // eventually store actual image here
       type: sequelize.STRING,

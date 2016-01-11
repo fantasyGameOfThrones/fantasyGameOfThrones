@@ -10,6 +10,18 @@ var config = {
       type: sequelize.INTEGER,
       allowNull: false,
     },
+
+    // Sequelize does not support unique many:many rows at this time,
+    // so we have to manually add them here
+    // https://github.com/sequelize/sequelize/issues/3220#issuecomment-75924060
+    userId: {
+      type: sequelize.INTEGER,
+      allowNull: false,
+    },
+    characterId: {
+      type: sequelize.INTEGER,
+      allowNull: false,
+    }
   },
   options: {},
 };

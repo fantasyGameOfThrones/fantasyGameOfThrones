@@ -2,11 +2,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var helpers = require('./helpers.js');
 
-var authRouter = require('../auth/authRoutes.js');
-var userRouter = require('../users/userRoutes.js')
-var leagueRouter = require('../leagues/leagueRoutes.js')
-var characterRouter = require('../characters/characterRoutes.js')
-var eventRouter = require('../events/eventRoutes.js')
+var authRouter = require('../routers/authRouter.js');
+var userRouter = require('../routers/userRouter.js')
+var leagueRouter = require('../routers/leagueRouter.js')
+var characterRouter = require('../routers/characterRouter.js')
+var eventRouter = require('../routers/eventRouter.js')
 
 module.exports = function (app) {
   app.use(bodyParser.urlencoded({extended : true}));
