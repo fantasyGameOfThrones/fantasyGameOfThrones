@@ -13,8 +13,8 @@ var createAssociations = function(db) {
   League.belongsTo(User, {as: 'moderator', constraints: false});
 
   // Associate many users to one league
-  User.belongsTo(League);
-  League.hasMany(User);
+  User.belongsTo(League, {constraints: false});
+  League.hasMany(User, {constraints: false});
 
 };
 

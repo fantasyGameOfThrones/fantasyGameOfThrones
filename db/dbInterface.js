@@ -35,7 +35,9 @@ var User = db.models.user;
 var shouldForce = (dbEnv === 'testing' || dbEnv === 'development');
 
 var init = function() {
-  return db.sync({force: shouldForce})
+
+  return db.query('SET FOREIGN_KEY_CHECKS = 0').then(function() {
+    return db.sync({force: shouldForce})
     .then(function() {
       return Character.bulkCreate(seedData.characters);
     })
@@ -64,6 +66,7 @@ var init = function() {
     .catch(function(err) {
       console.error('Error seeding database: ', err);
     });
+  });
 };
 
 module.exports = {
