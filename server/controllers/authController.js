@@ -62,7 +62,6 @@ var login = function (req, res, next) {
       .then(function(roster) {
         return Character.findAll()
         .then(function(characters) {
-          console.log('characters: ', characters);
           return Event.findAll()
           .then(function(events) {
             res.status(200).json({

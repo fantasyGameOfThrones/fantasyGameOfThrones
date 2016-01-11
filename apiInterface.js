@@ -47,17 +47,17 @@
         username: sring,
         email: string,
         leagueId: integer,
-        roster:{
-          integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
-          integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
-          integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
-        },
+      },
+      roster:{
+        integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
+        integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
+        integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
       },
       league: { //TODO: make this an array of leagues to support multiple leagues
         id: integer,
         name: string,
         creatorId: integer, // represents the user who make the league
-        members: [
+        users: [
           {
             username: string,
             id: integer,
