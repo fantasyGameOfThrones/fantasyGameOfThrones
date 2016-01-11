@@ -51,7 +51,11 @@ var login = function (req, res, next) {
           exclude: ['password']
         }
       }]
-    }]
+    }],
+    // TODO: why does this break things?
+    // attributes: {
+    //   exclude: ['password']
+    // }
   })
   .then(function(user) {
     if (!user.comparePassword(password)) {
@@ -64,6 +68,8 @@ var login = function (req, res, next) {
         .then(function(characters) {
           return Event.findAll()
           .then(function(events) {
+            // TODO: make this work by excluding password instead of deleting
+            delete user.dataValues.password;
             res.status(200).json({
               token: issueToken(username),
               user,

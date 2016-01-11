@@ -54,7 +54,7 @@ var init = function() {
           .then(function() {
             // add leagues to users since leagues weren't created yet
             User.update({leagueId: 1}, {where: {id: {'$lte': 4}}});
-            User.update({leagueId: 2}, {where: {id: {'$lte': 6, '$gt': 4}}});
+            User.update({leagueId: 2}, {where: {id: {'$lte': 5, '$gt': 4}}});
             return RosterData.bulkCreate(seedData.rosters);
           });
       }

@@ -64,7 +64,7 @@ var update = function (req, res) {
     })
     .catch(function (err) {
       console.error('Server error updating league: ', err);
-      res.status(500).send('Server error updating league: ';
+      res.status(500).send('Server error updating league');
     });
 };
 
@@ -88,7 +88,7 @@ var retrieve = function (req, res) {
   })
 };
 
-var delete = function(req, res) {
+var destroy = function(req, res) {
   var id = req.params.leagueId;
   return League.destroy({where: {id}})
   .then(function(numDestroyed) {
@@ -104,5 +104,5 @@ module.exports = {
   create,
   retrieve,
   update, 
-  delete
+  destroy
 }

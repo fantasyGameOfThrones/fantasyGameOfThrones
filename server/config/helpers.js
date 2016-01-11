@@ -29,9 +29,11 @@ var errorHandler = function (err, req, res, next) {
 
 var makeRoster = function(user) {
   var roster = {};
-  var episodeLimit = user.league.latestSeen;
-  return db.RosterData.findAll({where: {userId: user.id}})
+  return db.RosterData.findAll({where: {userId: user.dataValues.id}})
   .then(function(rows) {
+    // call recursion without episodes to return empty roster
+    // so that we still return a promise even when the user has no league
+    var episodeLimit = user.dataValues.league ? user.dataValues.league.latestSeen : -1;
     return addEvents(rows, roster, episodeLimit);
   })
   .catch(function(err) {
