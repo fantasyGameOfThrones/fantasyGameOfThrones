@@ -10,6 +10,9 @@ var config = {
       type: sequelize.STRING,
       allowNull: false,
     },
+    latestSeen: {
+      type: sequelize.INTEGER,
+    }
   },
   options: {},
 };

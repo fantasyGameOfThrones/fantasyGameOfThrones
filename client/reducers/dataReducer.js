@@ -4,7 +4,7 @@ import * as actions from '../services/actionConstants.jsx';
 const league = (state = {members:[]}, action) => {
   switch(action.type) {
     case actions.LOGIN_SUCCESS:
-      return action.payload.league;
+      return action.payload.league || state;
     case actions.CREATE_LEAGUE_SUCCESS:
       return action.payload.league;
     default:

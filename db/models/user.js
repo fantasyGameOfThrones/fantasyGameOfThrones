@@ -1,12 +1,27 @@
 var sequelize = require('sequelize');
-var bluebird = require('bluebird');
-var bcrypt = bluebird.promisifyAll(require('bcrypt-nodejs'));
+var Bluebird = require('bluebird');
+var bcrypt = Bluebird.promisifyAll(require('bcrypt-nodejs'));
 
-var hashPassword = function(user) {
-  return bcrypt.hashAsync(user.password, null, null)
-    .then(function(hash) {
-      user.password = hash;
-    });
+var hashOnePassword = function(user) {
+  return bcrypt.genSalt()
+  .then(function(salt) {
+    return bcrypt.hash(user.dataValues.password, salt);
+  })
+  .then(function(hash) {
+    user.password = hash;
+  })
+  .catch(function(err) {
+    console.error('Error hashing password: ', err);
+  });
+};
+
+var hashMultiplePasswords = function(userArray) {
+  // TODO: make async? worth it?
+  userArray.forEach(function(user) {
+    var salt = bcrypt.genSaltSync();
+    var hash = bcrypt.hashSync(user.dataValues.password, salt);
+    user.password = hash;
+  });
 };
 
 var comparePassword = function(password) {
@@ -35,8 +50,9 @@ var config = {
   },
   options: {
     hooks: {
-      beforeCreate: hashPassword,
-      beforeUpdate: hashPassword,
+      beforeBulkCreate: hashMultiplePasswords,
+      beforeCreate: hashOnePassword,
+      beforeUpdate: hashOnePassword,
     },
 
     instanceMethods: {

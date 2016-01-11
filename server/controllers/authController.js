@@ -1,57 +1,63 @@
-var jwt = require('jwt-simple');
-// var db = require('../db/authDB.js');
-// var leagueDB = require('../db/leagueDB');
-// var helperDB = require('../db/helpersDB.js');
-var bcrypt = require('bcrypt-nodejs');
+var db = require('../../db/dbInterface');
+var User = db.User;
+var League = db.League;
+var helpers = require('../config/helpers');
+var issueToken = helpers.issueToken;
+var makeRoster = helpers.makeRoster;
+var bluebird = require('bluebird');
+var bcrypt = bluebird.promisifyAll(require('bcrypt-nodejs'));
 
 module.exports = {
-  // function: signUp -> Checks to see if username exists already
-  // If not, store in DB
-  // Returns: A json object with a jwt token 
-  // Returns { token : false } if user exists already
   signup: function (req, res, next) {
 
-    // var user = req.body;
+    var username = req.body.username;
+    var password = req.body.password;
+    var email = req.body.email;
 
-    // db.loginUser({ username: user.username })
-    //   .then(function (results) {
-    //     if (results.length === 0) {
-    //       // store user in DB after hashing password
-    //       bcrypt.hash(user.password, null, null, function (err, hash) {
-
-    //         user.password = hash;
-
-    //         db.addNewUser(user)
-    //           .then(function (storedUser) {
-
-    //             var token = jwt.encode(user.username, 'secret'); // PLACE SECRET IN AUTH FILE
-
-    //             res.json({
-    //               user : {
-    //                 username: user.username,
-    //                 userId: user.user_id
-    //               },
-    //               token: token
-    //             });
-    //           });
-    //       });
-    //     } else {
-    //       // username already exists
-    //       res.json({
-    //         token: false
-    //       });
-    //     }
-    //   })
-    //   .catch(function (err) {
-    //     console.error(err);
-    //   });
+    //check if user already exists
+    User.findOne({where: {username}})
+    .then(function(user) {
+      if (user) {
+        res.status(409).send('User already exists.');
+      } else {
+        return User.create({username, password: hash, email});
+      }
+    })
+    .then(function(user) {
+      delete user.password;
+      var token = issueToken(user.username);
+      res.status(200).json({user, token});
+    })
+    .catch(function(err) {
+      console.error(err);
+      res.status(500).send('Server error signing up user');
+    });
   },
 
-  // Function: login -> looks for username
-  // if found, verifies password
   login: function (req, res, next) {
 
-    // var user = req.body;
+    var username = req.body.username;
+    var password = req.body.password;
+
+    // eagerly load our league model and leaguemates
+    User.findOne({where: {username}/*, include: [{model: League, include: [User]}]*/})
+    .then(function(user) {
+      if (!user.comparePassword(password)) {
+        res.status(401).send('Invalid password');
+      } else {
+        user.roster = makeRoster(user.id);
+        res.status(200).json({
+          token: issueToken(username),
+          user,
+          characters: [],
+          events: [],
+        });
+      }
+    })
+    .catch(function(err) {
+      console.error('Error logging in user: ', err);
+      res.status(500).send('Server error logging in user');
+    });
 
     // db.loginUser({ username: user.username })
     //   .then(function (results) {

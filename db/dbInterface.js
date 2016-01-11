@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 
 // env variables
-var dbEnv = process.env.NODE_ENV;
+var env = process.env.NODE_ENV;
 var dbUser = process.env.DB_USER || 'root';
 var dbPass = process.env.DB_PASS || null;
 
@@ -10,7 +10,7 @@ var seedData = require('./testData/formattedData');
 
 
 var url
-if (dbEnv === 'development' || dbEnv === 'testing') {
+if (env === 'development' || env === 'testing') {
   url = 'got';
 } else {
   url = process.env.DATABASE_URL;
@@ -20,6 +20,7 @@ if (dbEnv === 'development' || dbEnv === 'testing') {
 var defineModels = require('./models/models');
 var createAssociations = require('./associations');
 
+// var shouldLog = env === 'development' || env === 'testing';
 var db = new Sequelize(url, dbUser, dbPass, {dialect: 'mysql', logging: false});
 defineModels(db);
 createAssociations(db);
@@ -32,7 +33,7 @@ var User = db.models.user;
 
 // if testing, syncing will drop tables
 // if not testing, syncing will only add tables that were missing
-var shouldForce = (dbEnv === 'testing' || dbEnv === 'development');
+var shouldForce = (env === 'testing' || env === 'development');
 
 var init = function() {
 
@@ -45,19 +46,15 @@ var init = function() {
       return Event.bulkCreate(seedData.events);
     })
     .then(function() {
-      if (dbEnv === 'testing' || dbEnv === 'development') {
+      if (env === 'testing' || env === 'development') {
         return User.bulkCreate(seedData.users)
           .then(function() {
             return League.bulkCreate(seedData.leagues);
           })
           .then(function() {
             // add leagues to users since leagues weren't created yet
-            User.update({leagueId: 1}, {where: {id: 1}});
-            User.update({leagueId: 1}, {where: {id: 2}});
-            User.update({leagueId: 1}, {where: {id: 3}});
-            User.update({leagueId: 1}, {where: {id: 4}});
-            User.update({leagueId: 2}, {where: {id: 5}});
-            User.update({leagueId: 2}, {where: {id: 6}});
+            User.update({leagueId: 1}, {where: {id: {'$lte': 4}}});
+            User.update({leagueId: 2}, {where: {id: {'$lte': 6, '$gt': 4}}});
             return RosterData.bulkCreate(seedData.rosters);
           });
       }
