@@ -43,7 +43,7 @@ const userRequests = (method, userID, rawParams = {}) => {
 
 const leagueRequests = (method, leagueID, rawParams = {}) => {
   const params = makeParams(method, rawParams);
-  const urlString = leagueID ? `${url}/api/leagues/${leagueID}` : `${url}/leagues`;
+  const urlString = leagueID ? `${url}/api/leagues/${leagueID}` : `${url}/api/leagues`;
   return fetch(urlString, params)
     .catch((error) => console.log(error))
 };

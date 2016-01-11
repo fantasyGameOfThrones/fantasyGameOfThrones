@@ -7,3 +7,10 @@ export const navigateTo = (tab)  => {
     payload: {tab}
   }
 };
+
+export const changeAuthDisplay = (authDisplay) => {
+  return {
+    type: constants.CHANGE_AUTH_DISPLAY,
+    payload: {authDisplay}
+  }
+};

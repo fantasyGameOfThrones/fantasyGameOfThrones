@@ -46,7 +46,7 @@ const logInSuccess = (body) => {
         id: body.user.id,
         username: body.user.username,
         email: body.user.email,
-        roster: body.roster,
+        roster: body.user.roster,
       },
       league: body.user.league,
       characters: body.characters,

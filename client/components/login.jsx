@@ -11,10 +11,7 @@ class Login extends Component{
   }
 
   signupClick() {
-    let ubox = document.getElementById('usernameSignup');
-    let pbox = document.getElementById('passwordSignup');
-    this.props.dispatch(actions.signUp(ubox.value, pbox.value));
-    ubox.value = pbox.value = '';
+    this.props.dispatch(actions.changeAuthDisplay('SIGNUP'));
   }
 
 
@@ -22,15 +19,11 @@ class Login extends Component{
     return (
       <div>
         <div>
-          <input type="textarea" id="usernameLogin" placeholder="email"/>
-          <input type="password" id="passwordLogin"placeholder="password"/>
+          <input type="textarea" id="usernameLogin" placeholder="username"/>
+          <input type="password" id="passwordLogin" placeholder="password"/>
           <button className='clickable' onClick={this.loginClick.bind(this)}>Login</button>
         </div>
-        <div>
-          <input type="textarea" id="usernameSignup" placeholder="email"/>
-          <input type="password" id="passwordSignup"placeholder="password"/>
-          <button className='clickable' onClick={this.signupClick.bind(this)}>Signup</button>
-        </div>
+        <button className='clickable' onClick={this.signupClick.bind(this)}>Go To Sign Up</button>
       </div>
     );
   }
