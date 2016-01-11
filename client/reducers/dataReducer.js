@@ -4,7 +4,7 @@ import * as actions from '../services/actionConstants.jsx';
 const league = (state = {members:[]}, action) => {
   switch(action.type) {
     case actions.LOGIN_SUCCESS:
-      return action.payload.league || state;
+      return action.payload.league;
     case actions.CREATE_LEAGUE_SUCCESS:
       return action.payload.league;
     default:
@@ -31,6 +31,7 @@ const events = (state = [], action) => {
 };
 
 const user = (state = {}, action) => {
+  // TODO: move these over to auth.self
   switch(action.type){
     case actions.LOGIN_SUCCESS:
       return action.payload.user;

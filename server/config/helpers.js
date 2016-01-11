@@ -27,22 +27,47 @@ var errorHandler = function (err, req, res, next) {
   res.sendStatus(500).send({ error: err.message });
 };
 
-var makeRoster = function(id) {
-  return {
-    1: [[1,1], [2,2], [3,3], [4,4], [5,5], [6,6]],
-    2: [[1,1], [2,2], [3,3], [4,4], [5,5], [6,6]],
-    3: [[1,1], [2,2], [3,3], [4,4], [5,5], [6,6]],
-    4: [[1,1], [2,2], [3,3], [4,4], [5,5], [6,6]],
-  };
-  // return db.RosterData.findAll({where: {userId: id}})
-  // .then(function(rows) {
-  //   console.log('rows: ', rows);
-  // })
-  // .catch(function(err) {
-  //   console.error('Error making roster: ', err);
-  //   return err;
-  // });
+var makeRoster = function(user) {
+  var roster = {};
+  var episodeLimit = user.league.latestSeen;
+  return db.RosterData.findAll({where: {userId: user.id}})
+  .then(function(rows) {
+    return addEvents(rows, roster, episodeLimit);
+  })
+  .catch(function(err) {
+    console.error('Error making roster: ', err);
+    return err;
+  });
 };
+
+// returns a promise
+function addEvents(rows, roster, episodeLimit) {
+  // base case
+  if (rows.length === 0) {
+    return roster;
+  }
+
+  var row = rows[0];
+  var episode = +row.dataValues.episode;
+  var characterId = row.dataValues.characterId;
+  // if league hasn't seen episode yet, recurse without adding
+  if (episode > episodeLimit) {
+    rows.shift();
+    return addEvents(rows, roster, episodeLimit);
+  }
+  // initialize episode bucket
+  roster[episode] = roster[episode] || [];
+  // find points, add to roster, and recurse
+  return db.Event.sum('points', {where: {characterId, episode}})
+  .then(function(sum) {
+    roster[episode].push([characterId, sum || 0]);
+    rows.shift();
+    return addEvents(rows, roster, episodeLimit);
+  })
+  .catch(function(err) {
+    console.error('Roster error: ', row, err);
+  });
+}
 
 
 module.exports = {

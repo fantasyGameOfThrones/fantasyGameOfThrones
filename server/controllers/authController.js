@@ -40,17 +40,33 @@ module.exports = {
     var password = req.body.password;
 
     // eagerly load our league model and leaguemates
-    User.findOne({where: {username}/*, include: [{model: League, include: [User]}]*/})
+    User.findOne({
+      where: {username},
+      include: [{
+        model: League,
+        include: [{
+          model: User,
+          attributes: {
+            exclude: ['password']
+          }
+        }]
+      }]
+    })
     .then(function(user) {
       if (!user.comparePassword(password)) {
         res.status(401).send('Invalid password');
       } else {
-        user.roster = makeRoster(user.id);
-        res.status(200).json({
-          token: issueToken(username),
-          user,
-          characters: [],
-          events: [],
+        // TODO: also add rosters for leaguemates
+        return makeRoster(user)
+        .then(function(roster) {
+          console.log('roster in login: ', roster);
+          res.status(200).json({
+            token: issueToken(username),
+            user,
+            roster,
+            characters: [],
+            events: [],
+          });
         });
       }
     })

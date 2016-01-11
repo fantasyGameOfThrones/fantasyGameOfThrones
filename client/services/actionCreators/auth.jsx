@@ -37,16 +37,23 @@ const signUpFailure = (message) => {
 };
 
 const logInSuccess = (body) => {
-  return {
+  console.log('user: ', body.user);
+  var action = {
     type: constants.LOGIN_SUCCESS,
     payload: {
       token: body.token,
-      user: body.user,
-      league: body.league,
+      user: {
+        id: body.user.id,
+        username: body.user.username,
+        email: body.user.email,
+        roster: body.roster,
+      },
+      league: body.user.league,
       characters: body.characters,
       events: body.events,
     }
   };
+  return action;
 };
 
 const logInFailure = (message) => {
@@ -69,7 +76,7 @@ export const logIn = (username, password) => {
       return dispatch(logInSuccess(body));
     })
     .catch((error) => {
-      console.log('error: ', error);
+      console.log('Error logging in: ', error);
       return dispatch(logInFailure(error.message));
     });
   }
