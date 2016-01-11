@@ -124,7 +124,7 @@
       creator: userId,
     },
     resBody: {
-      league: League,
+      league: League, //includes users
     }
   },
 
@@ -133,7 +133,7 @@
     url: '/api/leagues/:leagueId',
     reqBody: null,
     resBody: {
-      league: League,
+      league: League, //includes users
     }
   },
 
@@ -142,7 +142,8 @@
     url: 'api/leagues/:leagueId',
     reqBody: {
       name: string, //optional
-      users: userId //optional
+      latestSeen: integer, //optional
+      // moderatorId: integer, //optional
     },
     resBody: {
       league: League,

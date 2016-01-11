@@ -21,7 +21,7 @@ var signup =function (req, res, next) {
     if (user) {
       res.status(409).send('User already exists.');
     } else {
-      return User.create({username, password: hash, email});
+      return User.create({username, password, email});
     }
   })
   .then(function(user) {

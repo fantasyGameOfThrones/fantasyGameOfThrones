@@ -2,7 +2,7 @@ var router = require('express').Router();
 var controller = require('../controllers/leagueController');
 
 router.post('/', controller.create);
-router.get('/:leagueid', controller.retrieve);
-router.put('/:leagueid', controller.update);
+router.get('/:leagueId', controller.retrieve);
+router.put('/:leagueId', controller.update);
 
 module.exports = router;
