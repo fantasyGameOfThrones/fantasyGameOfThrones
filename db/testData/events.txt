@@ -1,0 +1,4 @@
+id,type,description,characterId,points,episode
+1,attendance,Arya,28,1,1
+2,attendance,Sansa,30,1,1
+3,attendance,Lancel,57,1,1

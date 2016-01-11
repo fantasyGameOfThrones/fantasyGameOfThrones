@@ -1,3 +1,0 @@
-league_id, name, moderator_id
-1, Tempest Targaryens, 1
-2, Mikkeler Martells, 5

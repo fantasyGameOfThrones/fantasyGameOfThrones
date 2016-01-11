@@ -1,0 +1,7 @@
+id,username,password,email
+1,naomi, hello, naomi.jacobs@hackreactor.com
+2, ryan, hello, ryan.wholey@hackreactor.com
+3, brian, hello, brian.graham@hackreactor.com
+4, dan, hello, dan.thareja@hackreactor.com
+5, zach, hello, zach.lester@hackreactor.com
+6, beth, hello, beth.johnson@hackreactor.com

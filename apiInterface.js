@@ -47,17 +47,17 @@
         username: sring,
         email: string,
         leagueId: integer,
-        roster:{
-          integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
-          integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
-          integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
-        },
+      },
+      roster:{
+        integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
+        integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
+        integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
       },
       league: { //TODO: make this an array of leagues to support multiple leagues
         id: integer,
         name: string,
         creatorId: integer, // represents the user who make the league
-        members: [
+        users: [
           {
             username: string,
             id: integer,
@@ -124,7 +124,7 @@
       creator: userId,
     },
     resBody: {
-      league: League,
+      league: League, //includes users
     }
   },
 
@@ -133,7 +133,7 @@
     url: '/api/leagues/:leagueId',
     reqBody: null,
     resBody: {
-      league: League,
+      league: League, //includes users
     }
   },
 
@@ -142,7 +142,8 @@
     url: 'api/leagues/:leagueId',
     reqBody: {
       name: string, //optional
-      users: userId //optional
+      latestSeen: integer, //optional
+      // moderatorId: integer, //optional
     },
     resBody: {
       league: League,

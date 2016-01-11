@@ -7,7 +7,6 @@ var mysql = Promise.promisifyAll(require('mysql'));
 var characterPath = __dirname + '/../../testData/characterData.txt';
 var eventPath = __dirname + '/../../testData/eventData.txt';
 var leaguePath = __dirname + '/../../testData/leagueData.txt';
-// var leaguesToUsersPath = __dirname + '/../../testData/leaguesToUsersData.txt';
 var rosterDataPath = __dirname + '/../../testData/rosterData.txt';
 
 module.exports = function() {
@@ -50,7 +49,6 @@ module.exports = function() {
     ' LOAD DATA INFILE "' + characterPath + '" INTO TABLE characters FIELDS TERMINATED BY "," ENCLOSED BY \'"\' LINES TERMINATED BY "\n" IGNORE 1 ROWS;' +
     ' LOAD DATA INFILE "' + eventPath + '" INTO TABLE events FIELDS TERMINATED BY "," ENCLOSED BY \'"\' LINES TERMINATED BY "\n" IGNORE 1 ROWS;' +
     ' LOAD DATA INFILE "' + leaguePath + '" INTO TABLE leagues FIELDS TERMINATED BY "," ENCLOSED BY \'"\' LINES TERMINATED BY "\n" IGNORE 1 ROWS;' +
-    // ' LOAD DATA INFILE "' + leaguesToUsersPath + '" INTO TABLE leagues_to_users FIELDS TERMINATED BY "," ENCLOSED BY \'"\' LINES TERMINATED BY "\n" IGNORE 1 ROWS;' +
     ' LOAD DATA INFILE "' + rosterDataPath + '" INTO TABLE roster_data FIELDS TERMINATED BY "," ENCLOSED BY \'"\' LINES TERMINATED BY "\n" IGNORE 1 ROWS;';
 
   bootConnection.query(seedData, function(err) {

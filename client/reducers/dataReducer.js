@@ -31,6 +31,7 @@ const events = (state = [], action) => {
 };
 
 const user = (state = {}, action) => {
+  // TODO: move these over to auth.self
   switch(action.type){
     case actions.LOGIN_SUCCESS:
       return action.payload.user;
