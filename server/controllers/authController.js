@@ -6,6 +6,7 @@ var Event = db.Event;
 var helpers = require('../config/helpers');
 var issueToken = helpers.issueToken;
 var makeRoster = helpers.makeRoster;
+var makeRosters = helpers.makeRosters;
 var bluebird = require('bluebird');
 var bcrypt = bluebird.promisifyAll(require('bcrypt-nodejs'));
 
@@ -64,16 +65,25 @@ var login = function (req, res, next) {
       // TODO: also add rosters for leaguemates
       return makeRoster(user)
       .then(function(roster) {
-        return Character.findAll()
+        return makeRosters(user.dataValues.league.users)
+        .then(function(rosters) {
+          //assign all rosters to the appropriate user model
+          user.dataValues.league.users.forEach(function(leagueUser) {
+            var id = leagueUser.dataValues.id;
+            leagueUser.dataValues.roster = rosters[id];
+          });
+          return Character.findAll()
+        })
         .then(function(characters) {
           return Event.findAll()
           .then(function(events) {
+            user.dataValues.roster = roster;
             // TODO: make this work by excluding password instead of deleting
             delete user.dataValues.password;
             res.status(200).json({
               token: issueToken(username),
               user,
-              roster,
+              // roster,
               characters,
               events,
             });
