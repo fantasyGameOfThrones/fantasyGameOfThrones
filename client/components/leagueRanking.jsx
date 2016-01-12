@@ -10,10 +10,7 @@ class LeagueRanking extends Component {
         <ul>
           {this.props.users.map((user, index) => {
             return (
-              <li
-                key={index}
-                className='sideBarText'
-              >
+              <li key={index} className='sideBarText'>
                 {user.username}, points: {user.roster.points}
               </li>
             );
@@ -26,6 +23,7 @@ class LeagueRanking extends Component {
 
 const select = (state) => {
   var users = state.data.league ? state.data.league.users : [];
+  console.log('users in league ranking are: ', users);
 
   return {
     users: users.sort((a,b) => {

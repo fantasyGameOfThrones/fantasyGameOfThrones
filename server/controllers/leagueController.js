@@ -1,6 +1,7 @@
 var db = require('../../db/dbInterface');
 var League = db.League;
 var User = db.User;
+var makeRoster = require('../config/helpers').makeRoster;
 
 // When you create a new league, you are adding a moderator at same time
 // League Name and Username must be sent over
@@ -18,9 +19,10 @@ var create = function (req, res) {
     }
   })
   .then(function(league) {
+    // associate league with user
     return User.update({leagueId: league.dataValues.id}, {where: {id: userId}})
     .then(function() {
-      // get associated user
+      // eagerly load associated user
       return League.findOne({
         where: {
           id: league.id
@@ -35,7 +37,12 @@ var create = function (req, res) {
     })
   })
   .then(function(league) {
-    res.status(200).json(league);
+    // should only be one user since league was just created
+    return makeRoster(league.dataValues.users[0])
+    .then(function(roster) {
+      league.dataValues.users[0].dataValues.roster = roster;
+      res.status(200).json(league);
+    });
   })
   .catch(function(err) {
     console.error(err);
