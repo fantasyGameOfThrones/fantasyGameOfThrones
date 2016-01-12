@@ -27,7 +27,7 @@ var signup =function (req, res, next) {
   })
   .then(function(user) {
     delete user.password;
-    var token = issueToken(user.username);
+    var token = issueToken(user.id);
     res.status(200).json({user, token});
   })
   .catch(function(err) {
@@ -65,28 +65,36 @@ var login = function (req, res, next) {
       // TODO: also add rosters for leaguemates
       return makeRoster(user)
       .then(function(roster) {
-        return makeRosters(user.dataValues.league.users)
-        .then(function(rosters) {
-          //assign all rosters to the appropriate user model
-          user.dataValues.league.users.forEach(function(leagueUser) {
-            var id = leagueUser.dataValues.id;
-            leagueUser.dataValues.roster = rosters[id];
-          });
-          return Character.findAll()
-        })
+        return Character.findAll()
         .then(function(characters) {
           return Event.findAll()
           .then(function(events) {
             user.dataValues.roster = roster;
             // TODO: make this work by excluding password instead of deleting
             delete user.dataValues.password;
-            res.status(200).json({
-              token: issueToken(username),
-              user,
-              // roster,
-              characters,
-              events,
-            });
+            if (!user.dataValues.league) {
+              res.status(200).json({
+                token: issueToken(user.id),
+                user,
+                characters,
+                events,
+              });
+            } else {
+              return makeRosters(user.dataValues.league.users)
+              .then(function(rosters) {
+                //assign all rosters to the appropriate user model
+                user.dataValues.league.users.forEach(function(leagueUser) {
+                  var id = leagueUser.dataValues.id;
+                  leagueUser.dataValues.roster = rosters[id];
+                });
+                res.status(200).json({
+                  token: issueToken(user.id),
+                  user,
+                  characters,
+                  events,
+                });
+              })
+            }
           })
         })
       });

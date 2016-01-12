@@ -25,8 +25,10 @@ class LeagueRanking extends Component {
 };
 
 const select = (state) => {
+  var users = state.data.league ? state.data.league.users : [];
+
   return {
-    users: state.data.league.users.sort((a,b) => {
+    users: users.sort((a,b) => {
       return a.roster.points < b.roster.points;
     }),
   };

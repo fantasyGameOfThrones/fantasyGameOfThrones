@@ -7,31 +7,35 @@ var User = db.User;
 var create = function (req, res) {
   var name = req.body.name;
   var league = req.body;
+  var userId = req.headers.id;
 
   return League.findOne({where: {name}})
   .then(function(league) {
     if (league) {
       res.status(409).send('League already exists.');
     } else {
-      return League.create(league);
+      return League.create({name, moderatorId: userId});
     }
   })
   .then(function(league) {
-    // get associated user
-    return League.findOne({
-      where: {
-        id: league.id
-      },
-      include: [{
-        model: User,
-        attributes: {
-          exclude: ['password']
-        }
-      }]
-    });
+    return User.update({leagueId: league.dataValues.id}, {where: {id: userId}})
+    .then(function() {
+      // get associated user
+      return League.findOne({
+        where: {
+          id: league.id
+        },
+        include: [{
+          model: User,
+          attributes: {
+            exclude: ['password']
+          }
+        }]
+      });
+    })
   })
   .then(function(league) {
-    res.status(200).json({league});
+    res.status(200).json(league);
   })
   .catch(function(err) {
     console.error(err);

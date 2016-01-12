@@ -8,14 +8,8 @@ class Header extends Component {
     return (
       <div id="header">
         <h1>Fantasy Game of Thrones</h1>
-        <button onClick={this.goToNewLeague.bind(this)}>New League</button>
       </div>
     );
-  }
-
-  goToNewLeague() {
-    console.log('here');
-    this.props.dispatch(actions.navigateTo('NEW_LEAGUE'));
   }
 
 };

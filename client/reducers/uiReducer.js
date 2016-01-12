@@ -5,6 +5,8 @@ const contentDisplay = (state = 'HOME', action) => {
   switch(action.type){
     case constants.CHANGE_MAIN_COMPONENT:
       return action.payload.tab;
+    case constants.CREATE_LEAGUE_SUCCESS:
+      return 'HOME';
     default:
       return state;
   }
