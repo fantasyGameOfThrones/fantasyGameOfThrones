@@ -1,0 +1,31 @@
+attendance  1
+kill (rando)  10
+kill (named) 25
+kill (white walker) 25
+kill (sitting king) 100
+kill (dragon) 150
+KO (rando)  5
+KO (named) 10
+Sex (with rando)  10
+Sex (with known)  20
+Sex (blood relative bonus)  30
+Watch people have sex 10
+Naked (butt/boobs)  15
+Naked (whole shebang) 25
+Deceive someone you're sleeping with  35
+Funny/sassy one-liner 5
+Brutal one-liner  10
+Best line of the week 15
+Magic use  50
+Acquire some Valyrian steel 50
+Have a vision/prophecy  30
+Cross the Narrow Sea  50
+Sack a city 60
+Take the Iron Throne  200
+Get a seat on the high council  25
+Promotion 20
+Demotion  -20
+Stuck in a terrible side plot -25
+Dying -50
+marriage bonus  10
+new magic acquired  15

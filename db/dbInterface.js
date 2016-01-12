@@ -8,7 +8,6 @@ var dbPass = process.env.DB_PASS || null;
 // seed data
 var seedData = require('./testData/formattedData');
 
-
 var url
 if (env === 'development' || env === 'testing') {
   url = 'got';
