@@ -71,7 +71,6 @@ const select = (state) => {
       }
     }
     characters = state.data.characters.filter((char) => {
-      console.log(char);
       return charIds[char.id];
     });
   }
