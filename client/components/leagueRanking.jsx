@@ -23,7 +23,6 @@ class LeagueRanking extends Component {
 
 const select = (state) => {
   var users = state.data.league ? state.data.league.users : [];
-  console.log('users in league ranking are: ', users);
 
   return {
     users: users.sort((a,b) => {

@@ -37,7 +37,6 @@ const signUpFailure = (message) => {
 };
 
 const logInSuccess = (body) => {
-  console.log('user: ', body.user);
   var action = {
     type: constants.LOGIN_SUCCESS,
     payload: {
