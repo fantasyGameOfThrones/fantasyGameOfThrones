@@ -20,7 +20,6 @@ let makeParams = (method, body) => {
   if (store.getState().data.auth.token){
     //attach the token if given
     params.headers['x-access-token'] = store.getState().data.auth.token;
-    params.headers['username'] = store.getState().data.auth.self.username,
     params.headers['id'] = store.getState().data.auth.self.id,
     console.log('headers: ', params.headers);
   }
