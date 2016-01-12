@@ -80,7 +80,7 @@ var login = function (req, res, next) {
                 events,
               });
             } else {
-              return makeRosters(user.dataValues.league.users, user.dataValues.league.latestSeen)
+            return makeRosters(user.dataValues.league.users, user.dataValues.league.latestSeen)
               .then(function(rosters) {
                 //assign all rosters to the appropriate user model
                 user.dataValues.league.users.forEach(function(leagueUser) {

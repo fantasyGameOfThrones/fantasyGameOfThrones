@@ -8,7 +8,7 @@ class Home extends Component {
     const context = this;
     return (
       <table className="mainTable" >    
-        <caption> My Roster </caption>   
+        <caption> Roster for {this.props.username}</caption>   
         <thead>   
           <tr>    
             <td className="heading">Character</td>   
@@ -23,9 +23,8 @@ class Home extends Component {
           {this.props.characters.map((char) => {   
             return (
               <tr key={char.id}>    
-                <td className="data">
+                <td className="data charName">
                   <div>{char.name}</div>
-                  <div>{char.house}</div>
                   <img className="thumb" src={char.imageUrl}></img>
                 </td>
                 {this.props.episodes.map((ep) => {
@@ -78,6 +77,7 @@ const select = (state) => {
   roster = temp;
 
   return {
+    username: state.data.auth.self.username,
     characters,
     episodes,
     roster,
