@@ -14,8 +14,8 @@ class NewLeague extends Component {
       <div>
         <h1>NewLeague</h1>
         <div>
-          <input type="textarea" id="leagueNameInput" paceholder="League Name"/>
-          <div className='clickable' onClick={this.createLeague.bind(this)}>Create League</div>
+          <input type="textarea" id="leagueNameInput" placeholder="League Name"/>
+          <button className='clickable' onClick={this.createLeague.bind(this)}>Create League</button>
         </div>
       </div>
     );

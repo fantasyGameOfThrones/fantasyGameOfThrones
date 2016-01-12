@@ -15,7 +15,7 @@ class LeftNav extends Component {
     });
   }
   render() {
-    const tabs = ['HOME', 'DRAFT', 'TRADE', 'RANKINGS', 'ROSTERS', 'LOGOUT']
+    const tabs = ['HOME', 'DRAFT', 'TRADE', 'RANKINGS', 'ROSTERS', 'NEW LEAGUE', 'LOGOUT']
     return (
       <div id="left">
         <ul>
@@ -25,8 +25,11 @@ class LeftNav extends Component {
     );
   }
   navigate(tab) {
-    if(tab==='LOGOUT'){
+    if(tab === 'LOGOUT'){
       return this.props.dispatch(actions.logOut());
+    }
+    if (tab === 'NEW LEAGUE') {
+      return this.props.dispatch(actions.navigateTo('NEW_LEAGUE'));
     }
     this.props.dispatch(actions.navigateTo(tab));
   }

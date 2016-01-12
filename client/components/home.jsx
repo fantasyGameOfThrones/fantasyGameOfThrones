@@ -3,17 +3,6 @@ import {connect} from 'react-redux';
 import actions from '../services/actionCreators.jsx';
 
 class Home extends Component {
-  // replace ul with this.renderMainTable() once it's worked out
-  render(){
-    return (
-      <div>
-        <h1>Home</h1>
-        <ul>
-          HOME
-        </ul>
-      </div>
-    );
-  }
 
   renderMainTable() {
     const context = this;
@@ -41,7 +30,7 @@ class Home extends Component {
                 </td>
                 {this.props.episodes.map((ep) => {
                   return <td className="data" key={ep}>
-                    {context.props.roster[char.id][ep]}
+                    {context.props.roster[ep][char.id]}
                   </td>
                 })}
               </tr>
@@ -51,21 +40,48 @@ class Home extends Component {
       </table>
     )
   }
+
+  // replace ul with this.renderMainTable() once it's worked out
+  render(){
+    return this.renderMainTable();
+  }
 }
 
 const select = (state) => {
-  // let chars = [];
-  // if (state.data.characters) {
-  //   chars = state.data.characters.filter((char) => {
-  //     return state.data.user.characters[char.id];
-  //   });
-  // }
-  // const roster = state.data.user.roster || {};
+  let characters = [];
+  let episodes = [];
+  let roster = state.data.auth.self.roster || {};
+  let temp = {};
+  if (state.data.characters) {
+    // get char ids from user roster
+    let charIds = {};
+    for (let key in roster) {
+      if (key !== 'points') {
+        // get episodes
+        episodes.push(key);
+        temp[key] = {};
+        // get drafted characters
+        roster[key].forEach(function(tuple) {
+          if (!characters[tuple[0]]) {
+            // add charid
+            charIds[tuple[0]] = tuple[0];
+            temp[key][tuple[0]] = tuple[1];
+          }
+        });
+      }
+    }
+    characters = state.data.characters.filter((char) => {
+      console.log(char);
+      return charIds[char.id];
+    });
+  }
+  episodes = episodes.sort((a,b) => {return +a > +b});
+  roster = temp;
 
   return {
-    // characters: chars,
-    // episodes: [1,2,3,4,5,6,7,8,9,10],
-    // roster,
+    characters,
+    episodes,
+    roster,
   };
 };
 
