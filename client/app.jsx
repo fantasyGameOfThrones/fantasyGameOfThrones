@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Footer from './containers/footer.jsx';
 import Header from './containers/header.jsx';
 import Content from './containers/content.jsx';
-import LeftNav from './containers/leftNav.jsx';
 import RightNav from './containers/rightNav.jsx';
 import Login from './components/login.jsx';
 import Signup from './components/signup.jsx';
@@ -14,7 +13,6 @@ class App extends Component {
       <div id="composedApp">
         <Header />
         <div id="body">
-          <LeftNav />
           <Content />
           <RightNav />
         </div>
