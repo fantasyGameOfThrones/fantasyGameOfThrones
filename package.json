@@ -5,7 +5,7 @@
   "main": "./client/index.js",
   "scripts": {
     "test": "eslint **",
-    "start": "NODE_ENV='development' nodemon server/server.js",
+    "start": "NODE_ENV='development' nodemon --exec babel-node -- server/server.js",
     "dev-start": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
     "db": "node db/old/dbInit.js"
   },
@@ -19,6 +19,7 @@
     ]
   },
   "dependencies": {
+    "babel-cli": "^6.4.0",
     "babel-eslint": "^4.1.6",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.1.1",
