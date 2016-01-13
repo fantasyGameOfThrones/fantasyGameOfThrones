@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import actions from '../services/actionCreators.jsx';
 
 class LeagueRanking extends Component {
   
@@ -10,7 +11,9 @@ class LeagueRanking extends Component {
         <ul>
           {this.props.users.map((user, index) => {
             return (
-              <li key={index} className='sideBarText'>
+              <li key={index}
+                  className='sideBarText'
+                  onClick={() => {this.props.dispatch(actions.changeRosterUser(user))}}>
                 {index + 1}: {user.username}, {user.roster.points} points
               </li>
             );

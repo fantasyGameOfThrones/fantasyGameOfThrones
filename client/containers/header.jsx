@@ -17,13 +17,16 @@ class Header extends Component {
   }
 
   navigate(tab) {
-    if(tab === 'LOGOUT'){
-      return this.props.dispatch(actions.logOut());
+    switch(tab) {
+      case 'LOGOUT':
+        return this.props.dispatch(actions.logOut());
+      case 'NEW LEAGUE':
+        return this.props.dispatch(actions.navigateTo('NEW_LEAGUE'));
+      case 'ROSTERS':
+        return this.props.dispatch(actions.changeRosterUser(this.props.user));
+      default:
+        this.props.dispatch(actions.navigateTo(tab));
     }
-    if (tab === 'NEW LEAGUE') {
-      return this.props.dispatch(actions.navigateTo('NEW_LEAGUE'));
-    }
-    this.props.dispatch(actions.navigateTo(tab));
   }
 
   render() {
@@ -54,6 +57,7 @@ const select = (state) => {
 
   return {
     tabs,
+    user: state.ui.rosterUser || state.data.auth.self,
   };
 };
 
