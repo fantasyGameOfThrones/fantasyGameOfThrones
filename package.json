@@ -6,8 +6,7 @@
   "scripts": {
     "test": "eslint **",
     "start": "NODE_ENV='development' nodemon --exec babel-node -- server/server.js",
-    "dev-start": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
-    "db": "node db/old/dbInit.js"
+    "dev": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/"
   },
   "author": "Naomi Jacobs",
   "license": "ISC",
@@ -38,6 +37,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.4.0",
     "babel-core": "^6.3.17",
     "babel-loader": "^6.2.0",
     "babel-polyfill": "^6.3.14",

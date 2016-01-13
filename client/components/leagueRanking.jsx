@@ -12,7 +12,7 @@ class LeagueRanking extends Component {
           {this.props.users.map((user, index) => {
             return (
               <li key={index}
-                  className='sideBarText'
+                  className='sideBarText clickable'
                   onClick={() => {this.props.dispatch(actions.changeRosterUser(user))}}>
                 {index + 1}: {user.username}, {user.roster.points} points
               </li>
