@@ -12,13 +12,13 @@ const finalCreateStore = compose(
   DevTools.instrument()
 )(createStore);
 
-export default function configureStore(initialState) {
+const configureStore = (initialState) => {
   let store;
   
   store = finalCreateStore(reducer, initialState);
 
   if(module.hot){
-    module.hot.accept('../reducers/appReducer', ()=>{
+    module.hot.accept('../reducers/appReducer', () => {
       store.replaceReducer(require('../reducers/appReducer'))
     });
   }
@@ -33,3 +33,5 @@ export default function configureStore(initialState) {
     return store;
   }
 };
+
+export default configureStore();
