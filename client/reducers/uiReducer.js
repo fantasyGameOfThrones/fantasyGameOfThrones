@@ -7,6 +7,8 @@ const contentDisplay = (state = 'HOME', action) => {
       return action.payload.tab;
     case constants.CREATE_LEAGUE_SUCCESS:
       return 'HOME';
+    case constants.CHANGE_ROSTER_USER:
+      return 'ROSTERS';
     default:
       return state;
   }
@@ -21,7 +23,17 @@ const authDisplay = (state = 'LOGIN', action) => {
   }
 };
 
+const rosterUser = (state = {}, action) => {
+  switch(action.type) {
+    case constants.CHANGE_ROSTER_USER:
+      return action.payload.user;
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   contentDisplay,
   authDisplay,
+  rosterUser
 });

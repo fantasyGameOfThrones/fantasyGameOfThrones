@@ -14,3 +14,12 @@ export const changeAuthDisplay = (authDisplay) => {
     payload: {authDisplay}
   }
 };
+
+export const changeRosterUser = (user) => {
+  return {
+    type: constants.CHANGE_ROSTER_USER,
+    payload: {
+      user
+    }
+  }
+};
