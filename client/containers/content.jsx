@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import store from '../services/store.jsx';
 import Home from '../components/home.jsx';
 import Trade from '../components/trade.jsx';
 import Draft from '../components/draft.jsx';

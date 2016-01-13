@@ -1,6 +1,7 @@
 import {combineReducers} from 'redux';
 import * as actions from '../services/actionConstants.jsx';
 
+
 const league = (state = {members:[]}, action) => {
   switch(action.type) {
     case actions.LOGIN_SUCCESS:
@@ -62,10 +63,20 @@ const auth = (state = {token: '', self: {}}, action) => {
   }
 };
 
+const draft = (state={draftStatus:'PRE_DRAFT'}, action) => {
+  switch(action.type) {
+    case 'START_DRAFT':
+      return Object.assign({},state, {draftStatus:'MID_DRAFT'});
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   user,
   characters,
   league,
   events,
   auth,
+  draft
 });
