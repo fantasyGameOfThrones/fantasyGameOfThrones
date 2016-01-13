@@ -5,6 +5,7 @@ import Trade from '../components/trade.jsx';
 import Draft from '../components/draft.jsx';
 import Login from '../components/login.jsx';
 import NewLeague from '../components/newLeague.jsx';
+import Rosters from '../components/rosters.jsx';
 
 class Content extends Component {
 
@@ -19,6 +20,8 @@ class Content extends Component {
         return <Draft/>
       case 'NEW_LEAGUE':
         return <NewLeague />;
+      case 'ROSTERS':
+        return <Rosters rosterUser={this.props.rosterUser}/>;
       default:
         return <Home/>
     }
@@ -36,6 +39,7 @@ class Content extends Component {
 const select = (state) => {
   return {
     contentDisplay: state.ui.contentDisplay,
+    rosterUser: state.ui.rosterUser,
   };
 };
 
