@@ -9,7 +9,7 @@ var authRouter = function(req, res, next) {
     json: true
   })
   .then(function(dbRes) {
-    res.body = dbRes.body;
+    res.body = dbRes;
     next();
   })
   .catch(function(err) {

@@ -34,7 +34,6 @@ var signup =function (req, res, next) {
 };
 
 var login = function (req, res, next) {
-  console.log('req body: ', req.body);
 
   var username = req.body.username;
   var password = req.body.password;

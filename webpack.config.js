@@ -5,7 +5,8 @@ module.exports = {
   ],  
   output: {
     path: './dist',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    crossOriginLoading: 'use-credentials',
   },
   module: {
     loaders: [
@@ -16,10 +17,10 @@ module.exports = {
       },
     ]
   },
-  devServer: {
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
-    }
-  }
+  // devServer: {
+  //   headers: {
+  //     "Access-Control-Allow-Origin": "*",
+  //     "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
+  //   }
+  // }
 };
