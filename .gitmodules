@@ -1,0 +1,3 @@
+[submodule "dbData"]
+	path = dbData
+	url = https://github.com/fantasyGameOfThrones/dbData.git
