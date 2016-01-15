@@ -1,4 +1,4 @@
-var User = require('../../db/dbInterface').User;
+var User = require('../../dbInterface').User;
 
 module.exports = {
   retrieve: function (req, res) {

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "eslint **",
     "start": "NODE_ENV='development' nodemon server/server.js",
-    "dev-start": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
+    "dev": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
     "db": "NODE_ENV='development' nodemon db/server/server.js",
     "watch": "webpack --watch --colors --progress"
   },
@@ -32,6 +32,7 @@
     "react-redux": "^4.0.0",
     "redux": "^3.0.4",
     "redux-thunk": "^1.0.2",
+    "request-promise": "^2.0.0",
     "sequelize": "^3.17.1",
     "underscore": "^1.8.3"
   },

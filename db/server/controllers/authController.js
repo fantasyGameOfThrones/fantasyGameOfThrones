@@ -1,14 +1,12 @@
-var db = require('../../db/dbInterface');
+var db = require('../../dbInterface');
 var User = db.User;
 var League = db.League;
 var Character = db.Character;
 var Event = db.Event;
-var helpers = require('../config/helpers');
-var issueToken = helpers.issueToken;
+var helpers = require('../helpers.js');
+// var issueToken = helpers.issueToken;
 var makeRoster = helpers.makeRoster;
 var makeRosters = helpers.makeRosters;
-var bluebird = require('bluebird');
-var bcrypt = bluebird.promisifyAll(require('bcrypt-nodejs'));
 
 var signup =function (req, res, next) {
 
@@ -27,8 +25,7 @@ var signup =function (req, res, next) {
   })
   .then(function(user) {
     delete user.password;
-    var token = issueToken(user.id);
-    res.status(200).json({user, token});
+    res.status(200).json({user});
   })
   .catch(function(err) {
     console.error(err);
@@ -37,6 +34,7 @@ var signup =function (req, res, next) {
 };
 
 var login = function (req, res, next) {
+  console.log('req body: ', req.body);
 
   var username = req.body.username;
   var password = req.body.password;
@@ -74,7 +72,6 @@ var login = function (req, res, next) {
             delete user.dataValues.password;
             if (!user.dataValues.league) {
               res.status(200).json({
-                token: issueToken(user.id),
                 user,
                 characters,
                 events,
@@ -88,7 +85,6 @@ var login = function (req, res, next) {
                   leagueUser.dataValues.roster = rosters[id];
                 });
                 res.status(200).json({
-                  token: issueToken(user.id),
                   user,
                   characters,
                   events,

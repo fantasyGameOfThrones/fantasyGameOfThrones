@@ -15,5 +15,11 @@ module.exports = {
         exclude: [/node_modules/]
       },
     ]
+  },
+  devServer: {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, PUT, POST, DELETE, OPTIONS",
+    }
   }
 };

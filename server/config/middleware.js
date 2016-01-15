@@ -13,6 +13,8 @@ module.exports = function (app) {
   app.use(helpers.errorLogger);
   app.use(helpers.errorHandler);
 
+  // for auth, issue token once we have the user model
+  // for all else, verify token before hitting the db
   app.use('/auth', authRouter, helpers.issueToken);
   app.use('/api', helpers.verifyToken, apiRouter);
 };
