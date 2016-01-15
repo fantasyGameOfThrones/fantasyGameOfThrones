@@ -2,7 +2,9 @@ var db = require('../../db/dbInterface');
 var League = db.League;
 var RosterData = db.RosterData;
 var User = db.User;
-var formatLeagueDataForDraft = require('../config/helpers').formatLeagueDataForDraft;
+var helpers = require('../config/helpers');
+var formatLeagueDataForDraft = helpers.formatLeagueDataForDraft;
+var formatDraftData = helpers.formatDraftData;
 
 var startDraft = function (req, res) {
   var id = req.params.leagueId;
@@ -28,12 +30,12 @@ var startDraft = function (req, res) {
 };
 
 var submitDraft = function(req, res) {
-  var id = req.params.leagueId;
   var draftData = req.body;
   // turn draftData into array of objects
-  var rosterDataObjects = formatLeagueDataForDraft(draftData);
+  var rosterDataObjects = formatDraftData(draftData);
+  console.log(rosterDataObjects);
   return RosterData.bulkCreate(rosterDataObjects)
-  .then(function() {
+  .then(function(resp) {
     // bulkCreate doesn't return anything, which is fine
     res.status(200).send();
   })
@@ -48,4 +50,27 @@ module.exports = {
   submitDraft,
 };
 
-startDraft({params:{leagueId: 1}});
+// submitDraft({
+//   body: {
+//     league: {
+//       leagueId: 1,
+//       users: [
+//         {
+//           id: 1,
+//           characters: [43, 44, 45],
+//         },
+//         {
+//           id: 2,
+//           characters: [46, 47, 48],
+//         }
+//       ]
+//     }
+//   }
+// });
+
+
+
+
+
+
+
