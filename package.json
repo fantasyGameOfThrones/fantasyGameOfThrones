@@ -7,7 +7,8 @@
     "test": "eslint **",
     "start": "NODE_ENV='development' nodemon server/server.js",
     "dev-start": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
-    "db": "node db/old/dbInit.js"
+    "db": "NODE_ENV='development' nodemon db/server/server.js",
+    "watch": "webpack --watch --colors --progress"
   },
   "author": "Naomi Jacobs",
   "license": "ISC",
