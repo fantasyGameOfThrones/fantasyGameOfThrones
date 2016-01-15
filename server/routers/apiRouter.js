@@ -10,10 +10,10 @@ var dbRouter = function(req, res, next) {
   return request.post(dbUrl + '/api' + req.url, req.body)
   .then(function(dbRes) {
     if (!ok(dbRes.statusCode)) {
-      res.status(500).send('Server error: ', dbRes.body);
+      res.status(500).send('Server error: ', dbRes);
     }
 
-    res.status(200).json(dbRes.body);
+    res.status(200).json(dbRes);
   })
   .catch(function(err) {
     console.error('Error with req to database: ', err);

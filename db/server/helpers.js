@@ -1,5 +1,14 @@
 var db = require('../dbInterface');
 
+var cors = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', "Origin, X-Access-Token, X-Requested-With, Content-Type, Accept");
+
+  if (req.method === 'OPTIONS') { res.send(200); }
+  next();
+};
+
 // makeRosters can handle making rosters for multiple users
 // It does this by calling addRosters, which calls makeRoster for each user
 var makeRosters = function(users, episodeLimit) {
@@ -87,5 +96,6 @@ function addEvents(rows, roster, episodeLimit, totalPoints) {
 module.exports = {
   makeRoster,
   makeRosters,
+  cors,
 };
 
