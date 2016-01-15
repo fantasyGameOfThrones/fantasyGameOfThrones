@@ -13,8 +13,6 @@ app.use(function(req, res, next) {
 
 require('./config/middleware')(app);
 
-db.init().then(function() {
-  app.listen(process.env.PORT || 8000, function () {
-    console.log('listening on ', process.env.PORT || 8000);
-  });  
-});
+app.listen(process.env.PORT || 8000, function () {
+  console.log('listening on ', process.env.PORT || 8000);
+});  
