@@ -9,6 +9,8 @@ const league = (state = {members:[]}, action) => {
     case actions.CREATE_LEAGUE_SUCCESS:
       console.log('got here!');
       return action.payload.league || [];
+    case actions.LOGOUT:
+      return {members: []};
     default:
       return state;
   }
@@ -18,6 +20,8 @@ const characters = (state = [], action) => {
   switch(action.type){
     case actions.LOGIN_SUCCESS:
       return action.payload.characters;
+    case actions.LOGOUT:
+      return [];
     default:
       return state;
   }
@@ -27,6 +31,8 @@ const events = (state = [], action) => {
   switch(action.type) {
     case actions.LOGIN_SUCCESS:
       return action.payload.events;
+    case actions.LOGOUT:
+      return [];
     default:
       return state;
   }
@@ -43,6 +49,8 @@ const user = (state = {}, action) => {
       return state;
     case actions.DELETE_USER:
       return state;
+    case actions.LOGOUT:
+      return {};
     default:
       return state;
   }
@@ -67,6 +75,8 @@ const draft = (state={draftStatus:'PRE_DRAFT'}, action) => {
   switch(action.type) {
     case 'START_DRAFT':
       return Object.assign({},state, {draftStatus:'MID_DRAFT'});
+    case actions.LOGOUT:
+      return {draftStatus: 'PRE_DRAFT'};
     default:
       return state;
   }
