@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var request = require('request-promise');
-var dbUrl = process.env.DB_URL || 'http://localhost:2391';
+var dbUrl = process.env.DB_URL;
 
 var authRouter = function(req, res, next) {
   return request.post({

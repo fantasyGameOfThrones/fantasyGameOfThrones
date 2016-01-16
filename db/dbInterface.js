@@ -8,7 +8,7 @@ var dbPass = process.env.DB_PASS || null;
 // seed data
 var seedData = require('../dbData/formattedData.js');
 
-var dbName = process.env.DATABASE_NAME;
+var dbName = process.env.DB_NAME;
 
 var defineModels = require('./models/models');
 var createAssociations = require('./associations');
