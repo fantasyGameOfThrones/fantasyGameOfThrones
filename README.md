@@ -13,6 +13,16 @@ React/Redux + Node/Express + Sequelize/MySQL
 
 ----
 ## Getting started (dev)
+* In the root directory: `touch .env`
+  * Copy and paste the following into your .env:
+  ```
+  NODE_ENV=development
+  PORT=8000
+  DB_URL=http://localhost:2391
+  DB_NAME=got
+  DB_USER=root
+  DB_PORT=2391
+  ```
 * `npm install`
 * `npm install -g babel-cli`
 * Check to make sure you have a database called 'got' in mysql:
