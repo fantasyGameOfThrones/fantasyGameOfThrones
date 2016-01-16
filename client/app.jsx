@@ -8,6 +8,7 @@ import Login from './components/login.jsx';
 import Signup from './components/signup.jsx';
 
 class App extends Component {
+
   composedApp() {
     return (
       <div id="composedApp">
@@ -17,6 +18,7 @@ class App extends Component {
           <RightNav />
         </div>
         <Footer />
+        {this.props.children}
       </div>
     );
   }

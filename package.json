@@ -5,7 +5,7 @@
   "main": "./client/index.js",
   "scripts": {
     "test": "eslint **",
-    "start": "NODE_ENV='development' nodemon server/server.js",
+    "start": "NODE_ENV='development' nodemon --exec babel-node --server/server.js",
     "dev": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
     "db": "NODE_ENV='development' nodemon db/server/server.js",
     "watch": "webpack --watch --colors --progress"
@@ -20,23 +20,27 @@
     ]
   },
   "dependencies": {
+    "babel-cli": "^6.4.0",
     "babel-eslint": "^4.1.6",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.1.1",
     "body-parser": "^1.14.2",
+    "dotenv": "^1.2.0",
     "express": "^4.13.3",
     "jwt-simple": "^0.4.0",
     "mysql": "^2.10.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "react-redux": "^4.0.0",
-    "redux": "^3.0.4",
+    "react-redux": "^4.0.1",
+    "redux": "^3.0.5",
     "redux-thunk": "^1.0.2",
     "request-promise": "^2.0.0",
     "sequelize": "^3.17.1",
+    "socket.io": "^1.4.4",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "babel-cli": "^6.4.0",
     "babel-core": "^6.3.17",
     "babel-loader": "^6.2.0",
     "babel-polyfill": "^6.3.14",
