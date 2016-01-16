@@ -16,7 +16,7 @@ var dbRouter = function(req, res, next) {
     res.status(200).json(dbRes);
   })
   .catch(function(err) {
-    console.error('Error with req to database: ', err);
+    console.error('Error with req to database: ', err.message);
     res.status(500).send('Server error: ', err);
   });
 };

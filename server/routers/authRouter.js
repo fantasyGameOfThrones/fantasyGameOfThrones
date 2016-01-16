@@ -13,7 +13,7 @@ var authRouter = function(req, res, next) {
     next();
   })
   .catch(function(err) {
-    console.error('Error with req to database: ', err);
+    console.error('Error with req to database: ', err.message);
     res.body = err;
     next();
   });
