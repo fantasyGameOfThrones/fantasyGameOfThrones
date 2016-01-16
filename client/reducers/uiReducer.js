@@ -9,6 +9,8 @@ const contentDisplay = (state = 'HOME', action) => {
       return 'HOME';
     case constants.CHANGE_ROSTER_USER:
       return 'ROSTERS';
+    case constants.LOGOUT:
+      return 'HOME';
     default:
       return state;
   }
@@ -18,6 +20,8 @@ const authDisplay = (state = 'LOGIN', action) => {
   switch(action.type) {
     case constants.CHANGE_AUTH_DISPLAY:
       return action.payload.authDisplay;
+    case constants.LOGOUT:
+      return 'LOGIN';
     default:
       return state;
   }
@@ -27,6 +31,8 @@ const rosterUser = (state = {}, action) => {
   switch(action.type) {
     case constants.CHANGE_ROSTER_USER:
       return action.payload.user;
+    case constants.LOGOUT:
+      return {};
     default:
       return state;
   }

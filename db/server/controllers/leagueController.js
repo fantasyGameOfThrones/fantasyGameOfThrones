@@ -1,7 +1,7 @@
-var db = require('../../db/dbInterface');
+var db = require('../../dbInterface');
 var League = db.League;
 var User = db.User;
-var makeRoster = require('../config/helpers').makeRoster;
+var makeRoster = require('../helpers').makeRoster;
 
 // When you create a new league, you are adding a moderator at same time
 // League Name and Username must be sent over

@@ -9,6 +9,7 @@ import * as draft from './actionCreators/draft.jsx';
 
 export default Object.assign({}, auth, league, ui, user, draft);
 
-export {auth, league, ui, user, draft}
+export default Object.assign({}, auth, league, ui, user, draft);
 
+export {auth, league, ui, user, draft}
 

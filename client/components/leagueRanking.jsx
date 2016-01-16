@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import store from '../services/store.jsx';
 import actions from '../services/actionCreators.jsx';
 
 class LeagueRanking extends Component {
