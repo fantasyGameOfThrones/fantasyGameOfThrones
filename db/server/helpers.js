@@ -93,9 +93,45 @@ function addEvents(rows, roster, episodeLimit, totalPoints) {
   });
 };
 
+var formatLeagueDataForDraft = function(league) {
+  // TODO: we shouldn't allow leagues to draft if there's only one member
+  var result = {
+    leagueId: league.dataValues.id,
+    users: [],
+  };
+
+  league.users.forEach(function(user) {
+    result.users.push({
+      id: user.dataValues.id,
+      // TODO: how should we send this if team is between seasons? do they
+      // have to redraft?
+      characters: [],
+    });
+  });
+
+  return result;
+};
+
+var formatDraftData = function(draftData) {
+  var rosterDataObjects = [];
+  draftData.league.users.forEach(function(user) {
+    user.characters.forEach(function(character) {
+      rosterDataObjects.push({
+        userId: user.id,
+        characterId: character,
+        // TODO: MAKE THIS WORK FOR LATER SEASONS
+        episode: 1,
+      });
+    });
+  });
+  return rosterDataObjects;
+};
+
 module.exports = {
   makeRoster,
   makeRosters,
   cors,
+  formatLeagueDataForDraft,
+  formatDraftData,
 };
 
