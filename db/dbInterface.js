@@ -6,7 +6,7 @@ var dbUser = process.env.DB_USER || 'root';
 var dbPass = process.env.DB_PASS || null;
 
 // seed data
-var seedData = require('../../dbData/formattedData.js');
+var seedData = require('../dbData/formattedData.js');
 
 var url
 if (env === 'development' || env === 'testing') {
