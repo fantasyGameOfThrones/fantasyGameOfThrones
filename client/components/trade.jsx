@@ -3,10 +3,15 @@ import { connect } from 'react-redux';
 import actions from '../services/actionCreators.jsx';
 
 class Trade extends Component {
-  render(){
+
+  data() {
+
+  }
+
+  render() {
     return (
       <div>
-        <h1>Trade</h1>
+        <h1>Trade Stuff</h1>
       </div>
     );
   }
