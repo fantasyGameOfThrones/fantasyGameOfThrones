@@ -1,5 +1,4 @@
 var express = require('express');
-var db = require('../db/dbInterface');
 
 var app = express();
 
