@@ -5,7 +5,7 @@
   "main": "./client/index.js",
   "scripts": {
     "test": "eslint **",
-    "start": "NODE_ENV='development' nodemon --exec babel-node --server/server.js",
+    "start": "NODE_ENV='development' nodemon --exec babel-node server/server.js",
     "dev": "npm run submodule && webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
     "db": "NODE_ENV='development' nodemon --exec babel-node db/server/server.js",
     "watch": "webpack --watch --colors --progress",
@@ -21,7 +21,6 @@
     ]
   },
   "dependencies": {
-    "babel-cli": "^6.4.0",
     "babel-eslint": "^4.1.6",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.1.1",
@@ -41,7 +40,6 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.4.0",
     "babel-core": "^6.3.17",
     "babel-loader": "^6.2.0",
     "babel-polyfill": "^6.3.14",
@@ -51,7 +49,6 @@
     "chai": "^3.4.1",
     "eslint": "^1.10.3",
     "eslint-plugin-react": "^3.11.3",
-    "json-server": "^0.8.4",
     "mocha": "^2.3.4",
     "nodemon": "^1.8.1",
     "react-hot-loader": "^1.3.0",
