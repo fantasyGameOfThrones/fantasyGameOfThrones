@@ -7,7 +7,7 @@
     "test": "eslint **",
     "start": "NODE_ENV='development' nodemon --exec babel-node --server/server.js",
     "dev": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
-    "db": "NODE_ENV='development' nodemon db/server/server.js",
+    "db": "NODE_ENV='development' nodemon --exec babel-node db/server/server.js",
     "watch": "webpack --watch --colors --progress"
   },
   "author": "Naomi Jacobs",
