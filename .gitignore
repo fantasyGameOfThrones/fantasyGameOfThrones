@@ -3,3 +3,4 @@ dist/bundle.js
 .DS_Store
 db.json
 npm-debug.log
+.env

@@ -2,25 +2,19 @@ var Sequelize = require('sequelize');
 
 // env variables
 var env = process.env.NODE_ENV;
-var dbUser = process.env.DB_USER || 'root';
+var dbUser = process.env.DB_USER;
 var dbPass = process.env.DB_PASS || null;
 
 // seed data
 var seedData = require('../dbData/formattedData.js');
 
-var url
-if (env === 'development' || env === 'testing') {
-  url = 'got';
-} else {
-  url = process.env.DATABASE_URL;
-}
-
+var dbName = process.env.DB_NAME;
 
 var defineModels = require('./models/models');
 var createAssociations = require('./associations');
 
 // var shouldLog = env === 'development' || env === 'testing';
-var db = new Sequelize(url, dbUser, dbPass, {dialect: 'mysql', logging: false});
+var db = new Sequelize(dbName, dbUser, dbPass, {dialect: 'mysql', logging: false});
 defineModels(db);
 createAssociations(db);
 
