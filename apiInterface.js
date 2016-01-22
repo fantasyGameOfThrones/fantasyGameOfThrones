@@ -203,3 +203,11 @@
     }
   }
 }
+
+// DRAFT
+{
+  'get initial draft data': {
+    verb: 'GET',
+    url: '/api/draft/:leagueId'
+  }
+}
