@@ -54,7 +54,7 @@ class Trade extends Component {
     // remainder goes in undrafted
     for (var key in charactersLeft) {
       charactersLeft[key].inRoster = false;
-      undrafted.push(charactersLeft[key]);
+      undrafted.push(charactersLeft[key]);  
     }
 
     return {undrafted, userRoster};
@@ -99,33 +99,34 @@ class Trade extends Component {
 }
 
 const select = ( state ) => {
-  console.log(state)
+  console.log("state: ", state)
   const currentEpisode = Object.keys(state.data.user.roster).length - 2;
   const roster = state.data.user.roster[currentEpisode];
   const characters = state.data.characters;
   const users = state.data.league.users;
   const username = state.data.user.username;
-    
-  let firstToSwap = 0;
-  let secondToSwap = 0;
+  
+  let currentTrade = [];
+  // let firstToSwap = 0;
+  // let secondToSwap = 0;
 
-  let swap = (entry) => {
-    if (!firstToSwap) {
-      firstToSwap = entry;
-    } else if (!secondToSwap) {
-      secondToSwap = entry;
-      roster.forEach((char) => {
-        if (char[0] === firstToSwap) {
-          char[0] = secondToSwap;
-          console.log(char[0]);
-        }
-      })
-      firstToSwap = 0;
-      secondToSwap = 0;
-    }
-  };
+  // let swap = (entry) => {
+  //   if (!firstToSwap) {
+  //     firstToSwap = entry;
+  //   } else if (!secondToSwap) {
+  //     secondToSwap = entry;
+  //     roster.forEach((char) => {
+  //       if (char[0] === firstToSwap) {
+  //         char[0] = secondToSwap;
+  //         console.log(char[0]);
+  //       }
+  //     })
+  //     firstToSwap = 0;
+  //     secondToSwap = 0;
+  //   }
+  // };
 
-  return { roster, characters, users, username, currentEpisode, swap };
+  return { roster, characters, users, username, currentEpisode, currentTrade };
 };
 
 export default connect( select )( Trade );
