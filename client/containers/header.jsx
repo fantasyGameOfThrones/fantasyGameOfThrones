@@ -58,11 +58,16 @@ const select = (state) => {
   let tabs = ['HOME', 'DRAFT', 'TRADE', 'RANKINGS', 'ROSTERS'];
   if (!state.data.league) {
     tabs.push('NEW LEAGUE');
+  } else {
+    tabs.push('LEAGUE');
   }
+
+  // check if emtpy object
+  var rosterUser = Object.keys(state.ui.rosterUser).length === 0 ? state.data.auth.self : state.ui.rosterUser;
 
   return {
     tabs,
-    user: state.ui.rosterUser || state.data.auth.self,
+    user: rosterUser,
     currentTab: state.ui.contentDisplay || 'HOME',
   };
 };
