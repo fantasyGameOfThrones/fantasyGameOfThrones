@@ -78,6 +78,9 @@ td {
   display: flex;
   flex-direction: row;
 }
+.currentTab {
+  border-bottom: 3px solid black;
+}
 caption {
   font-weight: 700;
   font-size: 24px;
