@@ -37,7 +37,6 @@ var login = function (req, res, next) {
 
   var username = req.body.username;
   var password = req.body.password;
-
   // eagerly load our league model and leaguemates
   User.findOne({
     where: {username},
