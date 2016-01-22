@@ -7,7 +7,8 @@ var ok = function(code) {
 };
 
 var dbRouter = function(req, res, next) {
-  return request.post(dbUrl + '/api' + req.url, req.body)
+  var method = req.method.toLowerCase();
+  return request[method](dbUrl + '/api' + req.url, req.body)
   .then(function(dbRes) {
     if (!ok(dbRes.statusCode)) {
       res.status(500).send('Server error: ', dbRes);
