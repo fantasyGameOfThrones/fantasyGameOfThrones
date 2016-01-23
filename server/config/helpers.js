@@ -5,7 +5,6 @@ var verifyToken = function(req, res, next) {
   var decoded = jwt.decode(token, 'areallybigsecret');
   //reject req if token fails authentication
   if (decoded.iss !== +req.headers['id']) {
-    console.log('Token verified');
     res.status(401).send('Unauthorized');
   } else {
     next();
@@ -17,7 +16,6 @@ var issueToken = function(req, res, next) {
 
   //TODO: include token expiration
   var token = jwt.encode({iss: id}, 'areallybigsecret');
-  console.log('token: ', token);
   res.body.token = token;
   res.status(200).json(res.body);
 };
@@ -34,7 +32,7 @@ var errorHandler = function (err, req, res, next) {
 var cors = function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', "Origin, X-Access-Token, X-Requested-With, Content-Type, Accept");
+  res.header('Access-Control-Allow-Headers', "Origin, X-Access-Token, X-Requested-With, Content-Type, Accept, id");
 
   if (req.method === 'OPTIONS') {
     console.log('Got OPTIONS request');
