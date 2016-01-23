@@ -8,7 +8,9 @@ const league = (state = {members:[]}, action) => {
       return action.payload.league;
     case actions.CREATE_LEAGUE_SUCCESS:
       console.log('got here!');
-      return action.payload.league || [];
+      return action.payload.league || {members: []};
+    case actions.UPDATE_LEAGUE_SUCCESS:
+      return action.payload.league || {members: []};
     case actions.LOGOUT:
       return {members: []};
     default:

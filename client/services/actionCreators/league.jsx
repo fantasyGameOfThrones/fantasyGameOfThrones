@@ -34,3 +34,54 @@ export const createLeague = (name) => {
     });
   }
 };
+
+const updateLeagueSuccess = (body) => {
+  return {
+    type: constants.UPDATE_LEAGUE_SUCCESS,
+    payload: {
+      league: body.league,
+    }
+  }
+};
+
+const updateLeagueFailure = (message) => {
+  return {
+    type: constants.UPDATE_LEAGUE_FAILURE,
+    payload: {
+      error: message
+    }
+  }
+}
+
+export const advanceLeague = (id, latestSeen) => {
+  return (dispatch) => {
+    return network.leagueRequests('PUT', id, {latestSeen: latestSeen + 1})
+    .then((response) => {
+      if (!response.ok) {throw new Error('League update failure: ', response)}
+      return response.json();
+    })
+    .then((body) => {
+      return dispatch(updateLeagueSuccess(body));
+    })
+    .catch((error) => {
+      return dispatch(updateLeagueFailure(error.message));
+    });
+  }
+};
+
+// export const logIn = (username, password) => {
+//   return (dispatch) => {
+//     return network.logIn(username, password)
+//     .then((response) => {
+//       if (!response.ok) {throw new Error('Login failure: ', response)}
+//       return response.json();
+//     })
+//     .then((body) => {
+//       return dispatch(logInSuccess(body));
+//     })
+//     .catch((error) => {
+//       console.log('Error logging in: ', error);
+//       return dispatch(logInFailure(error.message));
+//     });
+//   }
+// };
