@@ -10,6 +10,7 @@ var dbRouter = function(req, res, next) {
   var options = {
     method: req.method,
     uri: dbUrl + '/api' + req.url,
+    headers: { 'id': req.headers.id },
     json: true,
     body: req.body,
   };

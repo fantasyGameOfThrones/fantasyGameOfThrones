@@ -46,7 +46,7 @@ var create = function (req, res) {
   })
   .catch(function(err) {
     console.error(err);
-    res.status(500).send('Server error signing up user');
+    res.status(500).send('Server error creating league: ', err);
   });
 
 };

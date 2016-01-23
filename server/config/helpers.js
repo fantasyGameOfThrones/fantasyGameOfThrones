@@ -31,7 +31,6 @@ var errorHandler = function (err, req, res, next) {
 
 var cors = function(req, res, next) {
   if (req.method === 'OPTIONS') {
-    console.log('Got OPTIONS request');
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
     res.header("Access-Control-Allow-Credentials", false);
@@ -40,7 +39,6 @@ var cors = function(req, res, next) {
     res.status(200).send();
     return;
   } else {
-    console.log('Not an OPTIONS request');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
     res.header('Access-Control-Allow-Headers', "Origin, X-Access-Token, X-Requested-With, Content-Type, Accept, id");
