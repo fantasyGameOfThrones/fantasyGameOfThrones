@@ -4,11 +4,10 @@ var League = db.League;
 var Character = db.Character;
 var Event = db.Event;
 var helpers = require('../helpers.js');
-// var issueToken = helpers.issueToken;
 var makeRoster = helpers.makeRoster;
 var makeRosters = helpers.makeRosters;
 
-var signup =function (req, res, next) {
+var signup = function (req, res, next) {
 
   var username = req.body.username;
   var password = req.body.password;
@@ -20,12 +19,27 @@ var signup =function (req, res, next) {
     if (user) {
       res.status(409).send('User already exists.');
     } else {
-      return User.create({username, password, email});
+      return User.create({username, password, email})
     }
   })
   .then(function(user) {
-    delete user.password;
-    res.status(200).json({user});
+    return makeRoster(user)
+    .then(function(roster) {
+      return Character.findAll()
+      .then(function(characters) {
+        return Event.findAll()
+        .then(function(events) {
+          user.dataValues.roster = roster;
+          // TODO: make this work by excluding password instead of deleting
+          delete user.dataValues.password;
+          res.status(200).json({
+            user,
+            characters,
+            events,
+          });
+        });
+      });
+    });
   })
   .catch(function(err) {
     console.error(err);

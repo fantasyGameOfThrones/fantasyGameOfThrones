@@ -48,8 +48,8 @@ const leagueRequests = (method, leagueID, rawParams = {}) => {
     .catch((error) => console.log(error))
 };
 
-const signUp = (username, password) => {
-  let params = makeParams('POST', {username, password});
+const signUp = (username, email, password) => {
+  let params = makeParams('POST', {username, email, password});
   // TODO: just return response
   return fetch(`${url}/auth/signup`, params)
     .catch((error) => {
