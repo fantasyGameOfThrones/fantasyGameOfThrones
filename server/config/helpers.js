@@ -30,15 +30,23 @@ var errorHandler = function (err, req, res, next) {
 };
 
 var cors = function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', "Origin, X-Access-Token, X-Requested-With, Content-Type, Accept, id");
-
   if (req.method === 'OPTIONS') {
     console.log('Got OPTIONS request');
-    res.sendStatus(200);
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Credentials", false);
+    res.header("Access-Control-Max-Age", '86400'); // 24 hour)s
+    res.header("Access-Control-Allow-Headers", "X-Requested-With, X-HTTP-Method-Override, X-Access-Token, Content-Type, Accept, id");
+    res.status(200).send();
+    return;
+  } else {
+    console.log('Not an OPTIONS request');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+    res.header('Access-Control-Allow-Headers', "Origin, X-Access-Token, X-Requested-With, Content-Type, Accept, id");
+
+    next();
   }
-  next();
 }
 
 module.exports = {

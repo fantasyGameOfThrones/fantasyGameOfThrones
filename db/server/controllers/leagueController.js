@@ -52,7 +52,6 @@ var create = function (req, res) {
 };
 
 var update = function (req, res) {
-
   var league = req.body;
   var id = req.params.leagueId;
 

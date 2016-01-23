@@ -10,10 +10,10 @@ class League extends Component {
   render(){
     let season, episode, episodeText;
     if (this.props.league.latestSeen % 10 === 0) {
-      season = this.props.league.latestSeen/10;
+      season = Math.floor(this.props.league.latestSeen/10);
       episode = 10;
     } else {
-      season = this.props.league.latestSeen/10 + 1;
+      season = Math.floor(this.props.league.latestSeen/10 + 1);
       episode = this.props.league.latestSeen % 10;
     }
 

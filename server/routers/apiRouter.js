@@ -7,14 +7,19 @@ var ok = function(code) {
 };
 
 var dbRouter = function(req, res, next) {
-  var method = req.method.toLowerCase();
-  return request[method](dbUrl + '/api' + req.url, req.body)
+  var options = {
+    method: req.method,
+    uri: dbUrl + '/api' + req.url,
+    json: true,
+    body: req.body,
+  };
+
+  return request(options)
   .then(function(dbRes) {
+    console.log('got resp back from db: ', dbRes);
     if (!ok(dbRes.statusCode)) {
       res.status(500).send('Server error: ', dbRes);
-    }
-
-    res.status(200).json(dbRes);
+    } else { res.status(200).json(dbRes); }
   })
   .catch(function(err) {
     console.error('Error with req to database: ', err.message);
