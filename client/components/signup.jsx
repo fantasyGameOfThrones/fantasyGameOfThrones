@@ -9,9 +9,10 @@ class Signup extends Component{
 
   signupClick() {
     let ubox = document.getElementById('usernameSignup');
+    let ebox = document.getElementById('emailSignup');
     let pbox = document.getElementById('passwordSignup');
-    this.props.dispatch(actions.signUp(ubox.value, pbox.value));
-    ubox.value = pbox.value = '';
+    this.props.dispatch(actions.signUp(ubox.value, ebox.value, pbox.value));
+    ubox.value = ebox.value = pbox.value = '';
   }
 
 
@@ -20,6 +21,7 @@ class Signup extends Component{
       <div>
         <div>
           <input type="textarea" id="usernameSignup" placeholder="username"/>
+          <input type="textarea" id="emailSignup" placeholder="email"/>
           <input type="password" id="passwordSignup" placeholder="password"/>
           <button className='clickable' onClick={this.signupClick.bind(this)}>Signup</button>
         </div>

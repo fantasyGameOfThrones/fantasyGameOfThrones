@@ -1,7 +1,8 @@
-var db = require('../../db/dbInterface');
+var db = require('../../dbInterface');
 var League = db.League;
 var RosterData = db.RosterData;
 var User = db.User;
+var Character = db.Character;
 var helpers = require('../helpers');
 var formatLeagueDataForDraft = helpers.formatLeagueDataForDraft;
 var formatDraftData = helpers.formatDraftData;
@@ -20,8 +21,17 @@ var startDraft = function (req, res) {
   })
   .then(function(league) {
     var data = formatLeagueDataForDraft(league);
-    console.log('data: ', data);
-    res.status(200).json(data);
+    // grab charids
+    return Character.findAll({attributes: ['id']})
+    .then(function(characters) {
+      var characterIds = characters.map(function(char) {
+        return char.id;
+      });
+      res.status(200).json({
+        league: data,
+        characters: characterIds,
+      });
+    })
   })
   .catch(function(err) {
     console.error('Error retrieving league for draft: ', err);
@@ -49,6 +59,7 @@ module.exports = {
   startDraft,
   submitDraft,
 };
+
 
 // submitDraft({
 //   body: {

@@ -6,6 +6,7 @@ import Draft from '../components/draft.jsx';
 import Login from '../components/login.jsx';
 import NewLeague from '../components/newLeague.jsx';
 import Rosters from '../components/rosters.jsx';
+import League from '../components/league.jsx';
 
 class Content extends Component {
 
@@ -20,6 +21,8 @@ class Content extends Component {
         return <Draft/>
       case 'NEW_LEAGUE':
         return <NewLeague />;
+      case 'LEAGUE':
+        return <League />;
       case 'ROSTERS':
         return <Rosters rosterUser={this.props.rosterUser}/>;
       default:

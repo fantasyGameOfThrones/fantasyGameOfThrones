@@ -10,6 +10,10 @@ var config = {
       type: sequelize.INTEGER,
       allowNull: false,
     },
+    droppedFor: {
+      type: sequelize.INTEGER,
+      defaultValue: null,
+    },
 
     // Sequelize does not support unique many:many rows at this time,
     // so we have to manually add them here

@@ -59,7 +59,7 @@ class Roster extends Component {
                 </td>
                 {episodes.map((ep) => {
                   return <td className="data" key={ep}>
-                    {roster[ep][char.id]}
+                    {roster[ep][char.id] === undefined || roster[ep][char.id] === null ? '' : roster[ep][char.id]}
                   </td>
                 })}
               </tr>

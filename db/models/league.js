@@ -12,6 +12,7 @@ var config = {
     },
     latestSeen: {
       type: sequelize.INTEGER,
+      defaultValue: 0,
     }
   },
   options: {},

@@ -3,9 +3,12 @@ var Bluebird = require('bluebird');
 var bcrypt = Bluebird.promisifyAll(require('bcrypt-nodejs'));
 
 var hashOnePassword = function(user) {
-  return bcrypt.genSalt()
+  // even though we promisified bcrypt
+  // we still must pass in null args for the now-useless
+  // callbacks so that bcrypt doesn't have a hissy fit
+  return bcrypt.genSaltAsync(null)
   .then(function(salt) {
-    return bcrypt.hash(user.dataValues.password, salt);
+    return bcrypt.hashAsync(user.dataValues.password, salt, null);
   })
   .then(function(hash) {
     user.password = hash;

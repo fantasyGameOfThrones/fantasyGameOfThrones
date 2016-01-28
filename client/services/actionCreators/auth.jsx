@@ -1,9 +1,30 @@
 import network from '../network.jsx';
 import * as constants from '../actionConstants.jsx';
 
-export const signUp = (username, password) => {
+const signUpSuccess = (body) => {
+  console.log('sign up success!', body);
+  return {
+    type: constants.SIGNUP_SUCCESS,
+    payload: {
+      user: body.user,
+      token: body.token
+    }
+  };
+};
+
+const signUpFailure = (message) => {
+  console.log('signUpFailure: ', message);
+  return {
+    type: constants.SIGNUP_FAILURE,
+    payload: {
+      error: message
+    }
+  };
+};
+
+export const signUp = (username, email, password) => {
   return (dispatch) => {
-    return network.signUp(username, password)
+    return network.signUp(username, email, password)
     .then((response) => {
       if (!response.ok) {throw new Error('Signup failure: ', response)}
       return response.json();
@@ -15,25 +36,6 @@ export const signUp = (username, password) => {
       return dispatch(signUpFailure(error.message));
     });
   }
-};
-
-const signUpSuccess = (body) => {
-  return {
-    type: constants.SIGNUP_SUCCESS,
-    payload: {
-      user: body.user,
-      token: body.token
-    }
-  };
-};
-
-const signUpFailure = (message) => {
-  return {
-    type: constants.SIGNUP_FAILURE,
-    payload: {
-      error: message
-    }
-  };
 };
 
 const logInSuccess = (body) => {

@@ -2,15 +2,16 @@ import {combineReducers} from 'redux';
 import * as actions from '../services/actionConstants.jsx';
 
 
-const league = (state = {members:[]}, action) => {
+const league = (state = {}, action) => {
   switch(action.type) {
     case actions.LOGIN_SUCCESS:
-      return action.payload.league;
+      return action.payload.league || {};
     case actions.CREATE_LEAGUE_SUCCESS:
-      console.log('got here!');
-      return action.payload.league || [];
+      return action.payload.league || {};
+    case actions.UPDATE_LEAGUE_SUCCESS:
+      return action.payload.league || {};
     case actions.LOGOUT:
-      return {members: []};
+      return {};
     default:
       return state;
   }
@@ -38,32 +39,16 @@ const events = (state = [], action) => {
   }
 };
 
-const user = (state = {}, action) => {
-  // TODO: move these over to auth.self
-  switch(action.type){
-    case actions.LOGIN_SUCCESS:
-      return action.payload.user;
-    case actions.UPDATE_USER_SUCCESS:
-      return state;
-    case actions.UPDATE_USER_FAILURE:
-      return state;
-    case actions.DELETE_USER:
-      return state;
-    case actions.LOGOUT:
-      return {};
-    default:
-      return state;
-  }
-};
-
 const auth = (state = {token: '', self: {}}, action) => {
   switch(action.type){
-    case 'LOGIN_SUCCESS':
+    case actions.SIGNUP_SUCCESS:
       return Object.assign({}, state, {token: action.payload.token, self: action.payload.user});
-    case 'LOGIN_FAILURE':
+    case actions.LOGIN_SUCCESS:
+      return Object.assign({}, state, {token: action.payload.token, self: action.payload.user});
+    case actions.LOGIN_FAILURE:
       // login attempt/failure logic here, do something if many failed attempts
       return state;
-    case 'LOGOUT':
+    case actions.LOGOUT:
       // also destroy cookie?
       return Object.assign({},state,{token: '', self:{}})
     default:
@@ -83,7 +68,6 @@ const draft = (state={draftStatus:'PRE_DRAFT'}, action) => {
 };
 
 export default combineReducers({
-  user,
   characters,
   league,
   events,
