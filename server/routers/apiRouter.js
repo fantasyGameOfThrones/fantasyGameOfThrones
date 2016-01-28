@@ -24,8 +24,8 @@ var dbRouter = function(req, res, next) {
   .catch(function(err) {
     console.error('Error with req to database: ', err.message);
     res.status(500).send('Server error: ', err);
-  });
-};
+  })
+}
 
 router.use(dbRouter);
 

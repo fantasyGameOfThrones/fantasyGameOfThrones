@@ -3,12 +3,8 @@ import {connect} from 'react-redux';
 import actions from '../services/actionCreators.jsx';
 
 class Trade extends Component {
-  // NEEEED:
-  // --->  A save button that sends updated roster to db
-  // ---> Buttons with an onClick event for each character to be swapped
-  // --> Buttons for each roster char to be swapped
-      // --> Maybe once roster selected one exists, (extra param on props, rosterClicked)
-      //    click on undrafted one and they will swap? ( for now )
+  // dispatch each time a character is clicked, update the state
+
   data() {
     // Setup roster to contain images
     // charactersLeft filters through user roster, then league roster
@@ -62,31 +58,36 @@ class Trade extends Component {
   }
 
   render() {
-    const {dispatch} = this.props;
+  
+    const {dispatch, tradeDisplay} = this.props;
     let {undrafted, userRoster} = this.data();
+
     return (
       <div>
         <h1>Trade Stuff</h1>
+        <button onClick={() => this.props.dispatch(actions.initiateTrade(tradeDisplay))}>Submit Trade</button>
+
         <ul>
         <h2> YOUR ROSTER </h2>
           {userRoster.map((char) => {
             return (
               <li key={char.id}>
                 <div>{char.name}</div>
-                <button onClick={() => this.props.swap(char.id)}>
+                <button onClick={() => this.props.dispatch(actions.changeTradeChar(char.id, 'DROP'))}>
                   <img className="thumb" src={char.imageUrl}></img>
                 </button>
               </li>
             )
           })}
         </ul>
+
         <ul>
         <h2>UNDRAFTED</h2>
           {undrafted.map((char) => {
             return (
               <li key={char.id}>
                 <div>{char.name}</div>
-                <button onClick={() => this.props.swap(char.id)}>
+                <button onClick={() => this.props.dispatch(actions.changeTradeChar(char.id, 'ADD'))}>
                   <img className="thumb" src={char.imageUrl}></img>
                 </button>
               </li>
@@ -100,33 +101,15 @@ class Trade extends Component {
 
 const select = ( state ) => {
   console.log("state: ", state)
+
   const currentEpisode = Object.keys(state.data.user.roster).length - 2;
   const roster = state.data.user.roster[currentEpisode];
   const characters = state.data.characters;
   const users = state.data.league.users;
   const username = state.data.user.username;
-  
-  let currentTrade = [];
-  // let firstToSwap = 0;
-  // let secondToSwap = 0;
+  const tradeDisplay = state.ui.tradeDisplay;
 
-  // let swap = (entry) => {
-  //   if (!firstToSwap) {
-  //     firstToSwap = entry;
-  //   } else if (!secondToSwap) {
-  //     secondToSwap = entry;
-  //     roster.forEach((char) => {
-  //       if (char[0] === firstToSwap) {
-  //         char[0] = secondToSwap;
-  //         console.log(char[0]);
-  //       }
-  //     })
-  //     firstToSwap = 0;
-  //     secondToSwap = 0;
-  //   }
-  // };
-
-  return { roster, characters, users, username, currentEpisode, currentTrade };
+  return { roster, characters, users, username, currentEpisode, tradeDisplay };
 };
 
 export default connect( select )( Trade );

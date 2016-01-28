@@ -27,7 +27,6 @@ class Login extends Component{
       </div>
     );
   }
-
 };
 
 const select = (state) => {

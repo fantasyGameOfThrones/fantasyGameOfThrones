@@ -66,10 +66,21 @@ const logIn = (username, password) => {
     });
 };
 
+const trade = (body) => {
+  let dropCharId = body.dropCharId;
+  let addCharId = body.addCharId;
+  console.log('body before making params: ', body);
+  const params = makeParams('POST', {dropCharId, addCharId});
+  console.log('the params before sent: ', params)
+  return fetch(`${url}/api/trade`, params)
+    .catch((error) => console.error(error))
+}
+
 export default {
   signUp,
   logIn,
   getCharacters,
   userRequests,
   leagueRequests,
+  trade
 };
