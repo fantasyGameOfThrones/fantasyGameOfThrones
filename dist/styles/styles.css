@@ -53,9 +53,12 @@
 #left {
   order: -1;
 }
-
+.entry {
+  display: flex;
+  justify-content: center;
+}
 body {
-  background-image: url('../assets/mochaGrunge.png');
+  background-color: #ccc;
   font-family: 'Montserrat', sans-serif;
   margin: 0;
 }

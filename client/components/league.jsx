@@ -7,8 +7,13 @@ class League extends Component {
     this.props.dispatch(actions.advanceLeague(this.props.league.id, this.props.league.latestSeen));
   }
 
-  render(){
+  leaveLeague() {
+    this.props.dispatch(actions.leaveLeague());
+  }
+
+  render() {
     let season, episode, episodeText;
+
     if (this.props.league.latestSeen % 10 === 0) {
       season = Math.floor(this.props.league.latestSeen/10);
       episode = 10;
@@ -21,15 +26,21 @@ class League extends Component {
     return (
       <div>
         <h1>League</h1>
-        <div> Latest seen: {episodeText} </div>
-        <button onClick={this.advanceLeague.bind(this)}>We've seen the next episode, show us the results!</button>
+        <div className="nextEp">
+          <div> Latest seen: {episodeText} </div>
+          <button onClick={this.advanceLeague.bind(this)}>We've seen the next episode, show us the results!</button>
+        </div>
+        <div className="leaveLeague">
+          <button onClick={this.leaveLeague.bind(this)}>Leave League</button>
+        </div>
       </div>
     );
   }
-}
+};
 
-const select = ( state ) => {
+const select = (state) => {
   return {
+    id: state.data.auth.self.id,
     league: state.data.league,
   };
 };
