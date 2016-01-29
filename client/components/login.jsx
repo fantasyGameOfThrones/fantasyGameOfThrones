@@ -17,7 +17,7 @@ class Login extends Component{
 
   render() {
     return (
-      <div>
+      <div className="entry">
         <div>
           <input type="textarea" id="usernameLogin" placeholder="username"/>
           <input type="password" id="passwordLogin" placeholder="password"/>

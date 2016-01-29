@@ -56,7 +56,7 @@ class Header extends Component {
 
 const select = (state) => {
   let tabs = ['HOME', 'DRAFT', 'TRADE', 'RANKINGS', 'ROSTERS'];
-  if (!state.data.league) {
+  if (Object.keys(state.data.league).length === 0) {
     tabs.push('NEW LEAGUE');
   } else {
     tabs.push('LEAGUE');

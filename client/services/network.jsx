@@ -35,9 +35,10 @@ const getCharacters = () => {
     .catch((error) => console.log(error));
 };
 
-const userRequests = (method, userID, rawParams = {}) => {
+const userRequests = (method, rawParams = {}) => {
   const params = makeParams(method, rawParams);
-  return fetch(`${url}/api/users/${userID}`, params)
+  const id = store.getState().data.auth.self.id;
+  return fetch(`${url}/api/users/${id}`, params)
     .catch((error) => console.log(error))
 };
 

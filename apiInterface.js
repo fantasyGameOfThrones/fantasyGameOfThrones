@@ -96,7 +96,7 @@
     reqBody: {
       password: string, //optional
       email: string, // optional
-      league: integer, // optional
+      league: integer, // optional, null if user wants to leave league
     },
     resBody: {
       user: User

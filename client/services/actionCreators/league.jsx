@@ -68,20 +68,3 @@ export const advanceLeague = (id, latestSeen) => {
     });
   }
 };
-
-// export const logIn = (username, password) => {
-//   return (dispatch) => {
-//     return network.logIn(username, password)
-//     .then((response) => {
-//       if (!response.ok) {throw new Error('Login failure: ', response)}
-//       return response.json();
-//     })
-//     .then((body) => {
-//       return dispatch(logInSuccess(body));
-//     })
-//     .catch((error) => {
-//       console.log('Error logging in: ', error);
-//       return dispatch(logInFailure(error.message));
-//     });
-//   }
-// };

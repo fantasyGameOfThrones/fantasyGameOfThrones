@@ -10,6 +10,8 @@ const league = (state = {}, action) => {
       return action.payload.league || {};
     case actions.UPDATE_LEAGUE_SUCCESS:
       return action.payload.league || {};
+    case actions.LEAVE_LEAGUE_SUCCESS:
+      return {};
     case actions.LOGOUT:
       return {};
     default:
@@ -45,6 +47,8 @@ const auth = (state = {token: '', self: {}}, action) => {
       return Object.assign({}, state, {token: action.payload.token, self: action.payload.user});
     case actions.LOGIN_SUCCESS:
       return Object.assign({}, state, {token: action.payload.token, self: action.payload.user});
+    case actions.LEAVE_LEAGUE_SUCCESS:
+      return Object.assign({}, state, {self: action.payload.user});
     case actions.LOGIN_FAILURE:
       // login attempt/failure logic here, do something if many failed attempts
       return state;
@@ -60,6 +64,8 @@ const draft = (state={draftStatus:'PRE_DRAFT'}, action) => {
   switch(action.type) {
     case 'START_DRAFT':
       return Object.assign({},state, {draftStatus:'MID_DRAFT'});
+    case actions.LEAVE_LEAGUE_SUCCESS:
+      return {draftStatus: 'PRE_DRAFT'}
     case actions.LOGOUT:
       return {draftStatus: 'PRE_DRAFT'};
     default:
