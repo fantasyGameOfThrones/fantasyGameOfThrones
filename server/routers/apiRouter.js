@@ -17,7 +17,6 @@ var dbRouter = function(req, res, next) {
 
   return request(options)
   .then(function(dbRes) {
-    console.log('got resp back from db: ', dbRes);
     if (!ok(dbRes.statusCode)) {
       res.status(500).send('Server error: ', dbRes);
     } else { res.status(200).json(dbRes); }

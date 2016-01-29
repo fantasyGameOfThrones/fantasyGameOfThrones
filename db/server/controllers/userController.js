@@ -27,8 +27,13 @@ module.exports = {
       // means user wants to leave league
       // update user, delete associated rows in RosterData,
       // fetch updated user and send back to client
-      return User.update({league: null}, {where: {id: id}})
-      .then(function() {
+      return User.findOne({where: {id}})
+      .then((user) => {
+        return user.setLeague(null);
+      })
+      .then(() => {
+      // return User.update({league: null}, {where: {id: id}})
+      // .then(function() {
         return RosterData.destroy({where: {userId: id}})
       })
       .then((rowsDestroyed) => {
