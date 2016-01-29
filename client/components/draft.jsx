@@ -1,14 +1,24 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import actions from '../services/actionCreators.jsx';
-// import io from 'socket.io';
-import io from './../../node_modules/socket.io/node_modules/socket.io-client/socket.io.js';
+import io from 'socket.io-client';
 
 class Draft extends Component {
+
   constructor(props){
     super(props);
     this.socket = null;
     this.state = {};
+  }
+
+  componentDidMount(){
+    let byId = {};
+    this.props.league.users.forEach((user)=>{
+      byId[user.id] = user
+    });
+    this.setState({
+      userById:byId
+    });
   }
 
   startDraft() {
@@ -30,62 +40,43 @@ class Draft extends Component {
     this.socket.on('updateStore', (state) => {
       this.setState(state);
     })
-
   }
+
   init () {
     this.socket.emit('init', this.props.self.id);
   }
+
   print () {
     console.log(this.props.self.id);
     console.log(this.props)
+    this.setUserById.call(this);
   }
+
   moose() {
     this.socket.emit('moose');
   }
+
   renderLoggedOn () {
+    const loggedOn = [];
+    const notLoggedOn = [];
+
+    this.state.teams.forEach((team,i) => {
+      const el = (<div key={i}> {this.state.userById[team.id].username} </div>);
+      team.loggedOn ? loggedOn.push(el) : notLoggedOn.push(el);
+    });
+    
     return (
       <div>
         <div>
-          <span>Logged On</span>
-          {this.state.teams.map((team,i) => {          
-            return team.loggedOn ? (
-              <div key={i}>
-                {this.props.league.users
-                  .filter((user) => user.id === team.id)
-                  .map((user,i) => {
-                    return (
-                      <div key={i}>
-                        {user.username}
-                      </div>
-                    )
-                  }
-                )}
-              </div>) : null
-            }
-          )}
+          <span>Logged In</span>
+          {loggedOn}
         </div>
         <div>
-          <span>Not Logged On</span>
-          {this.state.teams.map((team)=>{
-            return !team.loggedOn ? (
-              <div>
-                {this.props.league.users
-                  .filter((user)=> user.id === team.id)
-                  .map((user, i) => {
-                    return (
-                      <div key={i}>
-                        {user.username}
-                      </div>
-                    )
-                  })
-                }
-
-              </div>) : null
-            }
-          )}
+          <span>Not Logged In</span>
+          {notLoggedOn}
         </div>
       </div>
-    )
+    );
   }
 
   renderDraftPanel(){
@@ -93,7 +84,6 @@ class Draft extends Component {
       <div className='draft_panel'>
         {this.renderLoggedOn()}
       </div>
-
     )
   }
   render() {
@@ -102,7 +92,8 @@ class Draft extends Component {
     return (
       <div className="draft_container">
 
-        {this.props.draft.draftStatus === 'PRE_DRAFT' ? (<nav>
+        {this.props.draft.draftStatus === 'PRE_DRAFT' ? 
+        (<nav>
           <input key={1} type="button" onClick={this.openSocket.bind(this)} value="connect"/>
           <input key={2} type="button" onClick={this.init.bind(this)} value="init"/>
           <input key={3} type="button" onClick={this.print.bind(this)} value="print"/>
