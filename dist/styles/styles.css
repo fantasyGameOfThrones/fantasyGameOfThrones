@@ -38,11 +38,7 @@
   flex: 1;
 }
 #center {
-  display: flex;
   overflow: scroll;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
   background-color: rgba(255,182,193,0.5);
   flex: 1 0 30em;
 }
@@ -104,4 +100,21 @@ table caption {
 .thumb {
   width: 60px;
   height: auto;
+}
+.draft_container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  flex-direction: column;
+  justify-content: initial;
+  align-items: initial;
+}
+.draft_container > nav {
+  display: flex;
+  justify-content: center;
+}
+.draft_panel {
+  display: flex;
+  flex-direction: row;
 }
