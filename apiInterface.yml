@@ -1,0 +1,160 @@
+signup:
+  verb: POST,
+  url: auth/signup,
+  reqBody:
+    username: string,
+    password: string
+    email: string
+  resBody:
+    user: User # doesn't have password
+    token: string
+
+login:
+  verb: POST
+  url: auth/login,
+  reqBody:
+    username: string,
+    password: string,
+  resBody:
+    token: string,
+    user:
+      id: integer,
+      username: string,
+      email: string,
+      leagueId: integer,
+    roster: 
+      {
+        integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
+        integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
+        integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
+      }
+    league:
+      id: integer,
+      name: string,
+      creatorId: integer # represents the user who made the league
+      users: 
+        [
+          {
+            username: string,
+            id: integer,
+            email: string,
+            leagueId: integer,
+            roster: roster
+          }
+        ]
+    characters:
+      [
+        {
+          name: string,
+          house: string,
+          image: string # image url TODO serve actual images
+        }
+      ]
+    events:
+      [
+        {
+          id: integer,
+          type: string,
+          description: string,
+          episodeId: integer
+          points: integer
+        }
+      ]
+
+get a user:
+  verb: GET,
+  url: api/users/:userId,
+  reqBody: null,
+  resbody:
+    user: User # doesn't include password
+
+update a user:
+  verb: PUT,
+  url: api/users/:userId,
+  reqBody:
+    password: string, # optional
+    email: string, # optional
+    league: integer, # optional
+    leave: true, # optional, only if user wants to leave league
+  resBody:
+    user: User,
+
+delete a user:
+  verb: DELETE,
+  url: api/users/:userId,
+  reqBody: null,
+  resBody:
+    success: boolean,
+    userId: integer,
+
+create a league:
+  verb: POST,
+  url: api/leagues/new,
+  reqBody:
+    name: string,
+    creator: userId, # TODO this seems redundant
+  resBody:
+    league:
+      name: string,
+      id: integer,
+      creatorId: integer,
+      users:
+        [
+          User # includes roster property
+        ]
+
+get a league:
+  verb: GET,
+  url: api/leagues/:leagueId,
+  reqBody:
+    name: string, # optional
+    latestSeen: integer, # optional
+  resBody: 
+    league: League #see create a league resBody for format of League
+
+update a league:
+  verb: PUT,
+  url: api/leagues/:leagueId,
+  reqBody: null,
+  resBody: 
+    league: League #see create a league resBody for format of League
+
+delete a league:
+  verb: DELETE,
+  url: api/leagues/:leagueId,
+  reqBody: null,
+  resBody: 
+    success: boolean,
+    leagueId: integer,
+
+# CHARACTERS: CURRENTLY NO ROUTES BUILT OUT
+# EVENTS: CURRENTLY NO ROUTES BUILT OUT
+
+get initial draft info:
+  verb: GET,
+  url: /api/draft/:leagueId,
+  reqBody: null,
+  resBody:
+    characters: [id, id, id],
+    league:
+      leagueId: integer,
+      users:
+        [
+          {
+            id: integer,
+            characters: []
+          }
+        ]
+
+submit draft:
+  verb: POST
+  url: /api/draft/:leagueId,
+  reqBody:
+    league:
+      users:
+      [
+        {
+          id: integer,
+          characters: [id, id, id]
+        }
+      ]
