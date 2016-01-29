@@ -43,7 +43,6 @@ var submitDraft = function(req, res) {
   var draftData = req.body;
   // turn draftData into array of objects
   var rosterDataObjects = formatDraftData(draftData);
-  console.log(rosterDataObjects);
   return RosterData.bulkCreate(rosterDataObjects)
   .then(function(resp) {
     // bulkCreate doesn't return anything, which is fine
