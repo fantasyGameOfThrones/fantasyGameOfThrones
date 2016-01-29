@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import actions from '../services/actionCreators.jsx';
 
-class NewLeague extends Component {
+class JoinLeague extends Component {
   createLeague() {
     let leagueName = document.getElementById('leagueNameInput');
     this.props.dispatch(actions.createLeague(leagueName.value));
@@ -12,7 +12,8 @@ class NewLeague extends Component {
   render(){
     return (
       <div>
-        <h1>NewLeague</h1>
+        <h3>You are not currently invited to any leagues. Create a league instead!</h3>
+        <h3>Create A League</h3>
         <div>
           <input type="textarea" id="leagueNameInput" placeholder="League Name"/>
           <button className='clickable' onClick={this.createLeague.bind(this)}>Create League</button>
@@ -28,4 +29,4 @@ const select = ( state ) => {
   };
 };
 
-export default connect( select )( NewLeague );
+export default connect( select )( JoinLeague );
