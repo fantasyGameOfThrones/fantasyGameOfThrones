@@ -23,6 +23,7 @@ var Event = db.models.event;
 var League = db.models.league;
 var RosterData = db.models.rosterData;
 var User = db.models.user;
+var Invitation = db.models.invitation;
 
 // if testing, syncing will drop tables
 // if not testing, syncing will only add tables that were missing
@@ -67,4 +68,5 @@ module.exports = {
   League: db.models.league,
   RosterData: db.models.rosterData,
   User: db.models.user,
+  Invitation: db.models.invitation,
 };
