@@ -13,16 +13,35 @@ var create = (req, res, next) => {
   return User.findOne({where: {email}})
   .then((user) => {
     if (!user) {
-
+      return Invitation.create({
+        leagueId,
+        moderatorId,
+        email
+      })
+      .then((invitation) => {
+        // send email
+        // tell invitor what happened
+      })
     } else {
       if (!user.league) {
         return Invitation.create({
           leagueId,
           moderatorId,
-          email
+          email,
+          invitedUser: user.id,
         })
+        .then((invitation) => {
+          res.status(200).send({success: true});
+        })
+      } else {
+        // user is already in a league
+        res.status(409).send('User is already in a league, so you cannot invite them.');
       }
     }
+  })
+  .catch((error) => {
+    console.error('Error creating invitation: ', error);
+    res.status(500).send('Server error creating invitation: ', error);
   })
     // if user does not have a league
       // create invitation to them for that league
