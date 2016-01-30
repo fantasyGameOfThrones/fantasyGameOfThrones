@@ -113,12 +113,13 @@ var formatLeagueDataForDraft = function(league) {
 };
 
 var formatDraftData = function(draftData) {
+  console.log(draftData);
   var rosterDataObjects = [];
-  draftData.league.users.forEach(function(user) {
-    user.characters.forEach(function(character) {
+  draftData.users.forEach(function(user) {
+    user.characters.forEach(function(charId) {
       rosterDataObjects.push({
         userId: user.id,
-        characterId: character,
+        characterId: charId,
         // TODO: MAKE THIS WORK FOR LATER SEASONS
         episode: 1,
       });

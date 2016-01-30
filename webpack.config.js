@@ -21,7 +21,9 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('development')
+        'NODE_ENV': JSON.stringify('development'),
+        'SOCKET_IP': '192.241.234.14',
+        'DB_URL':'http://192.241.234.14:2391'
       }
     })
   ]

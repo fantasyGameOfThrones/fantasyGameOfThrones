@@ -102,19 +102,34 @@ table caption {
   height: auto;
 }
 .draft_container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  flex-direction: column;
-  justify-content: initial;
-  align-items: initial;
+
 }
 .draft_container > nav {
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content:center;
 }
 .draft_panel {
+  display:flex;
+  flex-direction:row;
+}
+.draft_user_panel {
+  width: 33%;
+}
+.draft_characters {
   display: flex;
-  flex-direction: row;
+  width: 66%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.draft_character_container {
+  width: 10em;
+  height: 4em;
+  cursor: pointer;
+}
+.draft_character_container:hover{
+  background: lightgrey;
+}
+.current_team {
+  background: lightgrey;
 }
