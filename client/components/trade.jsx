@@ -13,7 +13,7 @@ class Trade extends Component {
     let userRoster = []; // final roster
     let charactersLeft = {};
     let undrafted = [];
-
+    console.log('props: ', this.props)
     this.props.roster.forEach((char) => {
       if (!tempRoster[char[0]]) {
         tempRoster[char[0]] = {};
@@ -65,7 +65,7 @@ class Trade extends Component {
     return (
       <div>
         <h1>Trade Stuff</h1>
-        <button onClick={() => this.props.dispatch(actions.initiateTrade(tradeDisplay))}>Submit Trade</button>
+        <button onClick={() => this.props.dispatch(actions.initiateTrade(tradeDisplay, this.props.currentEpisode))}>Submit Trade</button>
 
         <ul>
         <h2> YOUR ROSTER </h2>
@@ -102,13 +102,13 @@ class Trade extends Component {
 const select = ( state ) => {
   console.log("state: ", state)
 
-  const currentEpisode = Object.keys(state.data.user.roster).length - 2;
-  const roster = state.data.user.roster[currentEpisode];
+  const currentEpisode = Object.keys(state.data.auth.self.roster).length - 2;
+  const roster = !Object.keys(state.ui.rosterUser).length ? state.data.auth.self.roster[currentEpisode] : state.ui.rosterUser[currentEpisode + 1];
   const characters = state.data.characters;
   const users = state.data.league.users;
-  const username = state.data.user.username;
+  const username = state.data.auth.self.username;
   const tradeDisplay = state.ui.tradeDisplay;
-
+  console.log('ROSTER: ', roster)
   return { roster, characters, users, username, currentEpisode, tradeDisplay };
 };
 

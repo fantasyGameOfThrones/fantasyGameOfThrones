@@ -7,27 +7,27 @@ export const changeTradeChar = (charId, type) => {
   let payload = {};
   payload[key] = charId;
 
-  console.log('da payload: ', payload);
-
   return {
     type: `CHANGE_CHAR_TO_${type}`,
     payload: payload
   };
 }
 
-export const initiateTrade = (characters) => {
+export const initiateTrade = (characters, currentEpisode) => {
+  characters.currentEpisode = currentEpisode;
   return (dispatch) => {
-    // const params = makeParams('POST', characters);
     console.log('characters: ', characters);
     return network.trade(characters)
     .then((response) => {
-      if (!response.ok) {console.log('onooooo');}
-      console.log('got into response');
+      if (!response.ok) {console.log('onooooo response in trade gone real bad');}
       return response.json();
     })
     .then((resp) => {
-      console.log('we here2')
       console.log('res: ', resp);
+      dispatch({
+        type: 'ROSTER_UPDATED',
+        payload: resp
+      })
     });
 
   }

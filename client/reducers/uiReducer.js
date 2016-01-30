@@ -37,6 +37,8 @@ const rosterUser = (state = {}, action) => {
       return {};
     case constants.LOGOUT:
       return {};
+    case 'ROSTER_UPDATED':
+      return action.payload;
     default:
       return state;
   }
