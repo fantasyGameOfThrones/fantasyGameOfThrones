@@ -73,6 +73,8 @@ function addEvents(rows, roster, episodeLimit, totalPoints) {
   var row = rows[0];
   var episode = +row.dataValues.episode;
   var characterId = row.dataValues.characterId;
+  var droppedFor = row.dataValues.droppedFor;
+  var updatedAt = row.dataValues.updatedAt;
   // if league hasn't seen episode yet, recurse without adding
   if (episode > episodeLimit) {
     rows.shift();
@@ -84,7 +86,7 @@ function addEvents(rows, roster, episodeLimit, totalPoints) {
   return db.Event.sum('points', {where: {characterId, episode}})
   .then(function(sum) {
     totalPoints += (sum || 0);
-    roster[episode].push([characterId, sum || 0]);
+    roster[episode].push([characterId, sum || 0, droppedFor, updatedAt]);
     rows.shift();
     return addEvents(rows, roster, episodeLimit, totalPoints);
   })

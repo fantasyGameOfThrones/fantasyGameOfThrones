@@ -6,7 +6,7 @@ var User = db.User;
 var update = function (req, res) {
   // assuming passing in currentEpisode through request
   var character = req.body.addCharId;
-  var nextEpisode = req.body.currentEpisode + 1;
+  var nextEpisode = req.body.currentEpisode;
   var dropChar = req.body.dropCharId;
   console.log('char, dropChar, and nextep and userId: ', character, dropChar, nextEpisode, req.headers.id);
   return RosterData.create({
@@ -17,26 +17,27 @@ var update = function (req, res) {
       console.log('created rosterdata');
       return RosterData.findOne({
         where: { 
-          characterId: req.body.dropCharId,
+          characterId: dropChar,
           userId: req.headers.id,
-          episode: nextEpisode 
+          episode: nextEpisode,
+          droppedFor: null
         }
       })
       .then(function (dropChar) {
-        console.log(' in drop mode: ', dropChar);
-        return dropChar.destroy();
-      })
-      .then(function () {
-        return User.findOne({
-          where: { id : req.headers.id }
+        console.log(' in drop mode: ');
+        return dropChar.update({
+          droppedFor: character
         })
-        .then(function (user) {
-          console.log('got user: ', user);
-          return helpers.makeRoster(user, nextEpisode);
-        })
-        .then(function (roster) {
-          console.log('got to roster: ', roster);
-          res.status(200).json(roster);
+        .then(function (resultOfUpdate) {
+          return User.findOne({
+            where: { id : req.headers.id }
+          })
+          .then(function (user) {
+            return helpers.makeRoster(user, nextEpisode);
+          })
+          .then(function (roster) {
+            res.status(200).json(roster);
+          })
         })
       })
     })

@@ -47,6 +47,10 @@ const auth = (state = {token: '', self: {}}, action) => {
       return Object.assign({}, state, {token: action.payload.token, self: action.payload.user});
     case actions.LOGIN_SUCCESS:
       return Object.assign({}, state, {token: action.payload.token, self: action.payload.user});
+    case 'ROSTER_UPDATED':
+      let stateCpy = Object.assign({}, state);
+      stateCpy.self.roster = action.payload;
+      return Object.assign({}, stateCpy);
     case actions.LEAVE_LEAGUE_SUCCESS:
       return Object.assign({}, state, {self: action.payload.user});
     case actions.LOGIN_FAILURE:
