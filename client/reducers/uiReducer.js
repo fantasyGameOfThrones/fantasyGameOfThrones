@@ -1,19 +1,19 @@
 import {combineReducers} from 'redux';
-import * as actions from '../services/actionConstants.jsx'
+import * as constants from '../services/actionConstants.jsx'
 
 const contentDisplay = (state = 'HOME', action) => {
   switch(action.type){
-    case actions.CHANGE_MAIN_COMPONENT:
+    case constants.CHANGE_MAIN_COMPONENT:
       return action.payload.tab;
-    case actions.CREATE_LEAGUE_SUCCESS:
+    case constants.CREATE_LEAGUE_SUCCESS:
       return 'HOME';
-    case actions.CHANGE_ROSTER_USER:
+    case constants.CHANGE_ROSTER_USER:
       return 'ROSTERS';
-    case actions.LEAVE_LEAGUE_SUCCESS: 
+    case constants.LEAVE_LEAGUE_SUCCESS: 
       return 'HOME';
-    case actions.ACCEPT_INVITATION_SUCCESS:
+    case constants.ACCEPT_INVITATION_SUCCESS:
       return 'HOME';
-    case actions.LOGOUT:
+    case constants.LOGOUT:
       return 'HOME';
     default:
       return state;
@@ -22,9 +22,9 @@ const contentDisplay = (state = 'HOME', action) => {
 
 const authDisplay = (state = 'LOGIN', action) => {
   switch(action.type) {
-    case actions.CHANGE_AUTH_DISPLAY:
+    case constants.CHANGE_AUTH_DISPLAY:
       return action.payload.authDisplay;
-    case actions.LOGOUT:
+    case constants.LOGOUT:
       return 'LOGIN';
     default:
       return state;
@@ -33,11 +33,11 @@ const authDisplay = (state = 'LOGIN', action) => {
 
 const rosterUser = (state = {}, action) => {
   switch(action.type) {
-    case actions.CHANGE_ROSTER_USER:
+    case constants.CHANGE_ROSTER_USER:
       return action.payload.user;
-    case actions.LEAVE_LEAGUE_SUCCESS: 
+    case constants.LEAVE_LEAGUE_SUCCESS: 
       return {};
-    case actions.LOGOUT:
+    case constants.LOGOUT:
       return {};
     default:
       return state;

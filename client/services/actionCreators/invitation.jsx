@@ -15,6 +15,15 @@ const acceptInvitationSuccess = (body) => {
   };
 };
 
+const declineInvitationSuccess = (body) => {
+  return {
+    type: constants.DECLINE_INVITATION_SUCCESS,
+    payload: {
+      invitations: body.invitations,
+    }
+  }
+}
+
 const acceptInvitationFailure = (message) => {
   return {
     type: constants.ACCEPT_INVITATION_FAILURE,
@@ -40,4 +49,19 @@ export const acceptInvitation = (invitationId) => {
   }
 };
 
+export const declineInvitation = (invitationId) => {
+  return (dispatch) => {
+    return network.invitationRequests('PUT', invitationId, {status: 'declined'})
+    .then((response) => {
+      if (!response.ok) {throw new Error('Signup failure: ', response)}
+      return response.json();
+    })
+    .then((body) => {
+      return dispatch(declineInvitationSuccess(body));
+    })
+    .catch((error) => {
+      return dispatch(declineInvitationFailure(error.message));
+    });
+  }
+};
 

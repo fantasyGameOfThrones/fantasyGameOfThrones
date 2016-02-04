@@ -18,7 +18,7 @@ class JoinLeague extends Component {
   }
 
   renderInvitations() {
-    if (this.props.invitations) {
+    if (this.props.invitations && this.props.invitations.length !== 0) {
       return (
         <div>
           <h3> Pending invitations: </h3>

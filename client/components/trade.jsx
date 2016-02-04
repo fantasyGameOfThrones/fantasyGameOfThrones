@@ -176,7 +176,7 @@ class Trade extends Component {
 
 const select = ( state ) => {
 
-  const currentEpisode = Object.keys(state.data.auth.self.roster).length - 1;
+  const currentEpisode = state.data.league.latestSeen;
   const roster = state.data.auth.self.roster[currentEpisode];
   const characters = state.data.characters;
   const users = state.data.league.users;
