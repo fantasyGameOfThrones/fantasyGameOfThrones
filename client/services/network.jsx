@@ -66,10 +66,17 @@ const logIn = (username, password) => {
     });
 };
 
+const trade = (body) => {
+  const params = makeParams('POST', body);
+  return fetch(`${url}/api/trade`, params)
+    .catch((error) => console.error(error))
+}
+
 export default {
   signUp,
   logIn,
   getCharacters,
   userRequests,
   leagueRequests,
+  trade
 };

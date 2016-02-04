@@ -2,7 +2,7 @@ var Sequelize = require('sequelize');
 
 // env variables
 var env = process.env.NODE_ENV;
-var dbUser = process.env.DB_USER;
+var dbUser = process.env.DB_USER || 'root';
 var dbPass = process.env.DB_PASS || null;
 
 // seed data

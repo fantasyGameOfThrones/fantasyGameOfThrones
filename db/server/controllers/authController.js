@@ -7,8 +7,8 @@ var helpers = require('../helpers.js');
 var makeRoster = helpers.makeRoster;
 var makeRosters = helpers.makeRosters;
 
-var signup = function (req, res, next) {
-
+var signup =function (req, res, next) {
+  
   var username = req.body.username;
   var password = req.body.password;
   var email = req.body.email;
@@ -51,7 +51,6 @@ var login = function (req, res, next) {
 
   var username = req.body.username;
   var password = req.body.password;
-
   // eagerly load our league model and leaguemates
   User.findOne({
     where: {username},

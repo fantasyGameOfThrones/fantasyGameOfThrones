@@ -42,8 +42,20 @@ const rosterUser = (state = {}, action) => {
   }
 };
 
+const tradeDisplay = (state = {dropCharId: null, addCharId: null}, action) => {
+  switch(action.type) {
+    case 'CHANGE_CHAR_TO_DROP':
+      return { dropCharId: action.payload.dropCharId, addCharId: state.addCharId };
+    case 'CHANGE_CHAR_TO_ADD':
+      return { dropCharId: state.dropCharId, addCharId: action.payload.addCharId };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   contentDisplay,
   authDisplay,
-  rosterUser
+  rosterUser,
+  tradeDisplay
 });
