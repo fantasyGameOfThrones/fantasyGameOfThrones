@@ -6,7 +6,11 @@ const acceptInvitationSuccess = (body) => {
     type: constants.ACCEPT_INVITATION_SUCCESS,
     payload: {
       user: body.user,
-      token: body.token
+      invitations: body.invitations,
+      characters: body.characters,
+      events: body.events,
+      invitations: body.invitations,
+      league: body.user.league,
     }
   };
 };
@@ -22,7 +26,7 @@ const acceptInvitationFailure = (message) => {
 
 export const acceptInvitation = (invitationId) => {
   return (dispatch) => {
-    return network.acceptInvite('PUT', invitationId, {status: 'accepted'})
+    return network.invitationRequests('PUT', invitationId, {status: 'accepted'})
     .then((response) => {
       if (!response.ok) {throw new Error('Signup failure: ', response)}
       return response.json();

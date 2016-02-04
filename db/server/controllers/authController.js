@@ -40,7 +40,6 @@ var signup = (req, res, next) => {
             }]
           })
           .then((invitations) => {
-            console.log('invitations for ', user.username, ': ', invitations);
             res.status(200).json({
               user,
               characters,
@@ -103,7 +102,7 @@ var login = (req, res, next) => {
                   invitations: invitations || [],
                 });
               } else {
-              return makeRosters(user.dataValues.league.users, user.dataValues.league.latestSeen)
+                return makeRosters(user.dataValues.league.users, user.dataValues.league.latestSeen)
                 .then((rosters) => {
                   //assign all rosters to the appropriate user model
                   user.dataValues.league.users.forEach((leagueUser) => {

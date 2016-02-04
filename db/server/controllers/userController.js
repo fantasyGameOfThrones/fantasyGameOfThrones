@@ -19,7 +19,6 @@ module.exports = {
   },
   
   update: function (req, res) {
-    var context = this;
     var id = req.params.userId;
     var updates = req.body;
 

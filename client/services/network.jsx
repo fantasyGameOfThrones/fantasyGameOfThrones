@@ -51,6 +51,7 @@ const leagueRequests = (method, leagueID, rawParams = {}) => {
 
 const invitationRequests = (method, invitationId, rawParams = {}) => {
   const params = makeParams(method, rawParams);
+  console.log('params before making req: ', params);
   const urlString = invitationId ? `${url}/api/invitations/${invitationId}` : `${url}/api/invitations`;
   return fetch(urlString, params)
     .catch((error) => console.log(error));
@@ -85,5 +86,6 @@ export default {
   getCharacters,
   userRequests,
   leagueRequests,
+  invitationRequests,
   trade
 };
