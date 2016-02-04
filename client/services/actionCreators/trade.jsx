@@ -19,7 +19,7 @@ export const initiateTrade = (characters, currentEpisode) => {
     console.log('characters: ', characters);
     return network.trade(characters)
     .then((response) => {
-      if (!response.ok) {console.log('onooooo response in trade gone real bad');}
+      if (!response.ok) { throw new Error('Error initiating trade: ', response); }
       return response.json();
     })
     .then((resp) => {
@@ -28,8 +28,10 @@ export const initiateTrade = (characters, currentEpisode) => {
         type: 'ROSTER_UPDATED',
         payload: resp
       })
+    })
+    .catch((err) => {
+      console.log("Error in trade initiation: ", err.message);
     });
-
   }
   
 };
