@@ -19,6 +19,17 @@ const league = (state = {}, action) => {
   }
 };
 
+const invitations = (state = [], action) => {
+  switch(action.type) {
+    case actions.LOGIN_SUCCESS:
+      return action.payload.invitations || [];
+    case actions.SIGNUP_SUCCESS:
+      return action.payload.invitations || [];
+    default:
+      return state;
+  }
+}
+
 const characters = (state = [], action) => {
   switch(action.type){
     case actions.LOGIN_SUCCESS:
@@ -82,5 +93,6 @@ export default combineReducers({
   league,
   events,
   auth,
-  draft
+  draft,
+  invitations
 });

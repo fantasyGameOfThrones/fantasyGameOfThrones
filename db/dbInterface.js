@@ -39,6 +39,9 @@ var init = function() {
     .then(function() {
       return Event.bulkCreate(seedData.events);
     })
+    .then(() => {
+      return Invitation.bulkCreate(seedData.invitations);
+    })
     .then(function() {
       if (env === 'testing' || env === 'development') {
         return User.bulkCreate(seedData.users)

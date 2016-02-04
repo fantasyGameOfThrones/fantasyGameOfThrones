@@ -19,23 +19,23 @@ var create = (req, res, next) => {
         email
       })
       .then((invitation) => {
-        // send email
-        // tell invitor what happened
+        // send email to invite person to join fgot
+        res.status(200).json({success: true, message: 'Your friend hasn\'t joined us yet, so we sent them an email telling them how to join.'});
       })
     } else {
       if (!user.league) {
+        // user exists and doesn't have a league - good
         return Invitation.create({
           leagueId,
           moderatorId,
           email,
-          invitedUser: user.id,
         })
         .then((invitation) => {
-          res.status(200).send({success: true});
+          res.status(200).json({success: true});
         })
       } else {
         // user is already in a league
-        res.status(409).send('User is already in a league, so you cannot invite them.');
+        res.status(409).json({success: false, message: 'User is already in a league, so you cannot invite them to yours.'});
       }
     }
   })

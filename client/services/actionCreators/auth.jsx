@@ -50,6 +50,7 @@ const logInSuccess = (body) => {
       league: body.user.league,
       characters: body.characters,
       events: body.events,
+      invitations: body.invitations
     }
   };
   return action;

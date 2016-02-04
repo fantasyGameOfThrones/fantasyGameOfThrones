@@ -9,10 +9,37 @@ class JoinLeague extends Component {
     leagueName.value = '';
   }
 
+  acceptInvitation(invitationId) {
+    this.props.dispatch(actions.acceptInvitation(invitationId));
+  }
+
+  declineInvitation(invitationId) {
+    this.props.dispatch(actions.declineInvitation(invitationId));
+  }
+
+  renderInvitations() {
+    if (this.props.invitations) {
+      return (
+        <div>
+          <h3> Pending invitations: </h3>
+          {this.props.invitations.map((invite) => {
+            return <div>
+              Invitation to league {invite.leagueId}
+              <button className='clickable' onClick={() => this.acceptInvitation(invite.id)}>Accept and Join</button>
+              <button className='clickable' onClick={() => this.declineInvitation(invite.id)}>Decline</button>
+            </div>
+          })}
+        </div>
+      );
+    } else {
+      return (<h3>You are not currently invited to any leagues. Create a league instead!</h3>);
+    }
+  }
+
   render(){
     return (
       <div>
-        <h3>You are not currently invited to any leagues. Create a league instead!</h3>
+        {this.renderInvitations()}
         <h3>Create A League</h3>
         <div>
           <input type="textarea" id="leagueNameInput" placeholder="League Name"/>
@@ -23,9 +50,9 @@ class JoinLeague extends Component {
   }
 }
 
-const select = ( state ) => {
+const select = (state) => {
   return {
-
+    invitations: state.data.invitations,
   };
 };
 

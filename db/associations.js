@@ -20,7 +20,6 @@ var createAssociations = function(db) {
   // Associate many invitations to one league
   Invitation.belongsTo(League, {constraints: false});
   Invitation.belongsTo(User, {as: 'moderator', constraints: false});
-  Invitation.belongsTo(User, {as: 'invitedUser', constraints: false});
 
 };
 
