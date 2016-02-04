@@ -8,7 +8,10 @@ signup:
     email: string
   resBody:
     user: User # doesn't have password
-    token: string
+    token: string,
+    characters: [Character],
+    events: [Event],
+    invitations: [Invitation]
 
 login:
   verb: POST
@@ -23,6 +26,7 @@ login:
       username: string,
       email: string,
       leagueId: integer,
+    invitations: [Invitation],
     roster: 
       {
         integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
@@ -172,4 +176,5 @@ make invitation:
     leagueId: integer,
     email: string,
   resBody:
-    
+    success: boolean,
+    message: string, # optional
