@@ -11,6 +11,8 @@ const contentDisplay = (state = 'HOME', action) => {
       return 'ROSTERS';
     case constants.LEAVE_LEAGUE_SUCCESS: 
       return 'HOME';
+    case constants.ACCEPT_INVITATION_SUCCESS:
+      return 'HOME';
     case constants.LOGOUT:
       return 'HOME';
     default:

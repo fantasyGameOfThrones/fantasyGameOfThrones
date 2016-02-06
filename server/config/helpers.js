@@ -11,6 +11,11 @@ var verifyToken = function(req, res, next) {
   }
 };
 
+var logger = (req, res, next) => {
+  console.log('Serving ', req.method, ' request to ', req.url);
+  next();
+}
+
 var issueToken = function(req, res, next) {
   var id = res.body.user.id;
 
@@ -52,4 +57,5 @@ module.exports = {
   errorLogger,
   errorHandler,
   cors,
+  logger,
 };

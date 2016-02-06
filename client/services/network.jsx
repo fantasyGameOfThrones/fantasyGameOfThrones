@@ -49,6 +49,13 @@ const leagueRequests = (method, leagueID, rawParams = {}) => {
     .catch((error) => console.log(error))
 };
 
+const invitationRequests = (method, invitationId, rawParams = {}) => {
+  const params = makeParams(method, rawParams);
+  const urlString = invitationId ? `${url}/api/invitations/${invitationId}` : `${url}/api/invitations`;
+  return fetch(urlString, params)
+    .catch((error) => console.log(error));
+}
+
 const signUp = (username, email, password) => {
   let params = makeParams('POST', {username, email, password});
   // TODO: just return response
@@ -78,5 +85,6 @@ export default {
   getCharacters,
   userRequests,
   leagueRequests,
+  invitationRequests,
   trade
 };

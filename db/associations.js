@@ -4,6 +4,7 @@ var createAssociations = function(db) {
   var Event = db.models.event;
   var League = db.models.league;
   var RosterData = db.models.rosterData;
+  var Invitation = db.models.invitation;
 
   // Associate many events to one character
   Event.belongsTo(Character);
@@ -15,6 +16,10 @@ var createAssociations = function(db) {
   // Associate many users to one league
   User.belongsTo(League, {constraints: false});
   League.hasMany(User, {constraints: false});
+
+  // Associate many invitations to one league
+  Invitation.belongsTo(League, {constraints: false});
+  Invitation.belongsTo(User, {as: 'moderator', constraints: false});
 
 };
 

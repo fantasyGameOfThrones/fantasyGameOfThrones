@@ -6,6 +6,7 @@ var authRouter = require('./routers/authRouter.js');
 var apiRouter = require('./routers/apiRouter.js');
 
 module.exports = function (app) {
+  app.use(helpers.logger);
   app.use(helpers.cors);
   app.use(bodyParser.urlencoded({extended : true}));
   app.use(bodyParser.json());

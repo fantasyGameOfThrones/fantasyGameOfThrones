@@ -1,3 +1,4 @@
+# AUTH
 signup:
   verb: POST,
   url: auth/signup,
@@ -7,7 +8,10 @@ signup:
     email: string
   resBody:
     user: User # doesn't have password
-    token: string
+    token: string,
+    characters: [Character],
+    events: [Event],
+    invitations: [Invitation]
 
 login:
   verb: POST
@@ -22,6 +26,7 @@ login:
       username: string,
       email: string,
       leagueId: integer,
+    invitations: [Invitation],
     roster: 
       {
         integer: [charId, pointsForCharFromEp], [charId, pointsForCharFromEp],
@@ -61,6 +66,7 @@ login:
         }
       ]
 
+# USERS
 get a user:
   verb: GET,
   url: api/users/:userId,
@@ -103,6 +109,7 @@ create a league:
           User # includes roster property
         ]
 
+# LEAGUES
 get a league:
   verb: GET,
   url: api/leagues/:leagueId,
@@ -128,8 +135,10 @@ delete a league:
     leagueId: integer,
 
 # CHARACTERS: CURRENTLY NO ROUTES BUILT OUT
+
 # EVENTS: CURRENTLY NO ROUTES BUILT OUT
 
+# DRAFTS
 get initial draft info:
   verb: GET,
   url: /api/draft/:leagueId,
@@ -147,7 +156,7 @@ get initial draft info:
         ]
 
 submit draft:
-  verb: POST
+  verb: POST,
   url: /api/draft/:leagueId,
   reqBody:
     league:
@@ -158,3 +167,14 @@ submit draft:
           characters: [id, id, id]
         }
       ]
+
+# INVITATIONS
+make invitation:
+  verb: POST,
+  url: /api/invitations,
+  reqBody:
+    leagueId: integer,
+    email: string,
+  resBody:
+    success: boolean,
+    message: string, # optional

@@ -9,6 +9,11 @@ var cors = function(req, res, next) {
   next();
 };
 
+var logger = (req, res, next) => {
+  console.log('Serving ', req.method, ' request to ', req.url);
+  next();
+}
+
 // makeRosters can handle making rosters for multiple users
 // It does this by calling addRosters, which calls makeRoster for each user
 var makeRosters = function(users, episodeLimit) {
@@ -135,5 +140,6 @@ module.exports = {
   cors,
   formatLeagueDataForDraft,
   formatDraftData,
+  logger,
 };
 

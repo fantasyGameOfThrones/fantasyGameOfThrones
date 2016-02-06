@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var request = require('request-promise');
 var dbUrl = process.env.DB_URL;
+var logger = require('../config/helpers.js').logger;
 
 var ok = function(code) {
   return code >= 200 && code < 300;
@@ -27,6 +28,6 @@ var dbRouter = function(req, res, next) {
   })
 }
 
-router.use(dbRouter);
+router.use(logger, dbRouter);
 
 module.exports = router;
