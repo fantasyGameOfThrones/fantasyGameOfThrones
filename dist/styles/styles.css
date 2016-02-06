@@ -38,11 +38,7 @@
   flex: 1;
 }
 #center {
-  display: flex;
   overflow: scroll;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
   background-color: rgba(255,182,193,0.5);
   flex: 1 0 30em;
 }
@@ -107,4 +103,36 @@ table caption {
 .thumb {
   width: 60px;
   height: auto;
+}
+.draft_container {
+
+}
+.draft_container > nav {
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+}
+.draft_panel {
+  display:flex;
+  flex-direction:row;
+}
+.draft_user_panel {
+  width: 33%;
+}
+.draft_characters {
+  display: flex;
+  width: 66%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.draft_character_container {
+  width: 10em;
+  height: 4em;
+  cursor: pointer;
+}
+.draft_character_container:hover{
+  background: lightgrey;
+}
+.current_team {
+  background: lightgrey;
 }

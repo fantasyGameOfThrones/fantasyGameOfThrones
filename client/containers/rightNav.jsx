@@ -5,7 +5,6 @@ import LeagueRanking from '../components/leagueRanking.jsx';
 export default class RightNav extends Component {
 
   render() {
-    // return <div></div>
     return <div id="right"><LeagueRanking /></div>;
   }
 

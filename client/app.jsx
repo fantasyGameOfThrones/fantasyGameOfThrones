@@ -10,12 +10,13 @@ import Signup from './components/signup.jsx';
 class App extends Component {
 
   composedApp() {
+    
     return (
       <div id="composedApp">
         <Header />
         <div id="body">
           <Content />
-          <RightNav />
+          {this.props.contentDisplay !== 'DRAFT' ? <RightNav /> : null}
         </div>
         <Footer />
         {this.props.children}
@@ -39,7 +40,8 @@ class App extends Component {
 let select = (state) => {
   return { 
     token: state.data.auth.token,
-    authDisplay: state.ui.authDisplay
+    authDisplay: state.ui.authDisplay,
+    contentDisplay: state.ui.contentDisplay
   };
 };
 
