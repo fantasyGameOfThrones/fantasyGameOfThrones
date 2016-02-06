@@ -9,6 +9,10 @@ const contentDisplay = (state = 'HOME', action) => {
       return 'HOME';
     case constants.CHANGE_ROSTER_USER:
       return 'ROSTERS';
+    case constants.LEAVE_LEAGUE_SUCCESS: 
+      return 'HOME';
+    case constants.ACCEPT_INVITATION_SUCCESS:
+      return 'HOME';
     case constants.LOGOUT:
       return 'HOME';
     default:
@@ -31,8 +35,21 @@ const rosterUser = (state = {}, action) => {
   switch(action.type) {
     case constants.CHANGE_ROSTER_USER:
       return action.payload.user;
+    case constants.LEAVE_LEAGUE_SUCCESS: 
+      return {};
     case constants.LOGOUT:
       return {};
+    default:
+      return state;
+  }
+};
+
+const tradeDisplay = (state = {dropCharId: null, addCharId: null}, action) => {
+  switch(action.type) {
+    case 'CHANGE_CHAR_TO_DROP':
+      return { dropCharId: action.payload.dropCharId, addCharId: state.addCharId };
+    case 'CHANGE_CHAR_TO_ADD':
+      return { dropCharId: state.dropCharId, addCharId: action.payload.addCharId };
     default:
       return state;
   }
@@ -41,5 +58,6 @@ const rosterUser = (state = {}, action) => {
 export default combineReducers({
   contentDisplay,
   authDisplay,
-  rosterUser
+  rosterUser,
+  tradeDisplay
 });

@@ -35,9 +35,10 @@ const getCharacters = () => {
     .catch((error) => console.log(error));
 };
 
-const userRequests = (method, userID, rawParams = {}) => {
+const userRequests = (method, rawParams = {}) => {
   const params = makeParams(method, rawParams);
-  return fetch(`${url}/api/users/${userID}`, params)
+  const id = store.getState().data.auth.self.id;
+  return fetch(`${url}/api/users/${id}`, params)
     .catch((error) => console.log(error))
 };
 
@@ -47,6 +48,13 @@ const leagueRequests = (method, leagueID, rawParams = {}) => {
   return fetch(urlString, params)
     .catch((error) => console.log(error))
 };
+
+const invitationRequests = (method, invitationId, rawParams = {}) => {
+  const params = makeParams(method, rawParams);
+  const urlString = invitationId ? `${url}/api/invitations/${invitationId}` : `${url}/api/invitations`;
+  return fetch(urlString, params)
+    .catch((error) => console.log(error));
+}
 
 const signUp = (username, email, password) => {
   let params = makeParams('POST', {username, email, password});
@@ -65,10 +73,18 @@ const logIn = (username, password) => {
     });
 };
 
+const trade = (body) => {
+  const params = makeParams('POST', body);
+  return fetch(`${url}/api/trade`, params)
+    .catch((error) => console.error(error))
+}
+
 export default {
   signUp,
   logIn,
   getCharacters,
   userRequests,
   leagueRequests,
+  invitationRequests,
+  trade
 };

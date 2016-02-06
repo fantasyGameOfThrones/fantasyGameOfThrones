@@ -6,14 +6,31 @@ export const updateUser = (userID, updateData) => {
     network.userRequests('PUT', userID, updateData)
       .then((response) => {
         if(!response.ok){ throw new Error('Update user failed: ', response)}
-        return response.json()  
+        return response.json(); 
       })
       .then((json) => {
         dispatch({type: constants.UPDATE_USER_SUCCESS,payload:json});
       })
       .catch((error) => dispatch({type: constants.UPDATE_USER_FAILURE,payload: error}));
   }
-};
+}
+
+export const leaveLeague = () => {
+  var updates = {leave: true};
+  return (dispatch) => {
+    network.userRequests('PUT', updates)
+    .then((response) => {
+      if (!response.ok) {throw new Error('Leave league failed', response)}
+      return response.json();
+    })
+    .then((json) => {
+      dispatch({type: constants.LEAVE_LEAGUE_SUCCESS, payload: json});
+    })
+    .catch((error) => {
+      dispatch({type: constants.LEAVE_LEAGUE_FAILURE, payload: error});
+    });
+  }
+}
 
 export const deleteUser = (userID) => {
   return (dispatch) => {

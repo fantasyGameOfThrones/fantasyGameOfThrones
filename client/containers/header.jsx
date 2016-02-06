@@ -25,8 +25,8 @@ class Header extends Component {
     switch(tab) {
       case 'LOGOUT':
         return this.props.dispatch(actions.logOut());
-      case 'NEW LEAGUE':
-        return this.props.dispatch(actions.navigateTo('NEW_LEAGUE'));
+      case 'JOIN A LEAGUE':
+        return this.props.dispatch(actions.navigateTo('JOIN_A_LEAGUE'));
       case 'ROSTERS':
         return this.props.dispatch(actions.changeRosterUser(this.props.user));
       default:
@@ -56,8 +56,8 @@ class Header extends Component {
 
 const select = (state) => {
   let tabs = ['HOME', 'DRAFT', 'TRADE', 'RANKINGS', 'ROSTERS'];
-  if (!state.data.league) {
-    tabs.push('NEW LEAGUE');
+  if (Object.keys(state.data.league).length === 0) {
+    tabs.push('JOIN A LEAGUE');
   } else {
     tabs.push('LEAGUE');
   }

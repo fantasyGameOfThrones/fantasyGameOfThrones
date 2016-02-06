@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Footer from './containers/footer.jsx';
 import Header from './containers/header.jsx';
 import Content from './containers/content.jsx';

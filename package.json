@@ -6,10 +6,8 @@
   "scripts": {
     "test": "eslint **",
     "start": "nodemon --exec babel-node server/server.js",
-    "dev": "npm run submodule && webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
-    "db": "npm run submodule && nodemon --exec babel-node db/server/server.js",
-    "watch": "webpack --watch --colors --progress",
-    "submodule": "git submodule init && git submodule update --remote"
+    "dev": "webpack-dev-server --port 4000 --inline --devtool eval --progress --colors --hot --content-base dist/",
+    "watch": "webpack --watch --colors --progress"
   },
   "author": "Naomi Jacobs",
   "license": "ISC",

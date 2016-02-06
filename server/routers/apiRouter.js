@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var request = require('request-promise');
 var dbUrl = process.env.DB_URL;
+var logger = require('../config/helpers.js').logger;
 
 var ok = function(code) {
   return code >= 200 && code < 300;
@@ -17,7 +18,6 @@ var dbRouter = function(req, res, next) {
 
   return request(options)
   .then(function(dbRes) {
-    console.log('got resp back from db: ', dbRes);
     if (!ok(dbRes.statusCode)) {
       res.status(500).send('Server error: ', dbRes);
     } else { res.status(200).json(dbRes); }
@@ -25,9 +25,9 @@ var dbRouter = function(req, res, next) {
   .catch(function(err) {
     console.error('Error with req to database: ', err.message);
     res.status(500).send('Server error: ', err);
-  });
-};
+  })
+}
 
-router.use(dbRouter);
+router.use(logger, dbRouter);
 
 module.exports = router;

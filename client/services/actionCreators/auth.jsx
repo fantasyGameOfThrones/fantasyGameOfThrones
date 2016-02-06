@@ -2,7 +2,6 @@ import network from '../network.jsx';
 import * as constants from '../actionConstants.jsx';
 
 const signUpSuccess = (body) => {
-  console.log('sign up success!', body);
   return {
     type: constants.SIGNUP_SUCCESS,
     payload: {
@@ -13,7 +12,6 @@ const signUpSuccess = (body) => {
 };
 
 const signUpFailure = (message) => {
-  console.log('signUpFailure: ', message);
   return {
     type: constants.SIGNUP_FAILURE,
     payload: {
@@ -52,6 +50,7 @@ const logInSuccess = (body) => {
       league: body.user.league,
       characters: body.characters,
       events: body.events,
+      invitations: body.invitations
     }
   };
   return action;

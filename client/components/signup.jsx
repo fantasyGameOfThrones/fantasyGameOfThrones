@@ -18,7 +18,7 @@ class Signup extends Component{
 
   render() {
     return (
-      <div>
+      <div className="entry">
         <div>
           <input type="textarea" id="usernameSignup" placeholder="username"/>
           <input type="textarea" id="emailSignup" placeholder="email"/>

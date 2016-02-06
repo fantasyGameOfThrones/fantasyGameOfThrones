@@ -4,7 +4,7 @@ import Home from '../components/home.jsx';
 import Trade from '../components/trade.jsx';
 import Draft from '../components/draft.jsx';
 import Login from '../components/login.jsx';
-import NewLeague from '../components/newLeague.jsx';
+import JoinLeague from '../components/joinLeague.jsx';
 import Rosters from '../components/rosters.jsx';
 import League from '../components/league.jsx';
 
@@ -19,8 +19,8 @@ class Content extends Component {
         return <Trade/>
       case 'DRAFT':
         return <Draft/>
-      case 'NEW_LEAGUE':
-        return <NewLeague />;
+      case 'JOIN_A_LEAGUE':
+        return <JoinLeague />;
       case 'LEAGUE':
         return <League />;
       case 'ROSTERS':
