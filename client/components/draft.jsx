@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import actions from '../services/actionCreators.jsx';
 import io from 'socket.io-client';
 
-const SOCKET_IP = process.env.SOCKET_IP.toString() || "localhost"
+const SOCKET_URL = process.env.SOCKET_URL.toString() || "localhost"
 
 class Draft extends Component {
 
@@ -52,7 +52,7 @@ class Draft extends Component {
   }
 
   openSocket() {
-    this.socket = io.connect(`http://${SOCKET_IP}:8080`);
+    this.socket = io.connect(`${SOCKET_URL}:8080`);
 
     this.socket.on('sendLeagueId', () => {
       this.socket.emit('returnLeagueId', {league_id:1});
