@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import actions from '../services/actionCreators.jsx';
+import actions from './../../../services/actionCreators.jsx';
 import classNames from 'classnames';
+
+import './header.less';
 
 class Header extends Component {
 
@@ -36,14 +38,14 @@ class Header extends Component {
 
   render() {
     return (
-      <div id="header">
-        <div className="leftHeader">
+      <div className="got__header">
+        <div className="left_header">
           <h1>FGOT</h1>
-          <ul className="leftNavTabs">
+          <ul className="left_nav_tabs">
             {this.renderTabs(this.props.tabs)}
           </ul>
         </div>
-        <div className="RightHeader">
+        <div className="right_header">
           <ul>
             {this.renderTabs(['LOGOUT'])}
           </ul>

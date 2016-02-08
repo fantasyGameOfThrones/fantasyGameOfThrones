@@ -16,6 +16,10 @@ module.exports = {
         loaders: ['react-hot','babel'],
         exclude: [/node_modules/]
       },
+      {
+        test: /\.less$/,
+        loader: 'style!css!less'
+      }
     ]
   },
   plugins: [

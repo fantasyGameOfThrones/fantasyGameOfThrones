@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import actions from '../services/actionCreators.jsx';
+import actions from './../../../services/actionCreators.jsx'
 import io from 'socket.io-client';
+
+import './draft.less';
 
 const SOCKET_URL = process.env.SOCKET_URL.toString() || "localhost"
 
@@ -27,8 +29,8 @@ class Draft extends Component {
   }
 
   componentDidMount () {
-    let teamById = {};
-    let charById = {};
+    const teamById = {};
+    const charById = {};
 
     this.props.league.users.forEach((user, i) => {
       teamById[user.id] = user;
@@ -143,14 +145,14 @@ class Draft extends Component {
 
   renderCharacters () {
     return (
-      <div className='draft_characters'>
+      <div className='characters'>
         {this.props.characters
           .filter((char) => !this.state.picked[char.id])
           .map((char,i) => {
           return (
             <div 
               key={i} 
-              className="draft_character_container"
+              className="character_container"
               onClick={this.draftCharacter.bind(this,char.id)}
               >
               <span > {char.name} </span>
@@ -164,7 +166,7 @@ class Draft extends Component {
   renderDraftPanel () {
     return (
       <div className='draft_panel'>
-        <div className='draft_user_panel'>
+        <div className='user_panel'>
           {this.renderUsers()}
           {this.state.timer && this.state.timer.seconds ? this.renderTimer() : null}
         </div>
@@ -175,7 +177,7 @@ class Draft extends Component {
 
   render() {
     return (
-      <div className="draft_container">
+      <div className="got__draft">
 
         {this.props.draft.draftStatus === 'PRE_DRAFT' || /*testing*/this.props.draft.draftStatus === 'MID_DRAFT'? 
         (<nav>

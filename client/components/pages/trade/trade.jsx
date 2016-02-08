@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import actions from '../services/actionCreators.jsx';
+import actions from './../../../services/actionConstants.jsx'
+
+import './trade.less';
 
 class Trade extends Component {
   // dispatch each time a character is clicked, update the state

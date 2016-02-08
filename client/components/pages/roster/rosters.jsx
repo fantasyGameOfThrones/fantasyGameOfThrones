@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import actions from '../services/actionCreators.jsx';
 import Roster from './roster.jsx';
+
+import './rosters.less';
 
 class Rosters extends Component {
   render(){
     return (
-      <div>
+      <div className="got__rosters">
         <Roster username={this.props.rosterUser.username}
                 characters={this.props.characters}
                 roster={this.props.rosterUser.roster}/>

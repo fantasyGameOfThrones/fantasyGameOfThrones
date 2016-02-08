@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import actions from '../services/actionCreators.jsx';
+import actions from './../../../services/actionCreators.jsx'
+
+import './rosters.less';
 
 class Roster extends Component {
 
@@ -37,7 +39,7 @@ class Roster extends Component {
     const {roster, episodes, characters} = this.data();
     const context = this;
     return (
-      <table className="mainTable" >    
+      <table className="got__roster" >    
         <caption> Roster for {this.props.username}</caption>   
         <thead>   
           <tr>    
@@ -53,7 +55,7 @@ class Roster extends Component {
           {characters.map((char) => {   
             return (
               <tr key={char.id}>    
-                <td className="data charName">
+                <td className="data char_name">
                   <div>{char.name}</div>
                   <img className="thumb" src={char.imageUrl}></img>
                 </td>

@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Footer from './containers/footer.jsx';
-import Header from './containers/header.jsx';
-import Content from './containers/content.jsx';
-import RightNav from './containers/rightNav.jsx';
-import Login from './components/login.jsx';
-import Signup from './components/signup.jsx';
+import Footer from './components/containers/footer/footer.jsx';
+import Header from './components/containers/header/header.jsx';
+import Content from './components/containers/content/content.jsx';
+import RightNav from './components/containers/rightNav/rightNav.jsx';
+import Login from './components/pages/login/login.jsx';
+import Signup from './components/pages/signup/signup.jsx';
+
+import './app.less';
 
 class App extends Component {
 
   composedApp() {
     
     return (
-      <div id="composedApp">
+      <div id="composedApp" className="got__app">
         <Header />
-        <div id="body">
+        <div className="body_container">
           <Content />
           {this.props.contentDisplay !== 'DRAFT' ? <RightNav /> : null}
         </div>
