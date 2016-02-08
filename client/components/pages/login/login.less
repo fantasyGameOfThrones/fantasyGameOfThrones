@@ -1,4 +1,58 @@
 .got__login{
   display: flex;
   justify-content: center;
+  align-items: center;
+  background: #333;
+  height:100vh;
+  width: auto;
+
+  .container {
+    display: inline-table;
+    padding: 10px;
+    background: white;
+    border-radius:10px;
+    width: 30%;
+    padding:30px
+  }
+
+  .signup-panel {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .login-username, .login-password, button{
+    width: 100%;
+    height: 2em;
+    margin: 3px 0 3px 0;
+    font-family: Montserrat;
+    font-size: 1.3em;
+  }
+  .login-username:focus, .login-password:focus {
+    
+  }
+  .title {
+    text-align: center;
+    font-weight: 200;
+  }
+
+  .footer {
+    display:flex;
+    flex-diretion: row;
+    justify-content: space-around;
+  }
+  .remember{
+    display:flex;
+    align-items: center;
+  }
+
+  .forgot-password {
+    text-decoration: none;
+    color:darkgrey;
+  }
+
+  button {
+    width: 100%;
+    background: red;
+    color: white;
+  }
 }
