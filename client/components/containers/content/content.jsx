@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Home from '../components/home.jsx';
-import Trade from '../components/trade.jsx';
-import Draft from '../components/draft.jsx';
-import Login from '../components/login.jsx';
-import JoinLeague from '../components/joinLeague.jsx';
-import Rosters from '../components/rosters.jsx';
-import League from '../components/league.jsx';
+import Home from './../../pages/home/home.jsx';
+import Trade from './../../pages/trade/trade.jsx';
+import Draft from './../../pages/draft/draft.jsx';
+import Login from './../../pages/login/login.jsx';
+import JoinLeague from './../../pages/joinLeague/joinLeague.jsx';
+import Rosters from './../../pages/roster/rosters.jsx';
+import League from './../../pages/league/league.jsx';
+
+import './content.less';
 
 class Content extends Component {
 
@@ -29,9 +31,10 @@ class Content extends Component {
         return <Home/>
     }
   }
+
   render() {
     return (
-      <div id='center'>
+      <div className="got__content">
         {this.renderMain()}
       </div> 
     );

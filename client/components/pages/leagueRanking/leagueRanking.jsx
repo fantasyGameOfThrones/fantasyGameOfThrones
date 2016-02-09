@@ -1,19 +1,20 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import store from '../services/store.jsx';
-import actions from '../services/actionCreators.jsx';
+import actions from './../../../services/actionCreators.jsx';
+
+import './leagueRanking.less';
 
 class LeagueRanking extends Component {
   
   render() {
     return (
-      <div>
+      <div className="got__leagueRanking">
         <h3>League Ranking</h3>
         <ul>
           {this.props.users.map((user, index) => {
             return (
               <li key={index}
-                  className='sideBarText clickable'
+                  className='sidebar_text clickable'
                   onClick={() => {this.props.dispatch(actions.changeRosterUser(user))}}>
                 {index + 1}: {user.username}, {user.roster.points} points
               </li>

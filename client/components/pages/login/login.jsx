@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import actions from '../services/actionCreators.jsx';
+import actions from './../../../services/actionCreators.jsx';
+
+import './login.less';
 
 class Login extends Component{
   loginClick() {
@@ -17,7 +19,7 @@ class Login extends Component{
 
   render() {
     return (
-      <div className="entry">
+      <div className="got__login">
         <div>
           <input type="textarea" id="usernameLogin" placeholder="username"/>
           <input type="password" id="passwordLogin" placeholder="password"/>

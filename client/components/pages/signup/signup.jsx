@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import actions from '../services/actionCreators.jsx';
+import actions from './../../../services/actionCreators.jsx';
+
+import './signup.less';
 
 class Signup extends Component{
+  
   loginClick() {
     this.props.dispatch(actions.changeAuthDisplay('LOGIN'));
   }
@@ -18,7 +21,7 @@ class Signup extends Component{
 
   render() {
     return (
-      <div className="entry">
+      <div className="got__signup">
         <div>
           <input type="textarea" id="usernameSignup" placeholder="username"/>
           <input type="textarea" id="emailSignup" placeholder="email"/>

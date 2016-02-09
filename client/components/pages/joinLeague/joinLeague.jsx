@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import actions from '../services/actionCreators.jsx';
+import actions from './../../../services/actionCreators.jsx';
+
+import './joinLeague.less';
 
 class JoinLeague extends Component {
   createLeague() {
@@ -38,7 +40,7 @@ class JoinLeague extends Component {
 
   render(){
     return (
-      <div>
+      <div className="got__joinLeague">
         {this.renderInvitations()}
         <h3>Create A League</h3>
         <div>

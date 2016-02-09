@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import actions from '../services/actionCreators.jsx';
+import actions from './../../../services/actionCreators.jsx';
+
+import './league.less';
 
 class League extends Component {
   advanceLeague() {
@@ -24,13 +26,13 @@ class League extends Component {
 
     episodeText = 'Season ' + season + ', Episode ' + episode;
     return (
-      <div>
+      <div className="got__league">
         <h1>League</h1>
-        <div className="nextEp">
+        <div className="next_episode">
           <div> Latest seen: {episodeText} </div>
           <button onClick={this.advanceLeague.bind(this)}>We've seen the next episode, show us the results!</button>
         </div>
-        <div className="leaveLeague">
+        <div className="leave_league">
           <button onClick={this.leaveLeague.bind(this)}>Leave League</button>
         </div>
       </div>
