@@ -16,11 +16,11 @@ class Content extends Component {
   renderMain() {
     switch(this.props.contentDisplay) {
       case 'HOME':
-        return <Home/>
+        return <Home/>;
       case 'TRADE':
-        return <Trade/>
+        return <Trade/>;
       case 'DRAFT':
-        return <Draft/>
+        return <Draft/>;
       case 'JOIN_A_LEAGUE':
         return <JoinLeague />;
       case 'LEAGUE':
@@ -28,7 +28,7 @@ class Content extends Component {
       case 'ROSTERS':
         return <Rosters rosterUser={this.props.rosterUser}/>;
       default:
-        return <Home/>
+        return <Home/>;
     }
   }
 
